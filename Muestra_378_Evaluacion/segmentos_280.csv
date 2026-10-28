@@ -1,0 +1,281 @@
+﻿query_id,consulta,segmento
+Q001,Polos básicos,Especifica (una prenda)
+Q002,Vestidos,Especifica (una prenda)
+Q003,Casacas,Especifica (una prenda)
+Q004,Ternos,Especifica (una prenda)
+Q005,Blazer para mujer,Especifica (una prenda)
+Q006,polos,Especifica (una prenda)
+Q007,Pantalones,Especifica (una prenda)
+Q008,Jeans,Especifica (una prenda)
+Q009,Telas,Especifica (una prenda)
+Q010,Poleras,Especifica (una prenda)
+Q011,Ropa deportiva,Ambigua o compuesta
+Q012,Ropa para bebes,Ambigua o compuesta
+Q013,Ropa para niñas,Ambigua o compuesta
+Q014,DTF,Ambigua o compuesta
+Q015,Buzo niño,Especifica (una prenda)
+Q016,Camisetas,Especifica (una prenda)
+Q017,Pantalones de vestir,Especifica (una prenda)
+Q018,Buzos deportivos,Especifica (una prenda)
+Q019,Polos anime,Especifica (una prenda)
+Q020,Polos camiseros,Especifica (una prenda)
+Q021,Polos deportivos,Especifica (una prenda)
+Q022,Polos Lacoste,Especifica (una prenda)
+Q023,Ropa interior,Especifica (una prenda)
+Q024,Ropa niña,Ambigua o compuesta
+Q025,Tela para vertidos,Especifica (una prenda)
+Q026,Ternos para dama,Especifica (una prenda)
+Q027,tiendas en galeria san pedro,Ambigua o compuesta
+Q028,Toca para enfermera,Ambigua o compuesta
+Q029,Togas de graduación,Ambigua o compuesta
+Q030,Traje de baño,Especifica (una prenda)
+Q031,Truzas de tela,Especifica (una prenda)
+Q032,Urbani,Ambigua o compuesta
+Q033,Buzo,Especifica (una prenda)
+Q034,Buzos,Especifica (una prenda)
+Q035,Buzos baggy,Especifica (una prenda)
+Q036,Buzos conjunto,Especifica (una prenda)
+Q037,Buzos deportivos para mujer,Especifica (una prenda)
+Q038,Buzos en franela reactiva para niño,Especifica (una prenda)
+Q039,Buzos hombres,Especifica (una prenda)
+Q040,Caja husncayo,Ambigua o compuesta
+Q041,Calcetines,Ambigua o compuesta
+Q042,Cama mascotas,Ambigua o compuesta
+Q043,Camisas de mujer,Especifica (una prenda)
+Q044,Camisas sport hombre,Especifica (una prenda)
+Q045,Camisas urbanas boxi fit,Especifica (una prenda)
+Q046,Camisetas de Barcelona,Especifica (una prenda)
+Q047,Camisetas de fútbol,Especifica (una prenda)
+Q048,Camisetas deportivas,Especifica (una prenda)
+Q049,Caracas fleece,"Con marca, talla o precio"
+Q050,Casacas deportivas,Especifica (una prenda)
+Q051,Casacas jeans cortas colores neones,Especifica (una prenda)
+Q052,Chalecos deportivos,Especifica (una prenda)
+Q053,chaquetas de cuero en color rojo,Ambigua o compuesta
+Q054,China,Ambigua o compuesta
+Q055,Chompas,Especifica (una prenda)
+Q056,Chuyos,Ambigua o compuesta
+Q057,Como ago para ver precios,"Con marca, talla o precio"
+Q058,Conjunto blazer y pantalon,Especifica (una prenda)
+Q059,Conjunto deportivo talla s,"Con marca, talla o precio"
+Q060,Conjunto para matrimonio civil,Especifica (una prenda)
+Q061,Conjuntos,Especifica (una prenda)
+Q062,Conjuntos entela wafer,Especifica (una prenda)
+Q063,cortinas,Ambigua o compuesta
+Q064,De cuero específicamente,Ambigua o compuesta
+Q065,Deportivo,Ambigua o compuesta
+Q066,"Dónde ubico una tienda dónde venden ropa streetwear asiático o algo similar, de paso dónde vendan baggys unisex, baggy medio balloon pero de esos baggys que ""baguean""",Ambigua o compuesta
+Q067,"Donde vendeb ropa tipo alternativa y , emo",Ambigua o compuesta
+Q068,donde venden tela con el diseño de tablero de ajedrez,Especifica (una prenda)
+Q069,Edredones,Ambigua o compuesta
+Q070,Efit,Ambigua o compuesta
+Q071,Estampado,Ambigua o compuesta
+Q072,Fabrica jeans,Especifica (una prenda)
+Q073,Fajas,Ambigua o compuesta
+Q074,Falda y polo para bailar para dama,Especifica (una prenda)
+Q075,Faldas,Especifica (una prenda)
+Q076,Faldas de vestir,Especifica (una prenda)
+Q077,Faldas largas jeans con abertura ala costado,Especifica (una prenda)
+Q078,Faldas para jóvenes,Especifica (una prenda)
+Q079,Frazadas,Ambigua o compuesta
+Q080,Fundas de muebles,Ambigua o compuesta
+Q081,Futsal,Ambigua o compuesta
+Q082,Galerias de ropa para hombre,Ambigua o compuesta
+Q083,gama moda plaza opciones,Ambigua o compuesta
+Q084,Geans,Ambigua o compuesta
+Q085,guantes mascarilla,Ambigua o compuesta
+Q086,"Hola, necesito boxers con diseño, que tinedas me sugieres?",Ambigua o compuesta
+Q087,Hombre,Ambigua o compuesta
+Q088,Horarios,Ambigua o compuesta
+Q089,Jean bootcut hombre,Especifica (una prenda)
+Q090,Jean hombres,Especifica (una prenda)
+Q091,Jean materno,Especifica (una prenda)
+Q092,Jean para mujer,Especifica (una prenda)
+Q093,Jean tallas grandes,"Con marca, talla o precio"
+Q094,Jean waileg,Especifica (una prenda)
+Q095,jeans a la cadera baggie economicos para mujer,Especifica (una prenda)
+Q096,Jeans cargo,Especifica (una prenda)
+Q097,Jeans cristel,Especifica (una prenda)
+Q098,Jeans para hombre,Especifica (una prenda)
+Q099,Jeans para mujeres altas,Especifica (una prenda)
+Q100,Jeans petit,Especifica (una prenda)
+Q101,Jeans tallas grandes,"Con marca, talla o precio"
+Q102,Jeshu,Ambigua o compuesta
+Q103,Joggers,Ambigua o compuesta
+Q104,Leggings,Especifica (una prenda)
+Q105,lencería,Ambigua o compuesta
+Q106,Lencería al por mayor,Ambigua o compuesta
+Q107,Levis,Ambigua o compuesta
+Q108,Librería cristiana,Ambigua o compuesta
+Q109,Licras,Ambigua o compuesta
+Q110,Llamas para varón,Ambigua o compuesta
+Q111,Maletas,Ambigua o compuesta
+Q112,Mandiles,Ambigua o compuesta
+Q113,Manteles para cocina,Ambigua o compuesta
+Q114,media pima,Ambigua o compuesta
+Q115,Medias,Especifica (una prenda)
+Q116,Mesiaa,Ambigua o compuesta
+Q117,Mini shorts,Especifica (una prenda)
+Q118,Minis shorts algodon,Especifica (una prenda)
+Q119,"Necesito shorts de dama a la cadera que no sean super cortos, ya que es para adolescente",Ambigua o compuesta
+Q120,Necesito tienda donde vendan ropa de xxl juvenil para mujer,"Con marca, talla o precio"
+Q121,No hsy mas tiendas de camisa,Especifica (una prenda)
+Q122,Notte,Ambigua o compuesta
+Q123,Outdoor,Ambigua o compuesta
+Q124,Overside,Ambigua o compuesta
+Q125,Oxford,Ambigua o compuesta
+Q126,Paganni,Ambigua o compuesta
+Q127,Paño azul,Ambigua o compuesta
+Q128,Pantalón de vestir,Especifica (una prenda)
+Q129,Pantalón fri,Especifica (una prenda)
+Q130,Pantalon Gurkha,Especifica (una prenda)
+Q131,pantalon hombre old money,Ambigua o compuesta
+Q132,Pantalón sastre,Especifica (una prenda)
+Q133,Pantalones buzos,Especifica (una prenda)
+Q134,Pantalones damas,Especifica (una prenda)
+Q135,Pantalones de vestir de tela gruesa,Especifica (una prenda)
+Q136,Pantalones de vestir para damas,Especifica (una prenda)
+Q137,Pantalones hombre,Especifica (una prenda)
+Q138,Pantalones jean,Especifica (una prenda)
+Q139,Pantalones Jean tallas grandes hombre,"Con marca, talla o precio"
+Q140,Pantalones jeans mujer,Especifica (una prenda)
+Q141,Pantalones jeans petit,Especifica (una prenda)
+Q142,Pantalones jeans varon,Especifica (una prenda)
+Q143,Pantalones sueltos,Especifica (una prenda)
+Q144,Pantalones tacticos,Especifica (una prenda)
+Q145,Pantañon tela mojada para dama,Especifica (una prenda)
+Q146,Para estampar,Ambigua o compuesta
+Q147,Pero de los virales en tik tok,Ambigua o compuesta
+Q148,Pero no quiero caro que sea Barato,"Con marca, talla o precio"
+Q149,Pijama algodón mujer,Especifica (una prenda)
+Q150,Pijamas de hombre,Especifica (una prenda)
+Q151,Pijamas para niños,Especifica (una prenda)
+Q152,Pistola de hidrogel,Ambigua o compuesta
+Q153,Blusas,Especifica (una prenda)
+Q154,Poleras de mesii,Especifica (una prenda)
+Q155,Poleras niños,Especifica (una prenda)
+Q156,Polerones canguro con capucha,Especifica (una prenda)
+Q157,polo algodon pyma xl,"Con marca, talla o precio"
+Q158,Polo hombre,Especifica (una prenda)
+Q159,polo Raplh lauren,Especifica (una prenda)
+Q160,Zapatos punta de acero,Especifica (una prenda)
+Q161,Polos 100% algodón varón,"Con marca, talla o precio"
+Q162,Polos algodon,Especifica (una prenda)
+Q163,Polos algodón licrado baratos,"Con marca, talla o precio"
+Q164,Baggy jeans con estampados y2kpara hombre baratos,"Con marca, talla o precio"
+Q165,Polos básico,Especifica (una prenda)
+Q166,Bagues x mayor económicos,Ambigua o compuesta
+Q167,Polos básicos pima,Especifica (una prenda)
+Q168,Polos buzos,Especifica (una prenda)
+Q169,Bandera de Venezuela,Ambigua o compuesta
+Q170,Polos con diseño,Especifica (una prenda)
+Q171,Polos con logo,Especifica (una prenda)
+Q172,polos de algodon color negro,Especifica (una prenda)
+Q173,polos de algodon para hombres,Especifica (una prenda)
+Q174,Polos de algodón por mayor,Especifica (una prenda)
+Q175,Polos de colegio,Especifica (una prenda)
+Q176,Polos de color entero,Especifica (una prenda)
+Q177,Polos de niños,Especifica (una prenda)
+Q178,polos de olivia rodrigo,Especifica (una prenda)
+Q179,Polos de spiderman,Especifica (una prenda)
+Q180,Polos de vestir mujer,Especifica (una prenda)
+Q181,Batas,Ambigua o compuesta
+Q182,Polos doble manga oversize,Especifica (una prenda)
+Q183,Polos exportación,"Con marca, talla o precio"
+Q184,Polos industrial,Especifica (una prenda)
+Q185,Beiser de mujer,Ambigua o compuesta
+Q186,polos mujer,Especifica (una prenda)
+Q187,Polos niños,Especifica (una prenda)
+Q188,Polos oversize,Especifica (una prenda)
+Q189,Polos para niños,Especifica (una prenda)
+Q190,Polos peru,Especifica (una prenda)
+Q191,Polos pima,Especifica (una prenda)
+Q192,Polos réplica a1,"Con marca, talla o precio"
+Q193,Polos tallas plus de hombres,"Con marca, talla o precio"
+Q194,Polos tela viscosa,Especifica (una prenda)
+Q195,Polos Tommy,Especifica (una prenda)
+Q196,Polos varones moda,Especifica (una prenda)
+Q197,Polos y poleras,Especifica (una prenda)
+Q198,Prendas de dama exclusivos por mayor importado y nacional,Ambigua o compuesta
+Q199,Pro lucanas 1258 tienda 201 matute la victoria,"Con marca, talla o precio"
+Q200,proveedores,Ambigua o compuesta
+Q201,Quiero comprar mi polo de spiderman,Especifica (una prenda)
+Q202,Quiero comprar un cosplay de sua de zombie stage en gamarra,Ambigua o compuesta
+Q203,Quiero encontrar ropa estilo baddie,Ambigua o compuesta
+Q204,Quiero vestidos,Especifica (una prenda)
+Q205,ropa al por mayor niña de 3 años talla 6,"Con marca, talla o precio"
+Q206,Ropa ancha,Ambigua o compuesta
+Q207,Ropa antigua,Ambigua o compuesta
+Q208,ropa ciclismo,Ambigua o compuesta
+Q209,Ropa coreana,Ambigua o compuesta
+Q210,Ropa de hombre,Ambigua o compuesta
+Q211,Ropa de hombre oversay,Ambigua o compuesta
+Q212,Ropa de los 2000s,"Con marca, talla o precio"
+Q213,ropa de mujer san pedro,Ambigua o compuesta
+Q214,Ropa de niño algodon,Ambigua o compuesta
+Q215,ropa de niños,Ambigua o compuesta
+Q216,Ropa de pinterest,Ambigua o compuesta
+Q217,Ropa de verano,Ambigua o compuesta
+Q218,Ropa de vestir para niños,Ambigua o compuesta
+Q219,Bisutería,Ambigua o compuesta
+Q220,Ropa deportiva para hombre,Ambigua o compuesta
+Q221,Ropa estilo de los 2000',"Con marca, talla o precio"
+Q222,Ropa estilo y2k,"Con marca, talla o precio"
+Q223,Ropa formal dama,Ambigua o compuesta
+Q224,Vestido para playa,Especifica (una prenda)
+Q225,Ropa interior hilo para hombres,Especifica (una prenda)
+Q226,Ropa interior mujer,Especifica (una prenda)
+Q227,Ropa maternidad,Ambigua o compuesta
+Q228,Ropa neón,Ambigua o compuesta
+Q229,sudadera,Ambigua o compuesta
+Q230,Ropa old money,Ambigua o compuesta
+Q231,Ropa para adolescentes,Ambigua o compuesta
+Q232,Tallas curvy para mujer,"Con marca, talla o precio"
+Q233,ropa para mujer y2k,"Con marca, talla o precio"
+Q234,ropa para mujeres de 50 años,"Con marca, talla o precio"
+Q235,tankini,Ambigua o compuesta
+Q236,Ropa para niños,Ambigua o compuesta
+Q237,Ropa para niños con diseños de Marvel,Ambigua o compuesta
+Q238,Ropa pettit,Ambigua o compuesta
+Q239,Ropa yk2,"Con marca, talla o precio"
+Q240,Saco para damas,Especifica (una prenda)
+Q241,Sastre,Ambigua o compuesta
+Q242,Sastre mujer,Ambigua o compuesta
+Q243,Sastre para ternos,Especifica (una prenda)
+Q244,Set comfy,Ambigua o compuesta
+Q245,Short,Especifica (una prenda)
+Q246,Short casual hombre,Especifica (una prenda)
+Q247,Short licra,Especifica (una prenda)
+Q248,Short tela drill,Especifica (una prenda)
+Q249,Blaser,Ambigua o compuesta
+Q250,Tela para manteles,Especifica (una prenda)
+Q251,Vestidos de algodon,Especifica (una prenda)
+Q252,Vestidos de XV,Especifica (una prenda)
+Q253,Vestidos elegantes,Especifica (una prenda)
+Q254,Vestidos fiesta,Especifica (una prenda)
+Q255,Vestidos jeans,Especifica (una prenda)
+Q256,Vestidos largos,Especifica (una prenda)
+Q257,Vestidos quinceañera,Especifica (una prenda)
+Q258,Vialbri,Ambigua o compuesta
+Q259,Wile Jean azul oscuro más casaca Jean,Especifica (una prenda)
+Q260,Y holanda zarate,Ambigua o compuesta
+Q261,Yoger,Ambigua o compuesta
+Q262,Zapatillas,Especifica (una prenda)
+Q263,Zapatillas hi tec,Especifica (una prenda)
+Q264,Busos deportivos,Ambigua o compuesta
+Q265,Shorts economicos de niña,Especifica (una prenda)
+Q266,blusas de algodon,Especifica (una prenda)
+Q267,Blusas elegantes mujer,Especifica (una prenda)
+Q268,Blusas estilo coreano,Especifica (una prenda)
+Q269,Blusas jean,Especifica (una prenda)
+Q270,Blusas pequeñas,Especifica (una prenda)
+Q271,Bolso media luna,Ambigua o compuesta
+Q272,Bolsos,Ambigua o compuesta
+Q273,Bordados,Ambigua o compuesta
+Q274,Boxer algodon,Ambigua o compuesta
+Q275,Boxer caballeros,Ambigua o compuesta
+Q276,Busco chalecos de entrenamiento deportivos para futbol,Especifica (una prenda)
+Q277,Busco moda alternativa o yk2,"Con marca, talla o precio"
+Q278,Busco polos de algodón para estampar,Especifica (una prenda)
+Q279,Busos,Ambigua o compuesta
+Q280,Vedtidos,Ambigua o compuesta

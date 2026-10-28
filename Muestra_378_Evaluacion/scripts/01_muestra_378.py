@@ -130,10 +130,10 @@ candidatos = candidatos.merge(queries, on="query_id", how="left").rename(columns
 candidatos.to_excel(f"{OUT}/candidatos_por_metodo_378.xlsx", index=False)
 print(f"Guardado: {OUT}/candidatos_por_metodo_378.xlsx ({len(candidatos)} filas)")
 
-union = candidatos.drop_duplicates(subset=["query_id", "store_id"]).copy()
-union["metodos_que_la_proponen"] = union.groupby(["query_id", "store_id"])["metodo"].transform(
+candidatos["metodos_que_la_proponen"] = candidatos.groupby(["query_id", "store_id"])["metodo"].transform(
     lambda s: ", ".join(sorted(set(s)))
 )
+union = candidatos.drop_duplicates(subset=["query_id", "store_id"]).copy()
 hoja = union.drop_duplicates(subset=["query_id", "store_id"])[
     ["query_id", "consulta", "store_id", "display_name", "categories", "subcategory",
      "gallery", "floor", "stand", "metodos_que_la_proponen"]

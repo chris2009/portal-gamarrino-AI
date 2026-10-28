@@ -131,13 +131,13 @@ def main():
     # Hoja de etiquetado: union de tiendas candidatas por consulta (sin duplicar
     # la misma tienda si aparece en mas de un metodo para la misma consulta),
     # con dos columnas en blanco para que dos evaluadores marquen Si/No.
+    candidatos["metodos_que_la_proponen"] = candidatos.groupby(["query_id", "store_id"])["metodo"].transform(
+        lambda s: ", ".join(sorted(set(s)))
+    )
     union = candidatos.drop_duplicates(subset=["query_id", "store_id"]).copy()
     union = union.sort_values(["query_id", "store_id"])
     union["relevante_evaluador1_SiNo"] = ""
     union["relevante_evaluador2_SiNo"] = ""
-    union["metodos_que_la_proponen"] = union.groupby(["query_id", "store_id"])["metodo"].transform(
-        lambda s: ", ".join(sorted(set(s)))
-    )
     hoja = union.drop_duplicates(subset=["query_id", "store_id"])[
         ["query_id", "consulta", "store_id", "display_name", "categories", "subcategory",
          "gallery", "floor", "stand", "metodos_que_la_proponen",

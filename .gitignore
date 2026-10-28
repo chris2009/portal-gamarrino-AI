@@ -1,0 +1,17 @@
+# Credenciales — NUNCA subir
+.env
+*.env
+
+# Datos con información de contacto real de tiendas (autorización solo académica)
+**/catalogo_consolidado_mvp.xlsx
+**/Base de Datos - Portal Gamarrino/**
+**/*consultas x 4000*.xlsx
+
+# Archivos temporales de Office
+~$*.xlsx
+~$*.pptx
+~$*.docx
+
+# Embeddings guardados (pesan y son regenerables)
+**/emb_catalogo.npy
+**/emb_queries*.npy

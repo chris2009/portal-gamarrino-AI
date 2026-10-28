@@ -46,6 +46,3 @@ Si la consulta pide específicamente productos de réplica, de "exportación" u 
 *Ejemplo real: "Polos réplica a1" → "Tienda de polos básicos y camiseros" (no confirma que venda réplicas de marca) = No.*
 *Nota aparte: las solicitudes de réplicas de marca son además un tema ético/legal (propiedad intelectual) a anotar en el registro de riesgos del E5, no solo un tema de etiquetado.*
 
----
-
-*Documento vivo: si en el etiquetado de las 2,299 filas aparece un caso nuevo que no cubre ninguna regla, anótenlo aparte y me lo pasan para sumarlo aquí antes de seguir, así no queda a criterio de uno solo.*

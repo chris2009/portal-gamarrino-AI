@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Gamarrino AI — Profile Card</title>
+  <style>
+    :root {
+      --ink: #111;
+      --border: #202020;
+      --communication: #dfe9df;
+      --context: #b7d9f0;
+      --environment: #b9e4e7;
+      --autonomy: #fff0c9;
+      --criticality: #f7cfd3;
+      --paper: #ffffff;
+      --page-bg: #f3f5f7;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--page-bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.35;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 24px));
+      margin: 30px auto 50px;
+    }
+
+    .agent-sheet {
+      background: var(--paper);
+      border: 2px solid var(--border);
+      margin: 0 auto;
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
+      overflow: hidden;
+    }
+
+    .case-title {
+      padding: 22px 28px;
+      border-bottom: 2px solid var(--border);
+      background: #fff;
+      text-align: center;
+    }
+
+    .case-title h1 { margin: 7px 0 0; font-size: clamp(22px, 2.3vw, 34px); line-height: 1.2; }
+    .case-title .subtitle { margin: 8px auto 0; max-width: 900px; font-size: 14.5px; font-style: italic; color: #333; }
+
+    .case-number {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      background: #111;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 999px;
+    }
+
+    .section { border-bottom: 2px solid var(--border); padding: 18px 18px 20px; }
+    .section:last-child { border-bottom: 0; }
+    .section > h2 { margin: 0 0 4px; text-align: center; font-size: clamp(21px, 2vw, 29px); line-height: 1.1; }
+    .section > h3 { margin: 0 0 10px; text-align: center; font-size: clamp(15px, 1.3vw, 20px); font-weight: 700; }
+    .section > p { margin: 5px auto; text-align: center; max-width: 1000px; font-size: 15px; }
+
+    .communication { background: var(--communication); padding-top: 20px; padding-bottom: 20px; }
+    .context { background: var(--context); }
+    .environment { background: var(--environment); }
+    .autonomy { background: var(--autonomy); }
+    .criticality { background: var(--criticality); }
+
+    .grid { display: grid; gap: 16px; align-items: stretch; margin-top: 14px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .environment-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .memory-stack { display: flex; flex-direction: column; gap: 16px; }
+
+    .box {
+      background: rgba(255,255,255,.94);
+      border: 2px solid var(--border);
+      border-radius: 26px;
+      padding: 14px 18px 16px;
+      min-width: 0;
+    }
+
+    .box h3 { text-align: center; margin: 0 0 8px; font-size: clamp(17px, 1.5vw, 22px); line-height: 1.05; }
+    .box p { margin: 6px 0; text-align: left; font-size: 14.5px; }
+    .box ul { margin: 6px 0 0; padding-left: 20px; }
+    .box li { margin: 5px 0; font-size: 14.5px; }
+
+    .rule-tag {
+      display: inline-block;
+      background: #111;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 5px;
+      margin-right: 6px;
+      letter-spacing: .02em;
+    }
+
+    .critical-grid .box { padding-left: 22px; padding-right: 22px; }
+
+    .agent-type-tag {
+      display: inline-block;
+      margin-top: 10px;
+      background: #111;
+      color: #fff;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      letter-spacing: .02em;
+    }
+
+    @media (max-width: 1000px) {
+      .grid.two, .environment-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      main { width: 100%; margin: 0; }
+      .agent-sheet { box-shadow: none; margin: 0; }
+      .box { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="agent-sheet" id="portal-gamarrino-ai">
+      <div class="case-title">
+        <span class="case-number">Agentic System Profile Card</span>
+        <h1>Portal Gamarrino AI</h1>
+        <p class="subtitle">A partir de una consulta en lenguaje natural sobre una prenda, recupera por significado (embeddings + ChromaDB) y recomienda las 3 tiendas más relevantes del Emporio de Gamarra, con ubicación exacta (galería/piso/stand) y WhatsApp cuando está disponible.</p>
+        <span class="agent-type-tag">Goal-Based Agent</span>
+      </div>
+
+      <div class="section communication">
+        <h2>Communication Layer</h2>
+        <h3>Conversacional</h3>
+        <p>Canal: chat web (Streamlit), un comprador por sesión. Cada sesión tiene su propio <code>session_id</code> (memoria aislada); la respuesta es texto libre en español con la lista de tiendas (nombre, por qué calza, ubicación, WhatsApp, link a mapa).</p>
+      </div>
+
+      <div class="section context">
+        <h2>Context Definition</h2>
+        <div class="grid two">
+          <article class="box">
+            <h3>Domain Definition</h3>
+            <p><strong>Dominio:</strong> Búsqueda y recomendación de tiendas de ropa del Emporio de Gamarra a partir de una necesidad descrita en lenguaje natural.</p>
+            <p><strong>Alcance:</strong> Entender la consulta, decidir si ya tiene suficiente detalle o hace falta preguntar, buscar por significado (no por palabra exacta) en el catálogo, y devolver el top-3 con ubicación real.</p>
+            <p><strong>Restricción clave:</strong> No garantiza stock, talla ni precio en tiempo real (supuesto eliminado tras validación con el equipo); no reserva ni compra nada; no accede a ningún dato fuera del catálogo de 438 tiendas indexado.</p>
+          </article>
+          <article class="box">
+            <h3>Objectives Definition</h3>
+            <ul>
+              <li>Interpretar la consulta y decidir si busca de inmediato o pide una aclaración (1 sola pregunta corta si falta un atributo diferenciador además del tipo de prenda).</li>
+              <li>Corregir errores de tipeo obvios del comprador en su propia búsqueda, sin repetir el typo literal.</li>
+              <li>Recuperar las 3 tiendas semánticamente más relevantes del catálogo, no solo las que repiten las mismas palabras.</li>
+              <li>Reconocer cuando ningún resultado es confiable (por debajo del umbral de relevancia) y pedir más detalle en vez de inventar una recomendación débil.</li>
+              <li>Explicar brevemente por qué cada tienda calza con lo pedido.</li>
+              <li>Entregar ubicación exacta (galería/piso/stand) y WhatsApp solo si existe, nunca inventado.</li>
+              <li>Recordar lo ya dicho en la sesión (género, color, estilo, personaje) para no volver a preguntarlo.</li>
+              <li>Guardar cada consulta y respuesta, y el feedback (útil / no útil) del comprador, para mejorar el agente después.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+
+      <div class="section environment">
+        <h2>Environment Definition</h2>
+        <div class="grid environment-grid">
+          <article class="box">
+            <h3>Knowledge</h3>
+            <ul>
+              <li>Catálogo consolidado de 438 tiendas (<code>catalogo_consolidado_mvp.xlsx</code>): nombre, categoría, subcategoría, descripción, ubicación, WhatsApp.</li>
+              <li>Cada tienda indexada como embedding (<code>text-embedding-3-small</code>, OpenAI) de su <code>rag_text</code>, en una colección ChromaDB persistente (<code>chroma_db/</code>).</li>
+              <li>Elección de método respaldada por la evaluación offline de E5: embeddings superó a categoría y a léxico por margen real (IC 95% sin solape) sobre 378 consultas reales etiquetadas por el equipo.</li>
+            </ul>
+          </article>
+          <article class="box">
+            <h3>Tools</h3>
+            <ul>
+              <li><code>buscar_tiendas</code> — única tool: similarity search con score en ChromaDB (k=3), filtra por <code>UMBRAL_RELEVANCIA</code> (0,15, calibrado empíricamente), devuelve nombre, categoría, ubicación y WhatsApp.</li>
+              <li>Solo lectura: no escribe, no reserva, no modifica el catálogo.</li>
+              <li><code>historial_db.guardar_interaccion</code> / <code>guardar_feedback</code> — registro (no es una tool del LLM, corre siempre después de cada respuesta) en SQLite local.</li>
+            </ul>
+          </article>
+          <div class="memory-stack">
+            <article class="box">
+              <h3>Short Term Memory</h3>
+              <p>Historial de mensajes de la sesión activa, vía <code>MemorySaver</code> (checkpointer de LangGraph) indexado por <code>session_id</code>. Permite responder a seguimientos cortos ("De Drácula", "talla M") sin repetir el contexto.</p>
+            </article>
+            <article class="box">
+              <h3>Long Term Memory</h3>
+              <ul>
+                <li><strong>Memoria conversacional entre sesiones:</strong> no hay. Cada <code>session_id</code> nuevo arranca sin historial de chat.</li>
+                <li><strong>Conocimiento del catálogo:</strong> índice vectorial persistente (<code>chroma_db/</code>).</li>
+                <li><strong>Registro de uso:</strong> <code>historial.db</code> (SQLite) — consulta, respuesta y voto 👍/👎 de cada interacción, guardado de forma permanente. Es almacenamiento real, pero de solo lectura para análisis; el agente no lo lee de nuevo durante la conversación.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="section autonomy">
+        <h2>Autonomy Dimension Definition</h2>
+        <h3>Semi-autónomo</h3>
+        <p>Decide por su cuenta cuándo buscar directo y cuándo preguntar antes, qué tiendas son relevantes, y cómo redactar la explicación de cada una, sin pedir confirmación para esas decisiones.</p>
+        <p><strong>Limitaciones:</strong> no ejecuta ninguna acción fuera del catálogo (no reserva, no contacta a la tienda por el usuario), no decide el umbral de relevancia final de H2 (eso lo decide el equipo con la regla pre-registrada), y no continúa la conversación si el guardrail de entrada la bloquea.</p>
+      </div>
+
+      <div class="section criticality">
+        <h2>Criticality Dimension Definition</h2>
+        <h3>Nivel de criticidad: Bajo-medio (recomendación informativa, no transacción; dato de contacto de terceros ya autorizado)</h3>
+        <div class="grid two critical-grid">
+          <article class="box">
+            <h3>Risk</h3>
+            <ul>
+              <li>Recuperación semántica imprecisa: Hit Rate@3 ponderado de 66,9% (IC 95% [61,9%–71,4%]) — 1 de cada 3 consultas no encuentra tienda relevante en el top-3, peor en consultas con marca/talla/precio explícito (20,0% de acierto).</li>
+              <li>Catálogo desactualizado si una tienda cierra o cambia de stand y no se reindexa.</li>
+              <li>Riesgo ético ya identificado en el Model Card de E5: posible recomendación de réplicas no confirmadas (no hay forma de validar legalidad del producto desde el catálogo).</li>
+              <li>DetectJailbreak no detecta ataques de jailbreak en español (verificado: 0 de 2 intentos en español detectados por esa capa específica; sí los frenó la capa de relevancia, pero como efecto colateral, no como garantía).</li>
+            </ul>
+          </article>
+          <article class="box">
+            <h3>Reglas de Operación + Guardrails</h3>
+            <p><span class="rule-tag">REGLA</span>El agente nunca inventa stock, talla, precio ni un WhatsApp que no exista en el catálogo.</p>
+            <p><span class="rule-tag">GUARDRAIL</span>Seguridad pre-input: <code>DetectJailbreak</code> (Guardrails AI), local, bloquea con <code>on_fail="exception"</code>.</p>
+            <p><span class="rule-tag">GUARDRAIL</span>Relevancia pre-input: clasificador LLM barato, mantiene la conversación en ropa/tiendas de Gamarra usando el historial de la sesión.</p>
+            <p><span class="rule-tag">GUARDRAIL</span>PII pre-output: <code>GuardrailsPII</code> (<code>on_fail="fix"</code>), excluye a propósito <code>PHONE_NUMBER</code> (dato de negocio) y <code>PERSON</code> (el detector de nombres confundía "¿hombre, mujer o niño?" con nombres propios).</p>
+            <p><span class="rule-tag">REGLA</span>Si ningún resultado de <code>buscar_tiendas</code> supera el umbral de relevancia, el agente lo dice y pide más detalle — nunca presenta un match débil como si fuera bueno.</p>
+            <p><span class="rule-tag">PENDIENTE</span>Moderación pre-output (<code>BiasCheck</code>): bloqueada por falta de Windows Long Path Support en el equipo de desarrollo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

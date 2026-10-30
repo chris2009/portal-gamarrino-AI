@@ -1,0 +1,17 @@
+chromadb
+langchain
+langchain-openai
+langchain-chroma
+langchain-community
+langgraph
+openai
+python-dotenv
+streamlit
+pandas
+openpyxl
+
+# guardrails (ver src/guardrails_mvp.py)
+guardrails-ai
+guardrails-ai-detect-jailbreak
+guardrails-ai-guardrails-pii
+# guardrails-ai-bias-check  # pendiente: requiere TensorFlow + Windows Long Path Support

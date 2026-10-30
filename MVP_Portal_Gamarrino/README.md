@@ -74,7 +74,7 @@ Detalle completo de cada capa y por que va donde va: `src/guardrails_mvp.py`.
 ## Cómo correrlo (PowerShell)
 
 ```powershell
-cd "D:\APRENDIZAJE\MAESTRIA\CICLO_V\CAPSTONE_I\Entregables\MVP_Portal_Gamarrino"
+cd "D:\APRENDIZAJE\MAESTRIA\CICLO_V\CAPSTONE_I\Entregables\Entregable 29-10\MVP_Portal_Gamarrino"
 .\.venv\Scripts\Activate.ps1          # activa el entorno virtual (venv)
 python src\01_indexar_catalogo.py     # solo la primera vez, o si cambia el catalogo
 streamlit run src\app.py              # abre el chat en http://localhost:8501

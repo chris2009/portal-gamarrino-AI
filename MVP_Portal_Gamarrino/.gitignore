@@ -7,3 +7,6 @@ _streamlit_log.txt
 historial.db
 # PDF compilado + su pipeline (script, .dot, .tex): no se sube, solo los .md fuente
 Documentacion_MVP_Latex/
+# Uso personal, no para el repo compartido
+CLAUDE.md
+EXPLICACION_MAESTRA_MVP.md

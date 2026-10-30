@@ -6,7 +6,8 @@ Guardrails AI (vista en el curso, Modulo8/Sesion24_Ethics):
 
     usuario -> [guard_entrada] -> agente (LLM + tool) -> [guard_salida] -> usuario
                 DetectJailbreak                            GuardrailsPII (fix,
-                relevancia (LLM barato)                     sin PHONE_NUMBER)
+                relevancia (LLM barato)                     sin PHONE_NUMBER
+                                                              ni PERSON)
 
 Capas aplicadas y por que van donde van (tabla de coherencia del curso):
 - Seguridad (jailbreak/prompt injection) -> pre-input: hay que detectar el

@@ -25,14 +25,14 @@ Para no etiquetar todo a mano, se probó que Claude (la IA) juzgara qué tienda 
 Se volvió al plan original: que personas reales etiquetaran. Pasó lo siguiente, en orden:
 - Dos personas (Jhomar y Hugo) etiquetaron las 361 consultas-tienda de la muestra chica, cada uno por separado.
 - El primer cálculo de acuerdo entre ellos salió mal por un error de formato (uno escribió "SÍ" con tilde, el sistema no lo reconocía) — se corrigió y se repitió el cálculo.
-- El acuerdo real salió en 62,9% (otra vez por debajo del 80%) — esto confirmó que el problema no era la IA, sino que el criterio de "relevante" tiene ambigüedad real para ciertas consultas (estilos de moda, tallas, etc.).
+- El acuerdo bruto entre Jhomar y Hugo fue **86,7%**; el kappa de Cohen de esa misma comparación fue **0,629** (verificado cruzando `ground_truth_361_FINAL.xlsx` contra `desacuerdos_jhomar_vs_hugo.xlsx`: coinciden exacto, 48/48 filas en desacuerdo). El 0,629 queda por debajo del umbral de 0,80 de la rúbrica — esto confirmó que el problema no era la IA, sino que el criterio de "relevante" tiene ambigüedad real para ciertas consultas (estilos de moda, tallas, etc.).
 - Se escribieron **10 reglas de etiquetado** (documento `CRITERIOS_ETIQUETADO.md`), basadas en los casos reales de desacuerdo, para que las 4 personas del equipo etiquetaran con el mismo criterio.
 
 ### Paso 4 — Escalamiento a la muestra real (378 consultas)
-El plan pre-registrado del equipo pedía una muestra de 378 consultas (no 42), sacada con un método estadístico específico de un archivo de 4.000 consultas reales. Se generó esa muestra, y las 4 personas del equipo etiquetaron en rondas (con un primer intento que resultó no ser realmente independiente — se detectó y se corrigió repitiendo el etiquetado a ciegas de verdad). El acuerdo final confiable dio 62,7%, consistente con el hallazgo anterior.
+El plan pre-registrado del equipo pedía una muestra de 378 consultas (no 42), sacada con un método estadístico específico de un archivo de 4.000 consultas reales. Se generó esa muestra, y las 4 personas del equipo etiquetaron en rondas (con un primer intento que resultó no ser realmente independiente — se detectó y se corrigió repitiendo el etiquetado a ciegas de verdad). El acuerdo bruto final (reevaluación ciega real, confirmado corriendo `scripts/04_kappa_378_reevaluado.py`) dio **87,4%**; el kappa de Cohen de esa misma ronda — que descuenta lo que coincidiría solo por azar — dio **0,627**. El "62,7%" que esta sección mencionaba en versiones anteriores era en realidad el kappa, no el acuerdo bruto: son dos números distintos de la misma comparación, y hay que reportarlos por separado. El 0,627 queda por debajo del umbral de 0,80 que exige la rúbrica, consistente con el hallazgo anterior.
 
 ### Paso 5 — Modelo v0 real (embeddings)
-Con la clave de OpenAI configurada, se generaron los vectores semánticos (ver "embeddings" en el glosario) del catálogo completo y de las 280 consultas distintas, y se calculó qué tiendas eran más parecidas en significado a cada consulta. El modelo propuso muchas tiendas nuevas que los métodos simples no habían tocado, así que se etiquetaron también esos pares nuevos (con un segundo acuerdo entre evaluadores mucho mejor: 86-88%, porque las coincidencias de este modelo son más claras).
+Con la clave de OpenAI configurada, se generaron los vectores semánticos (ver "embeddings" en el glosario) del catálogo completo y de las 280 consultas distintas, y se calculó qué tiendas eran más parecidas en significado a cada consulta. El modelo propuso muchas tiendas nuevas que los métodos simples no habían tocado, así que se etiquetaron también esos pares nuevos, con un segundo acuerdo entre evaluadores mucho mejor (confirmado corriendo `scripts/08_kappa_nuevos_v0.py`): acuerdo bruto 93-94%, kappa de Cohen 0,86-0,88 — el "86-88%" mencionado en versiones anteriores era el kappa, no el acuerdo bruto. De cualquier forma, ambos números confirman que las coincidencias de este modelo son mucho más claras que en la muestra general.
 
 ### Paso 6 — Resultado final y análisis de errores
 Con todo el etiquetado reconciliado, se calculó el resultado final de los 4 métodos, y se clasificaron las 280 consultas en 3 grupos (específica, ambigua, con marca/talla/precio) para ver en cuál falla más el modelo v0.
@@ -77,13 +77,15 @@ Se llenó la plantilla oficial (pptx) con todo el contenido, se creó un reposit
 
 ### Dónde falla el modelo v0 (análisis por tipo de consulta)
 
-| Tipo de consulta | Hit Rate@3 | Diferencia vs. el total |
-|---|---|---|
-| Específica (una prenda clara, ej. "vestidos") | 79,6% | +12,7 pp |
-| Ambigua o compuesta (ej. "ropa de pinterest", "yk2") | 50,4% | -16,5 pp |
-| Con marca, talla o precio explícito | 20,0% | -46,9 pp |
+| Tipo de consulta | n sin ponderar (de 280) | Hit Rate@3 | IC95% | Diferencia vs. el total* |
+|---|---|---|---|---|
+| Específica (una prenda clara, ej. "vestidos") | 150 | 79,6% | [74,6% – 84,6%] | +12,7 pp |
+| Ambigua o compuesta (ej. "ropa de pinterest", "yk2") | 105 | 50,4% | [41,6% – 60,2%] | -16,5 pp |
+| Con marca, talla o precio explícito | 25 | 20,0% | [4,0% – 36,0%] | -46,9 pp |
 
-**Lectura:** el modelo funciona muy bien cuando el comprador nombra una prenda clara. Funciona peor en consultas vagas de estilo/tendencia (el catálogo no tiene esas etiquetas). Y funciona **mal** cuando el comprador pide una talla, un precio o una marca específica — eso es esperable: los embeddings entienden significado, no filtran datos exactos como un número de talla. Esa es la limitación más importante a declarar, y la base del riesgo #2 del registro.
+\* La "diferencia vs. el total" es un número puntual (resta simple entre dos porcentajes); no tiene su propio intervalo de confianza.
+
+**Lectura:** el modelo funciona muy bien cuando el comprador nombra una prenda clara. Funciona peor en consultas vagas de estilo/tendencia (el catálogo no tiene esas etiquetas). Y funciona **mal** cuando el comprador pide una talla, un precio o una marca específica — eso es esperable: los embeddings entienden significado, no filtran datos exactos como un número de talla. Esa es la limitación más importante a declarar, y la base del riesgo #2 del registro. **Ojo con ese último segmento:** son solo 25 consultas (ponderado y sin ponderar coinciden — ninguna se repite en la muestra) y su intervalo de confianza es muy ancho, de 4,0% a 36,0% (32 puntos porcentuales de rango). El 20,0% es un indicio real, no una cifra firme — con una muestra tan chica el resultado real podría ser bastante distinto.
 
 ### Conclusión general
 El experimento cumplió su propósito: demostró con evidencia (no con intuición) que vale la pena construir el prototipo con el motor semántico, identificó exactamente en qué tipo de consultas hay que reforzarlo (filtro estructurado para talla/precio/marca), y dejó un proceso de etiquetado y una metodología documentada y reproducible para cuando se repita con las 378 consultas definitivas de Portal Gamarrino.

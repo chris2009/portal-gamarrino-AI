@@ -40,7 +40,7 @@ for rol, texto, interaccion_id in st.session_state.historial:
         if rol == "assistant" and interaccion_id is not None:
             _mostrar_feedback(interaccion_id)
 
-consulta = st.chat_input("Ej: busco un vestido de fiesta corto negro en talla M")
+consulta = st.chat_input("Ej: busco un disfraz para Halloween de Vampiro en talla M")
 
 if consulta:
     st.session_state.historial.append(("user", consulta, None))

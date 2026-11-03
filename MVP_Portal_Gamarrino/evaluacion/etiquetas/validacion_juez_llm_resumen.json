@@ -1,0 +1,21 @@
+{
+  "pares_validacion": 300,
+  "proporcion_SI_humano": 0.423,
+  "kappa_entre_humanos_mismos_pares": 0.872,
+  "modelos": {
+    "gpt-4o-mini": {
+      "kappa_vs_etiqueta_humana_final": 0.419,
+      "acuerdo": 0.713,
+      "juez_SI_humano_NO": 48,
+      "juez_NO_humano_SI": 38,
+      "fallos_de_llamada": 0
+    },
+    "gpt-4o": {
+      "kappa_vs_etiqueta_humana_final": 0.486,
+      "acuerdo": 0.75,
+      "juez_SI_humano_NO": 36,
+      "juez_NO_humano_SI": 39,
+      "fallos_de_llamada": 0
+    }
+  }
+}

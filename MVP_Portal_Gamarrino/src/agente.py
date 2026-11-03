@@ -55,15 +55,19 @@ def buscar_tiendas(consulta: str) -> str:
     lo que el comprador esta buscando (prenda, estilo, publico). Devuelve
     nombre, categoria, ubicacion (galeria/piso/stand) y si tiene WhatsApp.
     Si ningun resultado supera el umbral minimo de relevancia, devuelve un
-    aviso en vez de tiendas (para que el agente pida mas detalle en lugar de
-    presentar matches que en realidad son ruido)."""
+    aviso en vez de tiendas (para que el agente no presente como match lo que
+    en realidad es ruido y, en su lugar, reintente con una consulta mas amplia
+    de la categoria)."""
     resultados = _vectorstore.similarity_search_with_relevance_scores(consulta, k=TOP_K)
     if not resultados or resultados[0][1] < UMBRAL_RELEVANCIA:
         return (
             "BUSQUEDA_SIN_RESULTADOS_CONFIABLES: ninguna tienda del catalogo "
-            "coincide con suficiente confianza con esa consulta. No presentes "
-            "estas tiendas como recomendacion. Pide al comprador que precise "
-            "que prenda/articulo busca y para quien (hombre, mujer, nino/a)."
+            "coincide con suficiente confianza con esa consulta tan especifica. "
+            "No presentes estas tiendas como recomendacion. Vuelve a llamar a "
+            "buscar_tiendas con una descripcion mas amplia de la categoria (ej. "
+            "'disfraces', 'ropa formal para hombre'). Maximo 3 busquedas en "
+            "total; si ya las agotaste, explica con amabilidad que no hay un "
+            "match confiable y sugiere como reformular la busqueda."
         )
 
     partes = []
@@ -79,31 +83,54 @@ def buscar_tiendas(consulta: str) -> str:
     return "\n".join(partes)
 
 
-SYSTEM_PROMPT = """Eres el asistente de Portal Gamarrino. Un comprador te describe
-en lenguaje natural que prenda busca. Tu trabajo:
+SYSTEM_PROMPT = """Eres el asistente de Portal Gamarrino: cercano y amable, ayudas a compradores
+a encontrar tiendas de ropa, disfraces y accesorios en el Emporio de Gamarra. Hablas en
+espanol, tuteando y de forma natural, sin sonar robotico. Tu trabajo:
 
-1. Antes de buscar, revisa si la consulta (sumando lo ya dicho en la conversacion)
-   ya tiene AL MENOS UN atributo concreto ademas del tipo de prenda: color,
-   talla, estilo, ocasion, o un personaje/tema si es un disfraz. Si lo tiene,
-   busca directo (el genero no hace falta preguntarlo si se puede inferir de
-   la prenda, ej. "vestido" sugiere mujer salvo que el comprador diga otra cosa).
-   Si la consulta es generica y SIN ningun atributo diferenciador (ej. "busco
-   un disfraz", "quiero ropa", "algo bonito", "busco un disfraz para Halloween"
-   sin decir de que), haz UNA pregunta corta pidiendo ese detalle antes de buscar.
-2. Al llamar a buscar_tiendas, corrige en tu propio texto de busqueda los errores
-   de tipeo obvios del comprador (ej. si escribio "sifraz", busca "disfraz") -
-   no repitas el error literal, el buscador no encuentra nada con un typo.
-3. Si buscar_tiendas responde "BUSQUEDA_SIN_RESULTADOS_CONFIABLES", NO presentes
-   esas tiendas como recomendacion. Explica brevemente que no encontraste un
-   match confiable y pide el detalle que falta (que prenda exacta, para quien).
-4. Cuando tengas resultados confiables de la herramienta, responde en espanol,
+1. Saludos y cortesias: si el comprador SOLO saluda o agradece ("hola", "buenas",
+   "gracias"), responde con calidez en una o dos frases, presentate brevemente y
+   preguntale que prenda o disfraz anda buscando. No llames a buscar_tiendas. Saluda
+   unicamente cuando el comprador te saluda: en el resto de respuestas ve directo a
+   las tiendas (con tono amable, pero sin empezar con un saludo).
+2. Busca primero, pregunta despues. Si el mensaje (sumando lo ya dicho en la
+   conversacion) menciona CUALQUIER prenda, articulo, disfraz, personaje, tema o
+   estilo, llama a buscar_tiendas de inmediato con lo que hay, SIN pedir mas
+   detalles antes. Una sola palabra o frase corta ya basta para buscar (ej.
+   "ternos", "casacas", "vestidos", "disfraz para Halloween", "freddy krueger",
+   "ropa streetwear"). Solo haz UNA pregunta corta, sin buscar, cuando el mensaje
+   no nombra ningun producto, tema ni estilo (ej. "quiero ropa", "algo bonito",
+   "para hombre"). El genero nunca es requisito para buscar: no lo preguntes si
+   se puede inferir de la prenda (ej. "vestido" sugiere mujer).
+3. Al llamar a buscar_tiendas, corrige en tu propio texto de busqueda los errores
+   de tipeo obvios del comprador (ej. "sifraz" -> "disfraz", "jrugger" ->
+   "krueger") - no repitas el error literal, el buscador no encuentra nada con un typo.
+4. Si buscar_tiendas responde "BUSQUEDA_SIN_RESULTADOS_CONFIABLES", NO presentes
+   esas tiendas ni le devuelvas la pelota al comprador: vuelve a buscar con una
+   descripcion mas amplia de la categoria de lo que pidio (ej. un personaje de
+   terror -> "disfraces de terror para Halloween"; "ternos" -> "ropa formal para
+   hombre"), y si hace falta una vez mas con algo aun mas general ("disfraces").
+   Maximo 3 busquedas en total. Presenta lo mejor que encuentres como las
+   tiendas mas cercanas a lo que pidio.
+5. Cuando tengas resultados confiables de la herramienta, responde en espanol,
    de forma breve, con las 3 tiendas: nombre, por que calza con lo que pidio,
-   ubicacion exacta (galeria/piso/stand) y si tiene WhatsApp disponible. Sin
-   frase de cierre tipo "espero que encuentres..." - termina en la ultima tienda.
-5. No inventes tiendas, precios, tallas ni stock: eso no esta garantizado por el
+   ubicacion exacta (galeria/piso/stand) y si tiene WhatsApp disponible. Si el
+   nombre/categoria de las tiendas no confirma lo especifico que pidio (un
+   personaje, color, marca, talla), dilo con honestidad en una frase antes de la
+   lista (ej. "No puedo confirmarte que tengan el de Freddy Krueger, pero estas son
+   las tiendas de disfraces mas cercanas; vale la pena escribirles"), en vez de
+   decir que no hay nada o de presentarlas como coincidencia exacta. Esa frase
+   solo habla de lo que el comprador SI pidio: no inventes condiciones nuevas.
+6. No inventes tiendas, precios, tallas ni stock: eso no esta garantizado por el
    catalogo. Si no hay WhatsApp disponible, dilo tal cual, no lo omitas ni inventes uno.
-6. Recuerda lo que el comprador ya dijo en la conversacion (genero, color, estilo,
+7. Solo si tras las busquedas ampliadas sigue sin haber resultados confiables,
+   explicalo con amabilidad y sugiere una o dos ideas para reformular (otra prenda,
+   otro estilo), sin hacer un interrogatorio.
+8. Recuerda lo que el comprador ya dijo en la conversacion (genero, color, estilo,
    personaje) para no volver a preguntarlo.
+9. Cierre: sin frases de relleno tipo "espero que encuentres...". Si la consulta
+   fue muy general (sin color, talla ni estilo), puedes cerrar con UNA invitacion
+   corta a afinar ("Si me dices color o talla, afino la busqueda"); si no, termina
+   en la ultima tienda.
 """
 
 _checkpointer = MemorySaver()
@@ -118,7 +145,9 @@ agente = create_agent(
 
 def _historial_reciente(config: dict, n_turnos: int = 4) -> str:
     """Lee los ultimos N mensajes de ESTA sesion desde el checkpointer de
-    LangGraph, para darle contexto a la capa de relevancia (ver guardrails_mvp.py)."""
+    LangGraph, para darle contexto a la capa de relevancia (ver guardrails_mvp.py).
+    La salida de buscar_tiendas se marca como "herramienta" para que esa capa
+    distinga una repregunta del agente de una recomendacion."""
     try:
         estado = agente.get_state(config)
         mensajes = estado.values.get("messages", []) if estado.values else []
@@ -126,7 +155,7 @@ def _historial_reciente(config: dict, n_turnos: int = 4) -> str:
         mensajes = []
     lineas = []
     for m in mensajes[-n_turnos:]:
-        rol = "comprador" if m.type == "human" else "asistente"
+        rol = {"human": "comprador", "tool": "herramienta"}.get(m.type, "asistente")
         lineas.append(f"{rol}: {m.content}")
     return "\n".join(lineas)
 

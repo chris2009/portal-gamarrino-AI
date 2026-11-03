@@ -10,3 +10,6 @@ Documentacion_MVP_Latex/
 # Uso personal, no para el repo compartido
 CLAUDE.md
 EXPLICACION_MAESTRA_MVP.md
+# Checkpoints de Jupyter y de corridas interrumpidas de la evaluación
+.ipynb_checkpoints/
+evaluacion/resultados/_checkpoint_*.jsonl

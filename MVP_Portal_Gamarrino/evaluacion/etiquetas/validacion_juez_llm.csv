@@ -1,0 +1,301 @@
+﻿key,consulta,display_name,categories,subcategory,humano,gpt-4o-mini,gpt-4o
+Q221|a8aabf07-f00a-46fc-a14e-f9a41cb40544,Ropa estilo de los 2000',Tienda de ropa casual para mujer con jeans y tops,Ropa de Mujer,Ropa para mujer,NO,NO,NO
+Q056|198920c6-1681-408a-8f11-3d8cce9a1d15,Chuyos,Tienda de ropa para bebés y niños,Ropa Infantil,Ropa para Niños y Bebes,NO,NO,NO
+Q042|e3104b1f-ca57-4030-92b1-c83e832dd5a2,Cama mascotas,Tienda de Pijamas y Ropa de Dormir Familiar,Ropa y Moda,Pijamas,NO,NO,NO
+Q200|ed388025-cc5f-4194-b464-47b6be3389b4,proveedores,Tienda enfocada en cortinas,Insumos para confección,Tela para cortinas,NO,NO,NO
+Q081|dc21cfbe-a070-4e98-92ec-2e96d2c3b91c,Futsal,Tienda de Camisetas y Uniformes de Fútbol,Ropa Deportiva,Camisetas Deportivas,NO,SI,NO
+Q100|d32fa0f1-3a08-4ea6-8499-0b4e4fc25dea,Jeans petit,Tienda de jeans skinny para mujer,Jeans,Jeans para Mujer,NO,NO,NO
+Q101|d32fa0f1-3a08-4ea6-8499-0b4e4fc25dea,Jeans tallas grandes,Tienda de jeans skinny para mujer,Jeans,Jeans para Mujer,NO,NO,NO
+Q164|0f0d993e-5bb4-412e-9e06-6d0d41a2a3dd,Baggy jeans con estampados y2kpara hombre baratos,Tienda de pantalones y bermudas para hombre,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q195|3728bc2a-b7bc-404e-9d8a-31001d2ee7e5,Polos Tommy,Tienda de polos para niños y hombre,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q169|c2a0af93-9f30-4af8-aea2-ae429c8026b2,Bandera de Venezuela,Tienda de casacas universitarias y polos bordados,Uniformes y ropa corporativa,Bordado y personalización textil,NO,NO,NO
+Q091|e59e79f1-3784-4cf5-b918-cf3e06385160,Jean materno,Ropa interior y Ropa de Cama para Mujer,Ropa y Moda,Ropa Interior,NO,NO,NO
+Q061|d81c773b-64d6-4336-be93-0d3f8d8e8b43,Conjuntos,Tienda de conjuntos de buzo y ropa casual para mujer,Ropa de Mujer,Buzos y Joggers,NO,SI,SI
+Q227|49a46244-7378-49ae-b8e9-bab1e9515576,Ropa maternidad,Tienda de Ropa Infantil Femenina ,Ropa Infantil,Ropa para Niñas,NO,NO,NO
+Q079|d5072b10-2d85-4175-95f8-3d573a46f1aa,Frazadas,Tienda de blusas drapeadas y faldas para mujer,Ropa de Mujer,Ropa para mujer,NO,NO,NO
+Q233|8a7c746d-4183-4065-b973-7c6c9a9e11a5,ropa para mujer y2k,"Tienda de poleras, joggers y polos para mujer",Ropa de Mujer,Leggings y Joggers para Mujer,NO,NO,NO
+Q166|2b5fab83-a11a-41dc-97c3-da337da5bda7,Bagues x mayor económicos,Boutique de moda masculina elegante,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q010|ba6378b2-87a7-4574-9eb8-c0bd424dfd0b,Poleras,Tienda de polos básicos y oversize,Ropa y Moda,Polos Básicos,NO,SI,NO
+Q091|1b086d55-d823-4019-8cfb-1a57ed1ccfd5,Jean materno,Tienda de ropa formal para mujer y ropa materna,Ropa de Mujer,Ropa Materna,NO,SI,SI
+Q232|d32fa0f1-3a08-4ea6-8499-0b4e4fc25dea,Tallas curvy para mujer,Tienda de jeans skinny para mujer,Jeans,Jeans para Mujer,NO,NO,NO
+Q145|3445dc9f-6f88-48b3-9f4b-1b3e3638ced4,Pantañon tela mojada para dama,Tienda de blusas y pantalones para mujer,Ropa de Mujer,Ropa para mujer,NO,NO,NO
+Q037|15e90439-433c-41f0-a1be-bad8ac9245f6,Buzos deportivos para mujer,Tienda de ropa deportiva para mujer,Ropa Deportiva,Ropa Deportiva para Mujer,NO,SI,SI
+Q280|5c5467bc-22f1-4cc2-9eb5-20642168cbed,Vedtidos,Tienda de Polos y Bividis Urbanos,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q096|2eb63e03-91a2-4ef1-ab4c-b157d1f2cced,Jeans cargo,Tienda de jeans y tops para mujer,Jeans,Jeans para Mujer,NO,NO,NO
+Q100|024e53e2-1d92-4dae-a1e2-6a421cde3630,Jeans petit,Jeans – Moda Denim Femenina,Ropa y Moda,Ropa para mujer,NO,NO,NO
+Q114|7e56b2d1-78f2-45cc-98fa-7831afde64f6,media pima,Tienda de telas para polos y piqué,Telas,Tejido de Punto,NO,NO,NO
+Q205|49a46244-7378-49ae-b8e9-bab1e9515576,ropa al por mayor niña de 3 años talla 6,Tienda de Ropa Infantil Femenina ,Ropa Infantil,Ropa para Niñas,NO,NO,SI
+Q082|c91eeb5b-c231-4878-ac81-99c5477070c3,Galerias de ropa para hombre,"Tienda de ropa casual masculina con casacas, poleras y pantalones cargo",Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q049|31d603fc-d557-4aca-9d84-ad166496e479,Caracas fleece,Tienda de telas ,Telas,Tela Acolchado,NO,NO,NO
+Q040|fbf758ac-35c4-40f1-9c69-3ff87f18161a,Caja husncayo,Tienda de accesorios y decoración para eventos,Accesorios,Carteras,NO,NO,NO
+Q276|e6897d59-138e-43f5-a33d-f45487163e54,Busco chalecos de entrenamiento deportivos para futbol,Tienda de Buzos y Chaquetas Deportivas,Ropa Deportiva,Buzos y casacas,NO,NO,NO
+Q052|70bbbd8b-ec3e-425f-a440-51197986ada9,Chalecos deportivos,Tienda de ropa industrial y chalecos reflectivos,Uniformes y ropa corporativa,Ropa industrial y de seguridad,NO,NO,NO
+Q152|f4200ec3-4848-49eb-ade6-f650107278e4,Pistola de hidrogel,Tienda de telas deportivas y para sublimar,Telas,Telas Deportivas,NO,NO,NO
+Q064|31d603fc-d557-4aca-9d84-ad166496e479,De cuero específicamente,Tienda de telas ,Telas,Tela Acolchado,NO,NO,NO
+Q265|b7c84aa6-1504-4a08-8656-52e9a784eb53,Shorts economicos de niña,Tienda de polos básicos y conjuntos de niña,Ropa Infantil,Ropa para Niñas,NO,NO,NO
+Q178|b7c84aa6-1504-4a08-8656-52e9a784eb53,polos de olivia rodrigo,Tienda de polos básicos y conjuntos de niña,Ropa Infantil,Ropa para Niñas,NO,NO,NO
+Q157|751b8420-502d-4285-a516-7451de00e441,polo algodon pyma xl,Tienda de polos básicos y oversize,Ropa y Moda,Polos Básicos,NO,NO,NO
+Q086|f89ce831-19b1-471a-837b-2d717f77fd42,"Hola, necesito boxers con diseño, que tinedas me sugieres?","Tienda de lencería, panties y bóxers",Ropa Interior,Ropa Interior para Mujer,NO,NO,NO
+Q045|79e538b1-d5b2-46fc-a1c8-1e04da6dc62e,Camisas urbanas boxi fit,Tienda de ropa urbana para hombre y mujer,Ropa y Moda,Ropa para Hombre y Mujer,NO,NO,NO
+Q222|f7c2ea3f-c0b4-4bba-91b5-b6ba5312c59e,Ropa estilo y2k,Tienda de ropa casual y urbana para mujer,Ropa de Mujer,Ropa para mujer,NO,NO,NO
+Q275|6965ce2a-c1c5-41d5-a7cf-4fa20bd0b758,Boxer caballeros,Boutique de moda masculina elegante,Ropa y Moda,Ropa para hombre,NO,NO,SI
+Q109|30945aee-c3eb-47bf-9afd-ece0925bed3c,Licras,Lencería y trajes de baño,Ropa y Moda,Ropa de baño,NO,NO,NO
+Q185|b3f89f11-70ba-4e20-9372-5011e115ea95,Beiser de mujer,Tienda de Lencería y Ropa Íntima,Ropa y Moda,Ropa para mujer,NO,SI,NO
+Q054|e59e79f1-3784-4cf5-b918-cf3e06385160,China,Ropa interior y Ropa de Cama para Mujer,Ropa y Moda,Ropa Interior,NO,NO,NO
+Q078|15122e06-2a9a-48be-ac07-b8562e3ea001,Faldas para jóvenes,Tienda de vestidos juveniles para mujer,Ropa de Mujer,Vestidos,NO,SI,NO
+Q152|fd3bbd2c-8c13-466d-a7dc-c1d7a7a2866c,Pistola de hidrogel,Taller de serigrafía y estampado textil,Estampado Textil,Serigrafía,NO,NO,NO
+Q169|48eefa40-5268-4036-a803-747a661119b8,Bandera de Venezuela,Servicio  de Bordado para Gorras y Prendas,Servicios de confección,Bordado y personalización textil,NO,NO,NO
+Q122|f81e316f-7220-45d3-af97-fdea6d22a81b,Notte,Pijamas y Ropa de Dormir para Mujer y Hombre,Ropa y Moda,Pijamas,NO,SI,NO
+Q081|40f4ad7f-1b46-4563-a4a7-c9ef5425d807,Futsal,Tienda de Camisetas y Shorts de Fútbol,Ropa Deportiva,Camisetas Deportivas,NO,SI,NO
+Q029|c2a0af93-9f30-4af8-aea2-ae429c8026b2,Togas de graduación,Tienda de casacas universitarias y polos bordados,Uniformes y ropa corporativa,Bordado y personalización textil,NO,NO,NO
+Q065|f2e8a91b-c833-4f8a-97b9-b0e2f5c3d1e9,Deportivo,Tienda de Uniformes y Camisetas Deportivas,Ropa Deportiva,Camisetas Deportivas,NO,SI,SI
+Q247|30945aee-c3eb-47bf-9afd-ece0925bed3c,Short licra,Lencería y trajes de baño,Ropa y Moda,Ropa de baño,NO,NO,NO
+Q212|79e538b1-d5b2-46fc-a1c8-1e04da6dc62e,Ropa de los 2000s,Tienda de ropa urbana para hombre y mujer,Ropa y Moda,Ropa para Hombre y Mujer,NO,NO,NO
+Q178|496e1665-c396-473a-95d4-78cecaaf936d,polos de olivia rodrigo,Tienda de Polos y Blusas Casual,Ropa y Moda,Ropa para mujer,NO,NO,NO
+Q077|352647b3-75ae-4594-8a3a-96ae835c0175,Faldas largas jeans con abertura ala costado,Tienda de jeans y faldas denim para mujer,Jeans,Jeans para Mujer,NO,NO,NO
+Q109|4b540ec5-6dbd-4b13-be4a-7c6b4f2f47a2,Licras,Lencería y Ropa Interior Femenina,Ropa y Moda,Ropa Interior para Mujer,NO,NO,SI
+Q258|7144e5b6-3f23-40a1-924f-2e270a74ec9e,Vialbri,Tienda de Polos y Bividis Urbanos,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q124|f0b1b25f-510f-42ac-978c-aee01f5f4025,Overside,Tienda de polos urbanos oversize para hombre,Ropa y Moda,Ropa para hombre,NO,SI,SI
+Q029|4bec6054-7e68-40c0-baa1-5ca0eef0b6b4,Togas de graduación,Tienda de ternos y trajes de vestir,Ropa Formal,Ternos y Trajes para Hombre,NO,NO,NO
+Q256|15122e06-2a9a-48be-ac07-b8562e3ea001,Vestidos largos,Tienda de vestidos juveniles para mujer,Ropa de Mujer,Vestidos,NO,SI,SI
+Q107|00e2c47a-4124-44bd-86a7-3f554bd899d9,Levis,Tienda de Jeans y Casacas de Denim,Ropa y Moda,Denim para Hombre y Mujer,NO,NO,NO
+Q181|3038ffec-70c6-43f8-8116-7e01d7127697,Batas,"Tienda de Casacas, Buzos y Shorts Deportivos",Ropa Deportiva,Buzos y casacas,NO,NO,NO
+Q199|1b3e4138-cbf6-4675-a5e6-3ceeca515c1f,Pro lucanas 1258 tienda 201 matute la victoria,Tienda de bordados y ponchados al instante,Servicios de confección,Bordado y personalización textil,NO,NO,NO
+Q107|4b07772a-debf-4adb-8ba7-62e051fb9384,Levis,Tienda de jeans y casacas denim para hombre,Jeans,Denim para Hombre y Mujer,NO,SI,NO
+Q074|25755efa-6b5c-4723-be7b-820924cf595e,Falda y polo para bailar para dama,Boutique de Ropa Femenina Elegante y Casual,Ropa y Moda,Ropa para mujer,NO,SI,NO
+Q078|202c6c58-989a-40f9-84aa-45b0f33ef35c,Faldas para jóvenes,Tienda de vestidos casuales y de fiesta para mujer,Ropa de Mujer,Vestidos,NO,SI,NO
+Q096|5525e646-0fff-4101-8ac0-f68cb039e9fd,Jeans cargo,"Tienda de jeans y shorts para hombre, mujer y niños",Jeans,Denim para Hombre y Mujer,NO,NO,SI
+Q089|75efc4e4-6576-4b10-b609-a83db8406e90,Jean bootcut hombre,"Tienda de jeans, shorts y joggers para hombre",Jeans,Denim para Hombre y Mujer,NO,NO,NO
+Q221|79e538b1-d5b2-46fc-a1c8-1e04da6dc62e,Ropa estilo de los 2000',Tienda de ropa urbana para hombre y mujer,Ropa y Moda,Ropa para Hombre y Mujer,NO,NO,NO
+Q066|79e538b1-d5b2-46fc-a1c8-1e04da6dc62e,"Dónde ubico una tienda dónde venden ropa streetwear asiático o algo similar, de paso dónde vendan baggys unisex, baggy medio balloon pero de esos baggys que ""baguean""",Tienda de ropa urbana para hombre y mujer,Ropa y Moda,Ropa para Hombre y Mujer,NO,NO,NO
+Q110|f89ce831-19b1-471a-837b-2d717f77fd42,Llamas para varón,"Tienda de lencería, panties y bóxers",Ropa Interior,Ropa Interior para Mujer,NO,NO,NO
+Q125|2b5fab83-a11a-41dc-97c3-da337da5bda7,Oxford,Boutique de moda masculina elegante,Ropa y Moda,Ropa para hombre,NO,SI,NO
+Q049|4753bf01-e5e8-4143-91de-af5d9d1697b6,Caracas fleece,Tienda de telas por rollo en varios colores,Telas,Telas,NO,NO,NO
+Q199|c10b904e-3da7-4a29-8a14-bd9126897127,Pro lucanas 1258 tienda 201 matute la victoria,Tienda de estampado textil y vinil para polos,Estampado Textil,Vinil,NO,NO,NO
+Q183|89f97bc8-5a23-46c1-9be7-ab916b96a90a,Polos exportación,Tienda de Polos Publicitarios y Estampados,Merchandising,Polos Publicitarios,NO,NO,NO
+Q247|b312bc8d-9270-43c4-8e4b-5b837a9f7a31,Short licra,"Lencería,trajes de baño y Brasieres",Ropa y Moda,Ropa Interior,NO,NO,NO
+Q040|61fdcf06-09ee-42db-84db-07c655a2e5a9,Caja husncayo,"Tienda de mochilas, bolsos y carteras",Accesorios,Mochilas y Maletas,NO,NO,NO
+Q101|44ce9730-f12d-4727-b3f0-b514912dd046,Jeans tallas grandes,Tienda de jeans para mujer,Jeans,Jeans para Mujer,NO,NO,NO
+Q111|f0fb2b6e-f10f-4a26-b08c-5d5229b95241,Maletas,"Tienda de carteras, relojes y lentes de sol",Accesorios,Carteras,NO,NO,NO
+Q266|390ebdca-41d0-4908-be3b-fbaa3827a9f3,blusas de algodon,Tienda de blusas y ropa casual para mujer,Ropa de Mujer,Ropa para mujer,NO,SI,NO
+Q043|390ebdca-41d0-4908-be3b-fbaa3827a9f3,Camisas de mujer,Tienda de blusas y ropa casual para mujer,Ropa de Mujer,Ropa para mujer,NO,SI,SI
+Q087|9141425b-c513-49ff-9ae7-13f9b9a17624,Hombre,Boutique de Ropa Casual Elegante para Hombre,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q173|687fa8b9-09cf-4b97-8bf2-32489f191222,polos de algodon para hombres,"Tienda de polos, poleras y joggers para hombre",Ropa y Moda,Ropa para hombre,NO,SI,NO
+Q032|7144e5b6-3f23-40a1-924f-2e270a74ec9e,Urbani,Tienda de Polos y Bividis Urbanos,Ropa y Moda,Ropa para hombre,NO,SI,SI
+Q157|42a2e728-a61a-45dd-a385-2a449658cd63,polo algodon pyma xl,Tienda de polos básicos y camiseros reactivos,Ropa y Moda,Polos Básicos,NO,NO,NO
+Q161|751b8420-502d-4285-a516-7451de00e441,Polos 100% algodón varón,Tienda de polos básicos y oversize,Ropa y Moda,Polos Básicos,NO,NO,NO
+Q228|30caa422-7bf3-4ae9-9656-66b745a2e849,Ropa neón,Tienda de Ropa Urbana y Denim ,Ropa y Moda,Ropa para Hombre y Mujer,NO,NO,NO
+Q208|ffd89a61-af07-4641-af1b-08b33dca5dc0,ropa ciclismo,Tienda de Ropa Deportiva y Fitness,Ropa y Moda,Ropa Deportiva,NO,NO,SI
+Q159|5dbcae27-faa0-49d4-b95d-6114672c5d12,polo Raplh lauren,Tienda de Polos Básicos con Estampado,Ropa y Moda,Polos Básicos,NO,NO,NO
+Q248|4753bf01-e5e8-4143-91de-af5d9d1697b6,Short tela drill,Tienda de telas por rollo en varios colores,Telas,Telas,NO,NO,NO
+Q154|79e538b1-d5b2-46fc-a1c8-1e04da6dc62e,Poleras de mesii,Tienda de ropa urbana para hombre y mujer,Ropa y Moda,Ropa para Hombre y Mujer,NO,NO,NO
+Q256|06c16af0-ebf1-47c3-ad02-8aa64311c44f,Vestidos largos,Tienda de vestidos elegantes para mujer,Ropa de Mujer,Ropa Elegante para Mujer,NO,SI,SI
+Q085|cc7d3a92-6b31-4a87-a9d3-c374e9cc2b95,guantes mascarilla,Tienda de uniformes para chef y mandiles,Uniformes y ropa corporativa,Mandiles,NO,NO,NO
+Q239|447563b9-9c35-41b9-8e08-439dce9dadc3,Ropa yk2,Tienda de Ropa Urbana y Denim  Streetwear,Ropa y Moda,Ropa para hombre,NO,SI,NO
+Q208|3e2be70a-561f-413f-ad14-3c52e97f1167,ropa ciclismo,"Tienda de Shorts, Buzos y Pantalones Deportivos",Ropa Deportiva,Buzos y casacas,NO,NO,NO
+Q080|31d603fc-d557-4aca-9d84-ad166496e479,Fundas de muebles,Tienda de telas ,Telas,Tela Acolchado,NO,NO,NO
+Q083|2cbb43e3-5bdf-44f5-8cb3-a2e8a2d38dab,gama moda plaza opciones,Tienda de calzado para mujer,Calzado,Calzado para Mujer,NO,NO,NO
+Q207|6965ce2a-c1c5-41d5-a7cf-4fa20bd0b758,Ropa antigua,Boutique de moda masculina elegante,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q043|67601dda-3fb6-41d1-9036-bf1e2e44825d,Camisas de mujer,Tienda de ropa casual y elegante para mujer,Ropa de Mujer,Ropa para mujer,NO,SI,SI
+Q108|4b540ec5-6dbd-4b13-be4a-7c6b4f2f47a2,Librería cristiana,Lencería y Ropa Interior Femenina,Ropa y Moda,Ropa Interior para Mujer,NO,NO,NO
+Q046|6bae124a-9008-44c2-bb71-0fe687826b53,Camisetas de Barcelona,Tienda de Camisetas de Fútbol y Jerseys Deportivos,Ropa Deportiva,Camisetas Deportivas,NO,SI,SI
+Q057|0f0d993e-5bb4-412e-9e06-6d0d41a2a3dd,Como ago para ver precios,Tienda de pantalones y bermudas para hombre,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q214|dd9d99dd-65a8-4dcc-bce0-68f1f02c8806,Ropa de niño algodon,Tienda de Ropa Infantil y de Niña,Ropa Infantil,Ropa para Niños y Niñas,NO,NO,NO
+Q274|1421f542-5949-4f7d-a252-84f915a71c03,Boxer algodon,Ropa interior de hombre y mujer,Ropa y Moda,Ropa Interior,NO,SI,SI
+Q115|6a90a9ad-c9ca-4d92-8f8e-5046455456d6,Medias,Tienda de Shorts y Bividis Deportivos y para Playa,Ropa y Moda,Ropa de baño,NO,NO,NO
+Q207|2b5fab83-a11a-41dc-97c3-da337da5bda7,Ropa antigua,Boutique de moda masculina elegante,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q278|89f97bc8-5a23-46c1-9be7-ab916b96a90a,Busco polos de algodón para estampar,Tienda de Polos Publicitarios y Estampados,Merchandising,Polos Publicitarios,NO,SI,SI
+Q093|59165362-c831-4932-81ad-8e2c078b039d,Jean tallas grandes,Tienda de Ternos y Camisas para Hombre,Ropa Formal,Ternos y Trajes para Hombre,NO,NO,NO
+Q276|d3c8e41f-3f71-4baa-b3fd-fb764e24667f,Busco chalecos de entrenamiento deportivos para futbol,Tienda de Camisetas y Uniformes de Fútbol ,Ropa Deportiva,Camisetas Deportivas,NO,NO,NO
+Q191|b01b4c9f-71e8-4219-bf8e-9e66f07e1e48,Polos pima,Tienda de polos piqué y camisetas publicitarias,Merchandising,Polos Publicitarios,NO,NO,NO
+Q232|66e1aa47-9842-419f-8b9e-6a899a046fdd,Tallas curvy para mujer,Tienda de ropa de mujer casual y de fiesta,Ropa de Mujer,Ropa para mujer,NO,NO,NO
+Q149|f81e316f-7220-45d3-af97-fdea6d22a81b,Pijama algodón mujer,Pijamas y Ropa de Dormir para Mujer y Hombre,Ropa y Moda,Pijamas,NO,SI,SI
+Q271|ad431736-66e6-474b-af95-9dc6b3ba27f5,Bolso media luna,Boutique de Ropa Minimalista y Casual Old Money,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q049|aec87c4e-6d05-4489-8431-fe63b4694343,Caracas fleece,Tienda de casacas varsity y chalecos acolchados,Ropa y Moda,Abrigos Acolchados y Casacas,NO,NO,NO
+Q044|4e9070da-721f-46fd-9f98-5dab390e99d7,Camisas sport hombre,Tienda de ropa casual y elegante para hombre,Ropa y Moda,Ropa para hombre,NO,SI,SI
+Q263|306b5ed0-7eea-4a21-9c28-17aa7ae04bd8,Zapatillas hi tec,Tienda de calzado para mujer y pantuflas,Calzado,Calzado para Mujer,NO,NO,NO
+Q107|d1111f12-6965-4959-b574-c984b0c05fc7,Levis,Tienda de jeans y casacas denim para hombre,Jeans,Denim para Hombre y Mujer,NO,SI,NO
+Q251|b6d77441-244f-46cd-96bd-e1a2caf18008,Vestidos de algodon,Tienda de telas rib y algodón por rollo,Telas,Tejido de Punto,NO,NO,NO
+Q043|f97cbc23-b088-443e-9bdc-52b88616f241,Camisas de mujer,Tienda de ropa casual para mujer,Ropa de Mujer,Ropa para mujer,NO,SI,SI
+Q051|f6fc2930-b0fd-4868-af0e-ad6b7d4c4005,Casacas jeans cortas colores neones,Tienda de jeans y casacas denim para mujer,Jeans,Jeans para Mujer,NO,NO,NO
+Q147|7144e5b6-3f23-40a1-924f-2e270a74ec9e,Pero de los virales en tik tok,Tienda de Polos y Bividis Urbanos,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q174|751b8420-502d-4285-a516-7451de00e441,Polos de algodón por mayor,Tienda de polos básicos y oversize,Ropa y Moda,Polos Básicos,NO,SI,NO
+Q162|751b8420-502d-4285-a516-7451de00e441,Polos algodon,Tienda de polos básicos y oversize,Ropa y Moda,Polos Básicos,NO,SI,SI
+Q258|5c5467bc-22f1-4cc2-9eb5-20642168cbed,Vialbri,Tienda de Polos y Bividis Urbanos,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q056|02c60b83-1fcf-4bb4-9b2d-1b7345603a5f,Chuyos,Tienda de Buzos y Poleras Unisex,Ropa y Moda,Poleras y Buzos,NO,SI,NO
+Q059|f2e8a91b-c833-4f8a-97b9-b0e2f5c3d1e9,Conjunto deportivo talla s,Tienda de Uniformes y Camisetas Deportivas,Ropa Deportiva,Camisetas Deportivas,NO,NO,NO
+Q239|79e538b1-d5b2-46fc-a1c8-1e04da6dc62e,Ropa yk2,Tienda de ropa urbana para hombre y mujer,Ropa y Moda,Ropa para Hombre y Mujer,NO,NO,NO
+Q005|25755efa-6b5c-4723-be7b-820924cf595e,Blazer para mujer,Boutique de Ropa Femenina Elegante y Casual,Ropa y Moda,Ropa para mujer,NO,SI,SI
+Q260|0eceaf4e-bec6-4362-9e2b-22cc74c16976,Y holanda zarate,Tienda de bordados y gorras personalizadas,Servicios de confección,Bordado y personalización textil,NO,NO,NO
+Q193|f0b1b25f-510f-42ac-978c-aee01f5f4025,Polos tallas plus de hombres,Tienda de polos urbanos oversize para hombre,Ropa y Moda,Ropa para hombre,NO,SI,SI
+Q205|cf93b30f-0fb8-4c2b-b341-798f93faf788,ropa al por mayor niña de 3 años talla 6,Tienda de Ropa Infantil Femenina,Ropa Infantil,Ropa para Niñas,NO,NO,SI
+Q238|774fe07b-eadc-4357-9d61-4c1f46c2a50e,Ropa pettit,Tienda de pijamas y polerones afelpados,Ropa y Moda,Polerones,NO,NO,NO
+Q272|f0fb2b6e-f10f-4a26-b08c-5d5229b95241,Bolsos,"Tienda de carteras, relojes y lentes de sol",Accesorios,Carteras,NO,SI,SI
+Q085|39a2b6c5-54c0-4a5c-a75f-3ab4b79b9199,guantes mascarilla,Taller de confección ,Taller,Confección,NO,NO,NO
+Q156|2b28f75f-ac69-4be3-b8b4-dceec1e46c09,Polerones canguro con capucha,Tienda de streetwear para hombre,Ropa y Moda,Ropa para hombre,NO,SI,SI
+Q219|a187d538-466e-4266-88e1-ea32b49b51ea,Bisutería,Venta de Botones y Accesorios para Confección,Insumos para confección,Botones,NO,NO,NO
+Q032|5c5467bc-22f1-4cc2-9eb5-20642168cbed,Urbani,Tienda de Polos y Bividis Urbanos,Ropa y Moda,Ropa para hombre,NO,SI,SI
+Q155|3728bc2a-b7bc-404e-9d8a-31001d2ee7e5,Poleras niños,Tienda de polos para niños y hombre,Ropa y Moda,Ropa para hombre,NO,SI,NO
+Q113|3b7e4b1b-057c-416c-af5c-f31bf0b931ae,Manteles para cocina,Tienda de Batas para adultos y niños,Hogar,Ropa para el hogar,NO,NO,NO
+Q041|306b5ed0-7eea-4a21-9c28-17aa7ae04bd8,Calcetines,Tienda de calzado para mujer y pantuflas,Calzado,Calzado para Mujer,NO,NO,NO
+Q100|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Jeans petit,Jeans y Moda Denim para Mujer,Ropa y Moda,Ropa para mujer,NO,NO,SI
+Q147|5c5467bc-22f1-4cc2-9eb5-20642168cbed,Pero de los virales en tik tok,Tienda de Polos y Bividis Urbanos,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q110|f81e316f-7220-45d3-af97-fdea6d22a81b,Llamas para varón,Pijamas y Ropa de Dormir para Mujer y Hombre,Ropa y Moda,Pijamas,NO,SI,SI
+Q280|7144e5b6-3f23-40a1-924f-2e270a74ec9e,Vedtidos,Tienda de Polos y Bividis Urbanos,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q139|e0649dc4-25ab-48c0-8e2a-d0f170b1294e,Pantalones Jean tallas grandes hombre,Tienda de jeans y polos oversize para hombre,Jeans,Denim para Hombre y Mujer,NO,SI,SI
+Q080|fbf758ac-35c4-40f1-9c69-3ff87f18161a,Fundas de muebles,Tienda de accesorios y decoración para eventos,Accesorios,Carteras,NO,NO,NO
+Q185|4b540ec5-6dbd-4b13-be4a-7c6b4f2f47a2,Beiser de mujer,Lencería y Ropa Interior Femenina,Ropa y Moda,Ropa Interior para Mujer,NO,SI,SI
+Q258|ce1033f2-2ced-4307-ac0a-f33aa55c5edd,Vialbri,Tienda de telas en rollo de colores,Telas,Telas,NO,NO,NO
+Q202|17146ea6-1a3d-47d7-b682-4305a589b602,Quiero comprar un cosplay de sua de zombie stage en gamarra,Tienda de polos estampados y personalizados,Ropa y Moda,Variado,NO,NO,NO
+Q219|34c185d6-ea23-457f-bf50-3fc93636f43a,Bisutería,Taller de Bordados y Personalización Textil,Servicios de confección,Bordado y personalización textil,NO,NO,NO
+Q057|9d1bb34c-d689-4a4f-b340-51d3d8d16956,Como ago para ver precios,Tienda de Cortinas y Persianas,Hogar,Cortinas y Persianas,NO,NO,NO
+Q124|e0649dc4-25ab-48c0-8e2a-d0f170b1294e,Overside,Tienda de jeans y polos oversize para hombre,Jeans,Denim para Hombre y Mujer,NO,SI,SI
+Q088|fee10aac-89da-4fb2-a1f0-f1e502d92a4f,Horarios,Tienda de Medias Deportivas y Accesorios,Ropa Deportiva,Medias Deportivas,NO,NO,NO
+Q247|6a21750c-0b3e-48d4-9533-dee2233f11c5,Short licra,Trajes de baño y lencería,Ropa y Moda,Ropa de baño,NO,NO,NO
+Q125|f0b1b25f-510f-42ac-978c-aee01f5f4025,Oxford,Tienda de polos urbanos oversize para hombre,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q210|6965ce2a-c1c5-41d5-a7cf-4fa20bd0b758,Ropa de hombre,Boutique de moda masculina elegante,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q168|02c60b83-1fcf-4bb4-9b2d-1b7345603a5f,Polos buzos,Tienda de Buzos y Poleras Unisex,Ropa y Moda,Poleras y Buzos,NO,SI,SI
+Q126|2b28f75f-ac69-4be3-b8b4-dceec1e46c09,Paganni,Tienda de streetwear para hombre,Ropa y Moda,Ropa para hombre,NO,SI,NO
+Q201|3728bc2a-b7bc-404e-9d8a-31001d2ee7e5,Quiero comprar mi polo de spiderman,Tienda de polos para niños y hombre,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q088|9d1bb34c-d689-4a4f-b340-51d3d8d16956,Horarios,Tienda de Cortinas y Persianas,Hogar,Cortinas y Persianas,NO,NO,NO
+Q045|9570b38a-dc81-4122-b93a-b11bc6077a6c,Camisas urbanas boxi fit,Tienda de polos y poleras urbanas para hombre,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q061|7206679b-9eaf-41ac-9864-94f6d543db6d,Conjuntos,Tienda de conjuntos y ropa casual para niños,Ropa Infantil,Ropa para Niños,NO,SI,NO
+Q212|35c5c8e3-7041-4ba7-9cdc-293a40311ddc,Ropa de los 2000s,Tienda de ropa casual y denim para mujer y niña,Ropa de Mujer,Ropa Casual,NO,NO,NO
+Q167|b76cc8fb-4960-4f1d-8810-582317cff6df,Polos básicos pima,"Tienda de polos básicos para hombre, mujer y niños",Ropa y Moda,Polos Básicos,NO,SI,SI
+Q088|192fb46b-b644-4af6-bb9f-bca195ce1848,Horarios,"Tienda de Buzos, Shorts y Joggers",Ropa y Moda,Buzos y Shorts,NO,NO,NO
+Q248|f4200ec3-4848-49eb-ade6-f650107278e4,Short tela drill,Tienda de telas deportivas y para sublimar,Telas,Telas Deportivas,NO,NO,NO
+Q263|2cbb43e3-5bdf-44f5-8cb3-a2e8a2d38dab,Zapatillas hi tec,Tienda de calzado para mujer,Calzado,Calzado para Mujer,NO,NO,NO
+Q184|74053a8d-547c-402b-b750-f23d544a3e65,Polos industrial,Tienda de Polos Publicitarios y Transfer,Merchandising,Polos Publicitarios,NO,SI,NO
+Q271|f0fb2b6e-f10f-4a26-b08c-5d5229b95241,Bolso media luna,"Tienda de carteras, relojes y lentes de sol",Accesorios,Carteras,NO,NO,SI
+Q169|5b13d35f-d494-4c81-ad44-79f6e61c84b9,Bandera de Venezuela,Servicio de Bordado,Servicios de confección,Bordado y personalización textil,NO,NO,NO
+Q212|f7c2ea3f-c0b4-4bba-91b5-b6ba5312c59e,Ropa de los 2000s,Tienda de ropa casual y urbana para mujer,Ropa de Mujer,Ropa para mujer,NO,NO,NO
+Q067|447563b9-9c35-41b9-8e08-439dce9dadc3,"Donde vendeb ropa tipo alternativa y , emo",Tienda de Ropa Urbana y Denim  Streetwear,Ropa y Moda,Ropa para hombre,NO,NO,NO
+Q116|202c6c58-989a-40f9-84aa-45b0f33ef35c,Mesiaa,Tienda de vestidos casuales y de fiesta para mujer,Ropa de Mujer,Vestidos,NO,NO,NO
+Q200|21231792-52f6-4c39-a969-ee59d360f120,proveedores,Tienda de Insumos para estampado textil,Estampado Textil,DTF,NO,NO,NO
+Q047|dc21cfbe-a070-4e98-92ec-2e96d2c3b91c,Camisetas de fútbol,Tienda de Camisetas y Uniformes de Fútbol,Ropa Deportiva,Camisetas Deportivas,SI,SI,SI
+Q025|a2c74dd1-24a1-499d-981b-448325f0f459,Tela para vertidos,Tienda de telas por rollo en varios colores,Telas,Telas,SI,NO,NO
+Q123|3038ffec-70c6-43f8-8116-7e01d7127697,Outdoor,"Tienda de Casacas, Buzos y Shorts Deportivos",Ropa Deportiva,Buzos y casacas,SI,SI,NO
+Q245|acece153-7c77-4791-a102-b09ae7a0ea1c,Short,Tienda de shorts y ropa deportiva playera,Ropa y Moda,Ropa de baño,SI,SI,SI
+Q261|8a7c746d-4183-4065-b973-7c6c9a9e11a5,Yoger,"Tienda de poleras, joggers y polos para mujer",Ropa de Mujer,Leggings y Joggers para Mujer,SI,SI,NO
+Q220|c5f8f2db-2570-4c2c-ae5c-3c3abaaf23c2,Ropa deportiva para hombre,Tienda de polos y joggers para hombre,Ropa y Moda,Ropa para hombre,SI,SI,SI
+Q253|06c16af0-ebf1-47c3-ad02-8aa64311c44f,Vestidos elegantes,Tienda de vestidos elegantes para mujer,Ropa de Mujer,Ropa Elegante para Mujer,SI,SI,SI
+Q138|b3932072-13f8-47e4-bba2-7df64e339a4c,Pantalones jean,Jeans Stretch y Pantalones Ajustados para Mujer,Ropa y Moda,Ropa para mujer,SI,SI,SI
+Q250|a2c74dd1-24a1-499d-981b-448325f0f459,Tela para manteles,Tienda de telas por rollo en varios colores,Telas,Telas,SI,SI,SI
+Q188|f0b1b25f-510f-42ac-978c-aee01f5f4025,Polos oversize,Tienda de polos urbanos oversize para hombre,Ropa y Moda,Ropa para hombre,SI,SI,SI
+Q175|97ea25d7-61a4-44cf-b671-6d8419fe4ab9,Polos de colegio,Tienda de polos y uniformes corporativos,Uniformes y ropa corporativa,Ropa Escolar,SI,SI,SI
+Q006|4604382b-c10a-401f-beaf-2abc47658486,polos,Tienda de Polos de Exportación para Hombre,Ropa y Moda,Ropa para hombre,SI,SI,SI
+Q213|857c1eee-8c9a-4387-b5de-42cfedf98dc4,ropa de mujer san pedro,Tienda de ropa casual y elegante para mujer,Ropa de Mujer,Ropa para mujer,SI,SI,SI
+Q255|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Vestidos jeans,Jeans y Moda Denim para Mujer,Ropa y Moda,Ropa para mujer,SI,NO,SI
+Q015|02c60b83-1fcf-4bb4-9b2d-1b7345603a5f,Buzo niño,Tienda de Buzos y Poleras Unisex,Ropa y Moda,Poleras y Buzos,SI,SI,SI
+Q270|c1b2d885-347c-44d6-9f6f-6c24b5e062a2,Blusas pequeñas,"Tienda de blusas, vestidos y jeans para mujer",Ropa de Mujer,Ropa para mujer,SI,NO,SI
+Q134|b3932072-13f8-47e4-bba2-7df64e339a4c,Pantalones damas,Jeans Stretch y Pantalones Ajustados para Mujer,Ropa y Moda,Ropa para mujer,SI,SI,SI
+Q135|0f0d993e-5bb4-412e-9e06-6d0d41a2a3dd,Pantalones de vestir de tela gruesa,Tienda de pantalones y bermudas para hombre,Ropa y Moda,Ropa para hombre,SI,NO,NO
+Q177|d3a8252a-14d6-4a84-98a1-f75fb406411c,Polos de niños,Tienda de polos básicos y estampados para niños y adultos,Ropa y Moda,Polos Básicos,SI,SI,SI
+Q229|8a7c746d-4183-4065-b973-7c6c9a9e11a5,sudadera,"Tienda de poleras, joggers y polos para mujer",Ropa de Mujer,Leggings y Joggers para Mujer,SI,SI,NO
+Q097|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Jeans cristel,Jeans y Moda Denim para Mujer,Ropa y Moda,Ropa para mujer,SI,NO,NO
+Q170|751b8420-502d-4285-a516-7451de00e441,Polos con diseño,Tienda de polos básicos y oversize,Ropa y Moda,Polos Básicos,SI,NO,NO
+Q084|50221d3c-e2db-4c84-a8c0-74fd1502383d,Geans,Jeans y Moda Denim Femenina,Ropa y Moda,Ropa para mujer,SI,SI,SI
+Q217|02d8c26e-3990-486c-ad2b-59d824f98ebc,Ropa de verano,Bikinis y moda de playa,Ropa y Moda,Ropa de baño,SI,SI,SI
+Q253|e5378bdd-55c4-47cc-a61f-c177da8dfeb4,Vestidos elegantes,Tienda de vestidos y ropa elegante para mujer,Ropa de Mujer,Ropa Elegante para Mujer,SI,SI,SI
+Q151|b5a03b85-d023-451b-8b34-77c81acd2984,Pijamas para niños,Tienda de ropa para niña y pijamas infantiles,Ropa Infantil,Ropa para Niñas,SI,SI,SI
+Q223|e5378bdd-55c4-47cc-a61f-c177da8dfeb4,Ropa formal dama,Tienda de vestidos y ropa elegante para mujer,Ropa de Mujer,Ropa Elegante para Mujer,SI,SI,SI
+Q095|d32fa0f1-3a08-4ea6-8499-0b4e4fc25dea,jeans a la cadera baggie economicos para mujer,Tienda de jeans skinny para mujer,Jeans,Jeans para Mujer,SI,NO,NO
+Q009|f4200ec3-4848-49eb-ade6-f650107278e4,Telas,Tienda de telas deportivas y para sublimar,Telas,Telas Deportivas,SI,NO,SI
+Q218|bb5362e0-8bdd-44be-a369-63eb6607236d,Ropa de vestir para niños,Tienda de ropa infantil y pijamas para niños y niñas,Ropa Infantil,Ropa para Niños y Niñas,SI,SI,SI
+Q035|02c60b83-1fcf-4bb4-9b2d-1b7345603a5f,Buzos baggy,Tienda de Buzos y Poleras Unisex,Ropa y Moda,Poleras y Buzos,SI,SI,SI
+Q236|84328d8c-fa9c-4bb2-a880-9008570567e3,Ropa para niños,Tienda de Ropa Infantil para Niña y Niño,Ropa Infantil,Ropa para Niños y Niñas,SI,NO,NO
+Q037|a6c7d574-3c94-4b9f-bc55-f8be904ee91a,Buzos deportivos para mujer,Tienda de Leggings y Pantalones Deportivos para Mujer,Ropa Deportiva,Leggings y Joggers para Mujer,SI,NO,SI
+Q236|bb5362e0-8bdd-44be-a369-63eb6607236d,Ropa para niños,Tienda de ropa infantil y pijamas para niños y niñas,Ropa Infantil,Ropa para Niños y Niñas,SI,NO,NO
+Q254|d9a494ef-9ffc-406b-a611-c23d0a02bcd8,Vestidos fiesta,Tienda de vestidos de fiesta y ropa elegante para mujer,Ropa de Mujer,Ropa Elegante para Mujer,SI,SI,SI
+Q170|c385f902-99d3-4cd6-9ee4-46fac87d45f8,Polos con diseño,"Tienda de polos, camiseros y gorras publicitarias",Ropa y Moda,Polos y Camiseros,SI,NO,SI
+Q217|01b90bd5-d68e-426f-88d8-2958c6c46f2a,Ropa de verano,Tienda de Ropa de Playa ,Ropa y Moda,Ropa de baño,SI,SI,SI
+Q217|1807d37f-ca5b-4869-8d22-9d42e9687052,Ropa de verano,Tienda de Ropa de Baño ,Ropa y Moda,Ropa de baño,SI,SI,SI
+Q008|024e53e2-1d92-4dae-a1e2-6a421cde3630,Jeans,Jeans – Moda Denim Femenina,Ropa y Moda,Ropa para mujer,SI,SI,SI
+Q153|425e3af0-c490-4386-8054-780ab42b57ec,Blusas,Tienda de Blusas y Camisas Para Mujer,Ropa y Moda,Ropa para mujer,SI,SI,SI
+Q119|3b2f3d5e-cf76-4513-9794-87ebf8ef5347,"Necesito shorts de dama a la cadera que no sean super cortos, ya que es para adolescente",Tienda de jeans y shorts para mujer,Jeans,Jeans para Mujer,SI,NO,NO
+Q245|3e2be70a-561f-413f-ad14-3c52e97f1167,Short,"Tienda de Shorts, Buzos y Pantalones Deportivos",Ropa Deportiva,Buzos y casacas,SI,SI,SI
+Q150|21c5c46c-dd80-4c8b-ab87-67445b9f91ed,Pijamas de hombre,"Tienda de pijamas para mujer, hombre y niños",Ropa Interior,Ropa Interior y Pijamas,SI,SI,SI
+Q038|02c60b83-1fcf-4bb4-9b2d-1b7345603a5f,Buzos en franela reactiva para niño,Tienda de Buzos y Poleras Unisex,Ropa y Moda,Poleras y Buzos,SI,NO,NO
+Q218|84328d8c-fa9c-4bb2-a880-9008570567e3,Ropa de vestir para niños,Tienda de Ropa Infantil para Niña y Niño,Ropa Infantil,Ropa para Niños y Niñas,SI,SI,SI
+Q143|0f0d993e-5bb4-412e-9e06-6d0d41a2a3dd,Pantalones sueltos,Tienda de pantalones y bermudas para hombre,Ropa y Moda,Ropa para hombre,SI,SI,SI
+Q026|6d1db5d9-2692-49cf-bd23-e14246ccc54b,Ternos para dama,Tienda de sastrería y ropa de vestir para mujer,Ropa y Moda,Ropa para mujer,SI,SI,SI
+Q269|56285a5b-6be0-461e-9379-6604927ba63c,Blusas jean,Tienda de ropa casual para mujer con jeans y blusas,Ropa de Mujer,Ropa para mujer,SI,SI,SI
+Q262|306b5ed0-7eea-4a21-9c28-17aa7ae04bd8,Zapatillas,Tienda de calzado para mujer y pantuflas,Calzado,Calzado para Mujer,SI,SI,SI
+Q255|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,Vestidos jeans,Tienda de Moda Denim Femenina,Ropa y Moda,Ropa para mujer,SI,SI,SI
+Q180|736cf82b-a29d-4907-a667-411a14009554,Polos de vestir mujer,"Tienda de ropa casual para mujer con tops, polos y jeans",Ropa de Mujer,Ropa para mujer,SI,SI,SI
+Q013|3b42fd7f-ce70-422e-aa86-a9a11742ed7c,Ropa para niñas,Tienda de ropa para niñas con vestidos y conjuntos,Ropa Infantil,Ropa para Niñas,SI,SI,SI
+Q015|148f3995-cc18-4fb4-9123-1a86fccfb61e,Buzo niño,Tienda de Ropa Infantil y Buzos para Niños y Niñas,Ropa y Moda,Ropa para Niños y Niñas,SI,SI,SI
+Q018|3038ffec-70c6-43f8-8116-7e01d7127697,Buzos deportivos,"Tienda de Casacas, Buzos y Shorts Deportivos",Ropa Deportiva,Buzos y casacas,SI,SI,SI
+Q094|9b1881cf-2725-41a9-bec1-b22d6692bd73,Jean waileg,Tienda de jeans y ropa casual para mujer,Ropa de Mujer,Ropa para mujer,SI,NO,NO
+Q010|617c5379-f8da-4fab-8cd5-5357e952ce34,Poleras,Tienda de polos básicos y poleras de algodón,Ropa y Moda,Polos Básicos,SI,SI,SI
+Q252|06c16af0-ebf1-47c3-ad02-8aa64311c44f,Vestidos de XV,Tienda de vestidos elegantes para mujer,Ropa de Mujer,Ropa Elegante para Mujer,SI,NO,SI
+Q237|148f3995-cc18-4fb4-9123-1a86fccfb61e,Ropa para niños con diseños de Marvel,Tienda de Ropa Infantil y Buzos para Niños y Niñas,Ropa y Moda,Ropa para Niños y Niñas,SI,NO,NO
+Q058|532dd2f4-6e6b-437d-b200-4aa7425d38e5,Conjunto blazer y pantalon,Tienda de blazers y conjuntos elegantes para mujer,Ropa Formal,Ropa Elegante para Mujer,SI,SI,SI
+Q039|e6897d59-138e-43f5-a33d-f45487163e54,Buzos hombres,Tienda de Buzos y Chaquetas Deportivas,Ropa Deportiva,Buzos y casacas,SI,SI,SI
+Q005|532dd2f4-6e6b-437d-b200-4aa7425d38e5,Blazer para mujer,Tienda de blazers y conjuntos elegantes para mujer,Ropa Formal,Ropa Elegante para Mujer,SI,SI,SI
+Q197|42a2e728-a61a-45dd-a385-2a449658cd63,Polos y poleras,Tienda de polos básicos y camiseros reactivos,Ropa y Moda,Polos Básicos,SI,SI,SI
+Q092|024e53e2-1d92-4dae-a1e2-6a421cde3630,Jean para mujer,Jeans – Moda Denim Femenina,Ropa y Moda,Ropa para mujer,SI,SI,SI
+Q268|390ebdca-41d0-4908-be3b-fbaa3827a9f3,Blusas estilo coreano,Tienda de blusas y ropa casual para mujer,Ropa de Mujer,Ropa para mujer,SI,NO,NO
+Q021|5c5467bc-22f1-4cc2-9eb5-20642168cbed,Polos deportivos,Tienda de Polos y Bividis Urbanos,Ropa y Moda,Ropa para hombre,SI,SI,NO
+Q240|fd16fa80-a5d1-477d-9cc8-8a50ba043507,Saco para damas,Tienda de abrigos y sacos de vestir para mujer,Ropa y Moda,Ropa para mujer,SI,SI,SI
+Q231|2561f863-58b6-44aa-99c1-69498d4e7400,Ropa para adolescentes,Tienda de Ropa Casual y Denim para Niños y Niñas,Ropa y Moda,Ropa para Niños y Niñas,SI,NO,NO
+Q153|390ebdca-41d0-4908-be3b-fbaa3827a9f3,Blusas,Tienda de blusas y ropa casual para mujer,Ropa de Mujer,Ropa para mujer,SI,SI,SI
+Q196|7f17eebb-22e3-4bda-aae4-897af3d32122,Polos varones moda,Tienda de polos y ropa casual para hombre,Ropa y Moda,Ropa para hombre,SI,SI,SI
+Q207|ad431736-66e6-474b-af95-9dc6b3ba27f5,Ropa antigua,Boutique de Ropa Minimalista y Casual Old Money,Ropa y Moda,Ropa para hombre,SI,SI,NO
+Q189|b7c84aa6-1504-4a08-8656-52e9a784eb53,Polos para niños,Tienda de polos básicos y conjuntos de niña,Ropa Infantil,Ropa para Niñas,SI,NO,NO
+Q123|192fb46b-b644-4af6-bb9f-bca195ce1848,Outdoor,"Tienda de Buzos, Shorts y Joggers",Ropa y Moda,Buzos y Shorts,SI,NO,NO
+Q099|d32fa0f1-3a08-4ea6-8499-0b4e4fc25dea,Jeans para mujeres altas,Tienda de jeans skinny para mujer,Jeans,Jeans para Mujer,SI,NO,NO
+Q171|c385f902-99d3-4cd6-9ee4-46fac87d45f8,Polos con logo,"Tienda de polos, camiseros y gorras publicitarias",Ropa y Moda,Polos y Camiseros,SI,SI,NO
+Q021|c5f8f2db-2570-4c2c-ae5c-3c3abaaf23c2,Polos deportivos,Tienda de polos y joggers para hombre,Ropa y Moda,Ropa para hombre,SI,SI,SI
+Q279|02c60b83-1fcf-4bb4-9b2d-1b7345603a5f,Busos,Tienda de Buzos y Poleras Unisex,Ropa y Moda,Poleras y Buzos,SI,SI,SI
+Q137|0f0d993e-5bb4-412e-9e06-6d0d41a2a3dd,Pantalones hombre,Tienda de pantalones y bermudas para hombre,Ropa y Moda,Ropa para hombre,SI,SI,SI
+Q197|2f4b4734-2a9d-41ae-a1b1-ec4a65568893,Polos y poleras,Tienda de polos básicos y camiseros en colores,Ropa y Moda,Polos básicos y piqué,SI,SI,SI
+Q177|3728bc2a-b7bc-404e-9d8a-31001d2ee7e5,Polos de niños,Tienda de polos para niños y hombre,Ropa y Moda,Ropa para hombre,SI,SI,SI
+Q216|79e538b1-d5b2-46fc-a1c8-1e04da6dc62e,Ropa de pinterest,Tienda de ropa urbana para hombre y mujer,Ropa y Moda,Ropa para Hombre y Mujer,SI,SI,NO
+Q130|0f0d993e-5bb4-412e-9e06-6d0d41a2a3dd,Pantalon Gurkha,Tienda de pantalones y bermudas para hombre,Ropa y Moda,Ropa para hombre,SI,NO,NO
+Q216|736cf82b-a29d-4907-a667-411a14009554,Ropa de pinterest,"Tienda de ropa casual para mujer con tops, polos y jeans",Ropa de Mujer,Ropa para mujer,SI,NO,NO
+Q176|2f4b4734-2a9d-41ae-a1b1-ec4a65568893,Polos de color entero,Tienda de polos básicos y camiseros en colores,Ropa y Moda,Polos básicos y piqué,SI,SI,SI
+Q092|50221d3c-e2db-4c84-a8c0-74fd1502383d,Jean para mujer,Jeans y Moda Denim Femenina,Ropa y Moda,Ropa para mujer,SI,SI,SI
+Q022|4604382b-c10a-401f-beaf-2abc47658486,Polos Lacoste,Tienda de Polos de Exportación para Hombre,Ropa y Moda,Ropa para hombre,SI,NO,NO
+Q190|4604382b-c10a-401f-beaf-2abc47658486,Polos peru,Tienda de Polos de Exportación para Hombre,Ropa y Moda,Ropa para hombre,SI,SI,SI
+Q130|b75df5ba-3a35-43c3-bff7-bf77c37e44bf,Pantalon Gurkha,Pantalones  y camisería masculina ,Ropa Formal,Pantalones y Camisas,SI,NO,NO
+Q203|f7c2ea3f-c0b4-4bba-91b5-b6ba5312c59e,Quiero encontrar ropa estilo baddie,Tienda de ropa casual y urbana para mujer,Ropa de Mujer,Ropa para mujer,SI,NO,NO
+Q033|0db6af60-1cf3-4d7f-b9c7-4f1fb84ec158,Buzo,Tienda de Buzos y Poleras Unisex,Ropa y Moda,Poleras y Buzos,SI,SI,SI
+Q187|3728bc2a-b7bc-404e-9d8a-31001d2ee7e5,Polos niños,Tienda de polos para niños y hombre,Ropa y Moda,Ropa para hombre,SI,SI,SI
+Q050|aec87c4e-6d05-4489-8431-fe63b4694343,Casacas deportivas,Tienda de casacas varsity y chalecos acolchados,Ropa y Moda,Abrigos Acolchados y Casacas,SI,SI,NO
+Q242|6d1db5d9-2692-49cf-bd23-e14246ccc54b,Sastre mujer,Tienda de sastrería y ropa de vestir para mujer,Ropa y Moda,Ropa para mujer,SI,SI,SI
+Q172|617c5379-f8da-4fab-8cd5-5357e952ce34,polos de algodon color negro,Tienda de polos básicos y poleras de algodón,Ropa y Moda,Polos Básicos,SI,SI,SI
+Q099|44ce9730-f12d-4727-b3f0-b514912dd046,Jeans para mujeres altas,Tienda de jeans para mujer,Jeans,Jeans para Mujer,SI,NO,NO
+Q261|d81c773b-64d6-4336-be93-0d3f8d8e8b43,Yoger,Tienda de conjuntos de buzo y ropa casual para mujer,Ropa de Mujer,Buzos y Joggers,SI,SI,NO
+Q220|f2e8a91b-c833-4f8a-97b9-b0e2f5c3d1e9,Ropa deportiva para hombre,Tienda de Uniformes y Camisetas Deportivas,Ropa Deportiva,Camisetas Deportivas,SI,SI,SI
+Q098|d1111f12-6965-4959-b574-c984b0c05fc7,Jeans para hombre,Tienda de jeans y casacas denim para hombre,Jeans,Denim para Hombre y Mujer,SI,SI,SI
+Q209|be53d67d-c45b-4dab-ba9a-7629a424fde8,Ropa coreana,Tienda de ropa casual y urbana para mujer,Ropa de Mujer,Ropa para mujer,SI,NO,NO
+Q072|00e2c47a-4124-44bd-86a7-3f554bd899d9,Fabrica jeans,Tienda de Jeans y Casacas de Denim,Ropa y Moda,Denim para Hombre y Mujer,SI,NO,SI
+Q138|e6bb426e-3ff6-4cd3-a683-055eba704c23,Pantalones jean,Tienda de jeans y pantalones stretch para mujer,Jeans,Jeans para Mujer,SI,SI,SI
+Q022|751b8420-502d-4285-a516-7451de00e441,Polos Lacoste,Tienda de polos básicos y oversize,Ropa y Moda,Polos Básicos,SI,NO,NO
+Q154|b43b54fd-2c01-4316-b597-f42b51de1c58,Poleras de mesii,Tienda de polos y poleras básicas unisex,Ropa y Moda,Polos Básicos,SI,SI,NO
+Q002|15122e06-2a9a-48be-ac07-b8562e3ea001,Vestidos,Tienda de vestidos juveniles para mujer,Ropa de Mujer,Vestidos,SI,SI,SI
+Q171|89f97bc8-5a23-46c1-9be7-ab916b96a90a,Polos con logo,Tienda de Polos Publicitarios y Estampados,Merchandising,Polos Publicitarios,SI,SI,SI
+Q211|f0b1b25f-510f-42ac-978c-aee01f5f4025,Ropa de hombre oversay,Tienda de polos urbanos oversize para hombre,Ropa y Moda,Ropa para hombre,SI,SI,SI
+Q273|d9854ae2-9eab-4aa3-8e7d-e77f2324b42e,Bordados,Servicio de Bordado,Servicios de confección,Bordado y personalización textil,SI,SI,SI
+Q005|7ba941ad-1fed-48af-b9e5-437a07870365,Blazer para mujer,Tienda de blazers y abrigos para mujer,Ropa Formal,Ropa Elegante para Mujer,SI,SI,SI
+Q203|66e1aa47-9842-419f-8b9e-6a899a046fdd,Quiero encontrar ropa estilo baddie,Tienda de ropa de mujer casual y de fiesta,Ropa de Mujer,Ropa para mujer,SI,NO,NO
+Q218|ad16fc14-83d3-487d-86e9-e929d1ee8a56,Ropa de vestir para niños,Tienda de ropa infantil y vestidos para niña,Ropa Infantil,Ropa para Niños y Bebes,SI,SI,SI
+Q275|1421f542-5949-4f7d-a252-84f915a71c03,Boxer caballeros,Ropa interior de hombre y mujer,Ropa y Moda,Ropa Interior,SI,SI,SI
+Q072|9bc953bc-035f-42c6-885e-65474b9415f9,Fabrica jeans,Tienda de jeans y prendas denim para mujer,Jeans,Jeans para Mujer,SI,NO,NO
+Q240|7ba941ad-1fed-48af-b9e5-437a07870365,Saco para damas,Tienda de blazers y abrigos para mujer,Ropa Formal,Ropa Elegante para Mujer,SI,SI,SI
+Q170|89f97bc8-5a23-46c1-9be7-ab916b96a90a,Polos con diseño,Tienda de Polos Publicitarios y Estampados,Merchandising,Polos Publicitarios,SI,SI,SI
+Q036|02c60b83-1fcf-4bb4-9b2d-1b7345603a5f,Buzos conjunto,Tienda de Buzos y Poleras Unisex,Ropa y Moda,Poleras y Buzos,SI,SI,SI
+Q047|d3c8e41f-3f71-4baa-b3fd-fb764e24667f,Camisetas de fútbol,Tienda de Camisetas y Uniformes de Fútbol ,Ropa Deportiva,Camisetas Deportivas,SI,SI,SI
+Q196|4604382b-c10a-401f-beaf-2abc47658486,Polos varones moda,Tienda de Polos de Exportación para Hombre,Ropa y Moda,Ropa para hombre,SI,SI,SI
+Q128|b75df5ba-3a35-43c3-bff7-bf77c37e44bf,Pantalón de vestir,Pantalones  y camisería masculina ,Ropa Formal,Pantalones y Camisas,SI,SI,SI
+Q231|35c5c8e3-7041-4ba7-9cdc-293a40311ddc,Ropa para adolescentes,Tienda de ropa casual y denim para mujer y niña,Ropa de Mujer,Ropa Casual,SI,NO,NO
+Q236|dd9d99dd-65a8-4dcc-bce0-68f1f02c8806,Ropa para niños,Tienda de Ropa Infantil y de Niña,Ropa Infantil,Ropa para Niños y Niñas,SI,NO,SI
+Q257|48d2c0fb-37a5-434c-afee-d196e8d5e761,Vestidos quinceañera,Tienda de vestidos de fiesta para niñas,Ropa Infantil,Vestidos para Niñas,SI,NO,NO
+Q004|59165362-c831-4932-81ad-8e2c078b039d,Ternos,Tienda de Ternos y Camisas para Hombre,Ropa Formal,Ternos y Trajes para Hombre,SI,SI,SI
+Q227|1b086d55-d823-4019-8cfb-1a57ed1ccfd5,Ropa maternidad,Tienda de ropa formal para mujer y ropa materna,Ropa de Mujer,Ropa Materna,SI,SI,SI
+Q130|5d42d8d4-5996-4eed-a244-1d55011d3717,Pantalon Gurkha,Tienda de Pantalones de Vestir,Ropa Formal,Pantalones y Camisas,SI,NO,NO
+Q013|b5a03b85-d023-451b-8b34-77c81acd2984,Ropa para niñas,Tienda de ropa para niña y pijamas infantiles,Ropa Infantil,Ropa para Niñas,SI,SI,SI
+Q084|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Geans,Jeans y Moda Denim para Mujer,Ropa y Moda,Ropa para mujer,SI,NO,SI
+Q270|390ebdca-41d0-4908-be3b-fbaa3827a9f3,Blusas pequeñas,Tienda de blusas y ropa casual para mujer,Ropa de Mujer,Ropa para mujer,SI,SI,SI
+Q142|96bd5a9b-e0c8-4cd6-886c-c19e525c3b9c,Pantalones jeans varon,Tienda de jeans y pantalones para hombre,Jeans,Denim para Hombre y Mujer,SI,SI,SI

@@ -5,10 +5,10 @@
 ## 1. Qué hace el agente
 
 Un comprador escribe en lenguaje natural qué prenda busca. El agente:
-1. Decide si la consulta ya tiene suficiente detalle para buscar, o si hace falta una pregunta corta primero (criterio: ¿hay al menos un atributo diferenciador además del tipo de prenda?).
+1. Busca primero y pregunta después: si el mensaje nombra cualquier prenda, disfraz, personaje, tema o estilo (basta una palabra, ej. "ternos"), busca de inmediato; solo hace una pregunta corta cuando no nombra ningún producto (ej. "quiero ropa"). A un saludo responde con calidez y pregunta qué busca.
 2. Corrige en su propia búsqueda los errores de tipeo obvios del comprador (no repite el typo literal).
 3. Busca por **significado** (no por palabra exacta) en el catálogo de 438 tiendas del Emporio de Gamarra.
-4. Si ningún resultado supera un umbral mínimo de relevancia, lo dice honestamente y pide más detalle, en vez de presentar coincidencias débiles como si fueran buenas recomendaciones.
+4. Si ningún resultado supera un umbral mínimo de relevancia, no presenta esas coincidencias débiles como buenas recomendaciones: reintenta con una descripción más amplia de la categoría (hasta 3 búsquedas; ej. "Freddy Krueger", luego "disfraces de terror" y por último "disfraces") y muestra las tiendas más cercanas diciendo con honestidad que no puede confirmar lo específico. Solo si tampoco así hay resultados confiables, lo dice y sugiere cómo reformular.
 5. Devuelve el top-3 de tiendas más relevantes: nombre, por qué calza, ubicación exacta (galería/piso/stand), WhatsApp si existe, link al mapa.
 6. Recuerda lo ya dicho en esa misma conversación (género, color, estilo, personaje si es un disfraz) sin que el usuario lo repita.
 7. Guarda la consulta + respuesta en una base de datos local, y deja que el comprador vote 👍/👎 sobre si le sirvió.
@@ -20,7 +20,7 @@ Un comprador escribe en lenguaje natural qué prenda busca. El agente:
 | Lenguaje | Python | 3.14 | Todo el MVP |
 | Orquestación del agente | **LangGraph** | 1.2.18 | `create_agent` (de `langchain.agents`, API unificada de LangChain v1 — construye internamente un `StateGraph` de LangGraph): controla el ciclo "pensar → decidir si llama a una tool → responder", y la memoria conversacional por sesión (`MemorySaver`) |
 | Framework LLM | **LangChain** (`langchain`, `langchain-openai`, `langchain-chroma`, `langchain-community`) | 1.4.7 | Capa común que conecta el LLM, el vectorstore y las tools; LangGraph se apoya en sus abstracciones (`ChatOpenAI`, `OpenAIEmbeddings`, `Document`, `@tool`) |
-| LLM de chat | OpenAI `gpt-4o-mini` | — (API) | Decide cuándo preguntar vs. buscar, redacta la respuesta final |
+| LLM de chat | OpenAI `gpt-4o-mini` | — (API) | Decide cuándo buscar, ampliar la búsqueda o preguntar; redacta la respuesta final |
 | Embeddings | OpenAI `text-embedding-3-small` | — (API) | Mismo modelo que ganó la evaluación offline de E5 (66,9% Hit Rate@3 ponderado vs. 52,9% léxico vs. 46,8% categoría vs. 23,0% azar) |
 | Base vectorial | **ChromaDB** | 1.5.9 | Guarda el embedding de cada una de las 438 tiendas; `similarity_search(consulta, k=3)` es la búsqueda real |
 | Guardrails | **Guardrails AI** (`guardrails-ai`, `guardrails-ai-detect-jailbreak`, `guardrails-ai-guardrails-pii`) | 0.10.2 / 0.1.6 / 1.0.8 | Seguridad (jailbreak), relevancia, PII — ver sección 5 |
@@ -68,7 +68,7 @@ flowchart TD
 
     subgraph ENTRADA["Guard de ENTRADA (pre-input)"]
         direction TB
-        GIN --> SEG["Seguridad:<br/>DetectJailbreak<br/>(Guardrails AI, local)"]
+        GIN --> SEG["Seguridad:<br/>DetectJailbreak (Guardrails AI, local)<br/>+ filtro de patrones ES/EN"]
         SEG --> REL["Relevancia:<br/>clasificador LLM barato<br/>(usa el historial)"]
     end
 
@@ -80,8 +80,8 @@ flowchart TD
     subgraph AGENTE["Agente (LangChain + LangGraph)"]
         direction TB
         GRAPH --> LLM1["ChatOpenAI gpt-4o-mini<br/>¿pregunto o busco?"]
-        LLM1 -->|"consulta vaga"| ASK["Pregunta de aclaracion"]
-        LLM1 -->|"consulta con detalle"| TOOL["tool: buscar_tiendas(consulta)"]
+        LLM1 -->|"sin ningun producto"| ASK["Pregunta de aclaracion"]
+        LLM1 -->|"nombra prenda, tema o estilo"| TOOL["tool: buscar_tiendas(consulta)"]
         TOOL --> VS[("ChromaDB<br/>coleccion tiendas_gamarra_mvp<br/>438 tiendas indexadas")]
         VS -->|"similarity_search k=3"| TOOL
         TOOL --> LLM2["ChatOpenAI gpt-4o-mini<br/>redacta top-3 + ubicacion + WhatsApp"]
@@ -142,8 +142,8 @@ flowchart TD
    - `_historial_reciente(config)` lee del checkpointer de LangGraph (`agente.get_state(config)`) los últimos turnos de **esa misma sesión** — necesario para que el guardrail de relevancia entienda respuestas cortas de seguimiento ("talla M", "de Drácula").
    - `guardrails_mvp.verificar_entrada(mensaje, historial)` corre las 2 capas de pre-input (ver sección 5). Si alguna bloquea, `responder()` devuelve el mensaje de bloqueo **sin llamar al LLM principal** (ahorra costo y evita que el ataque llegue siquiera al agente).
 3. Si pasa, `agente.invoke({"messages": [...]}, config)` entra al grafo de LangGraph (`create_agent`):
-   - El LLM (`gpt-4o-mini`, con el `SYSTEM_PROMPT` del dominio) decide: ¿la consulta ya tiene al menos un atributo diferenciador (color, talla, estilo, ocasión, personaje) además del tipo de prenda? Si no, responde directo con una pregunta corta. Si sí, invoca la tool — corrigiendo en el texto de búsqueda los typos obvios del comprador (la búsqueda semántica interpreta mal un error de tipeo literal, así que no se repite tal cual).
-   - **`buscar_tiendas(consulta)`** (la única tool): llama a `similarity_search_with_relevance_scores(consulta, k=3)` sobre `_vectorstore`, la colección `tiendas_gamarra_mvp` en ChromaDB. Si el mejor score no supera `UMBRAL_RELEVANCIA = 0.15` (calibrado empíricamente con 4 consultas reales, no es una cifra científica), devuelve `"BUSQUEDA_SIN_RESULTADOS_CONFIABLES"` en vez de tiendas — así el LLM pide más detalle en lugar de presentar coincidencias débiles como recomendación. Si pasa el umbral, devuelve nombre, categoría, ubicación y WhatsApp (o "no disponible") de las 3 tiendas más parecidas.
+   - El LLM (`gpt-4o-mini`, con el `SYSTEM_PROMPT` del dominio) decide: ¿el mensaje nombra alguna prenda, artículo, disfraz, personaje, tema o estilo? Si sí (basta una palabra), invoca la tool de inmediato, sin pedir más detalle antes. Si el mensaje es solo un saludo, responde con calidez sin buscar; si no nombra ningún producto (ej. "quiero ropa"), hace una pregunta corta. Al invocar la tool, corrige en el texto de búsqueda los typos obvios del comprador (la búsqueda semántica interpreta mal un error de tipeo literal, así que no se repite tal cual).
+   - **`buscar_tiendas(consulta)`** (la única tool): llama a `similarity_search_with_relevance_scores(consulta, k=3)` sobre `_vectorstore`, la colección `tiendas_gamarra_mvp` en ChromaDB. Si el mejor score no supera `UMBRAL_RELEVANCIA = 0.15` (calibrado empíricamente con 4 consultas reales, no es una cifra científica), devuelve `"BUSQUEDA_SIN_RESULTADOS_CONFIABLES"` en vez de tiendas — el aviso le indica al LLM que reintente con una descripción más amplia de la categoría (máximo 3 búsquedas en total) en lugar de presentar coincidencias débiles como recomendación. Si pasa el umbral, devuelve nombre, categoría, ubicación y WhatsApp (o "no disponible") de las 3 tiendas más parecidas.
    - El LLM recibe el resultado de la tool y redacta la respuesta final en español, sin inventar stock/talla/precio (instrucción explícita del `SYSTEM_PROMPT`), sin frase de cierre tipo "¡espero que...!" (recorte para ahorrar tokens de salida).
    - `MemorySaver` guarda automáticamente este turno bajo el `session_id`, para que el siguiente mensaje de la misma sesión tenga memoria.
 4. **`guardrails_mvp.limpiar_salida(respuesta)`** corre el guardrail de pre-output (PII) antes de devolver el texto.
@@ -158,14 +158,14 @@ Arquitectura en capas (taxonomía de OpenAI vista en el curso, `Módulo3/Sesión
 ```
 usuario -> [guard_entrada] -> agente (LLM + tool) -> [guard_salida] -> usuario
             DetectJailbreak                            GuardrailsPII (fix,
-            relevancia (LLM barato)                     sin PHONE_NUMBER
-                                                          ni PERSON)
+            filtro de patrones (ES/EN)                  sin PHONE_NUMBER
+            relevancia (LLM barato)                       ni PERSON)
 ```
 
 | Capa | Categoría (taxonomía OpenAI) | Implementación | Estado verificado |
 |---|---|---|---|
-| Seguridad | pre-input | `DetectJailbreak` de Guardrails AI, corre 100% local (3 modelos propios descargados con `post_install`, no llama a ninguna API externa) | **Activo, con límite real:** detectó el ataque de prueba en inglés; no detectó 2 de 2 variantes del mismo ataque en español. Documentado también en el curso (Sesión 24: "lo evaden... payloads multilingües"). |
-| Relevancia | pre-input | Clasificador propio (una llamada barata a `gpt-4o-mini`), usa el historial de la sesión | **Activo.** Corregido un falso positivo real antes de producción: bloqueaba "De Drácula" (seguimiento corto) por no tener contexto; ahora sí lo tiene. |
+| Seguridad | pre-input | `DetectJailbreak` de Guardrails AI, corre 100% local (3 modelos propios descargados con `post_install`, no llama a ninguna API externa) | **Activo, con límite real:** detectó el ataque de prueba en inglés; no detectó 2 de 2 variantes del mismo ataque en español. Documentado también en el curso (Sesión 24: "lo evaden... payloads multilingües"). **Cubierto parcialmente el 31-oct-2026** con un filtro determinista de patrones de inyección ES/EN (`_PATRONES_INYECCION`): 0 falsos positivos sobre las 280 consultas reales de E5 y bloquea los ataques de prueba que mezclan una prenda con la orden; es una lista de patrones, no una garantía (una paráfrasis fuera de los patrones puede pasar). |
+| Relevancia | pre-input | Clasificador propio (una llamada barata a `gpt-4o-mini`), usa el historial de la sesión | **Activo.** Corregido un falso positivo real antes de producción: bloqueaba "De Drácula" (seguimiento corto) por no tener contexto; ahora sí lo tiene. **31-oct-2026:** la evaluación contra E5 mostró que bloqueaba 47 de 378 consultas reales («Short», «Maletas», «Yoger», o «Me da igual, muéstrame opciones» tras una repregunta); desde entonces los saludos puros, los mensajes de hasta 3 palabras y la respuesta a una repregunta del agente pasan por reglas deterministas (`_es_saludo_puro`, `_es_mensaje_corto`, `_responde_a_repregunta`), lo que destraba 40 de esos 47. `DetectJailbreak` y el filtro de inyección siguen corriendo antes. |
 | Tool safeguards | gate intermedio | `buscar_tiendas` es de solo lectura, no escribe ni ejecuta nada irreversible | Evaluado: riesgo bajo, no necesita pausa/escalación por diseño |
 | PII | pre-output | `GuardrailsPII` (`on_fail="fix"`), entidades: `EMAIL_ADDRESS, US_SSN, CREDIT_CARD, ES_NIF` | **Activo.** Excluye a propósito `PHONE_NUMBER` (el WhatsApp de la tienda es dato de negocio que el agente debe mostrar) y `PERSON` (el detector de nombres confundía listas tipo "¿hombre, mujer o niño?" con nombres propios y las tachaba como `<PERSON>`, rompiendo la respuesta — solo pasa en formato lista, no en una oración normal). |
 | Moderación | pre-output | `BiasCheck` de Guardrails AI | **Pendiente.** Necesita TensorFlow, que falla en este equipo por tener desactivado el "Long Path Support" de Windows. Instrucciones de activación en el `README.md`. |
@@ -178,7 +178,7 @@ Se activa solo con 3 variables en `.env` (`LANGSMITH_TRACING`, `LANGSMITH_API_KE
 
 - **Hit Rate@3 = 66,9%** (ponderado, IC 95% [61,9%–71,4%]): 1 de cada 3 consultas no encuentra tienda relevante en el top-3. Peor en consultas con marca/talla/precio explícito (20,0% de acierto) que en consultas con prenda específica (79,6%) — detalle completo en el Model Card de E5.
 - **`DetectJailbreak` no cubre español de forma confiable** (verificado con pruebas reales, sección 5).
-- **`guardrails-ai-detect-prompt-injection` no se pudo instalar**: depende de `rebuff>=0.1.1`, que requiere Python <3.13 y este venv usa 3.14. La capa de seguridad depende solo de `DetectJailbreak`.
+- **`guardrails-ai-detect-prompt-injection` no se pudo instalar**: depende de `rebuff>=0.1.1`, que requiere Python <3.13 y este venv usa 3.14. La capa de seguridad depende de `DetectJailbreak` más el filtro de patrones propio (`_PATRONES_INYECCION`).
 - **`BiasCheck` (moderación) pendiente** de que se habilite Long Path Support en Windows.
 - **`UMBRAL_RELEVANCIA = 0.15` es un corte empírico con poca evidencia** (4 consultas de prueba), no una cifra validada — puede necesitar recalibrarse con más tráfico real. Si se nota muy estricto (rechaza búsquedas válidas) o muy laxo (deja pasar basura), este es el primer lugar a revisar.
 - **El catálogo tiene poco inventario de disfraces de personaje**: "disfraz de Drácula" no supera el umbral de relevancia (mejor score real: 0,088) — es una limitación de los datos de Gamarra, no del buscador.

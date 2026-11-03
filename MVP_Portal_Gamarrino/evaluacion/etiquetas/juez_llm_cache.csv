@@ -1,0 +1,365 @@
+﻿key,consulta,display_name,relevante_SiNo,modelo,fecha
+Q002|dc7a1306-c89d-4133-b9e5-ee1133d72f17,Vestidos,Tienda de vestidos de fiesta y ropa elegante para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q006|2f4b4734-2a9d-41ae-a1b1-ec4a65568893,polos,Tienda de polos básicos y camiseros en colores,SI,gpt-4o,2026-10-31 10:28:04
+Q003|cc9db888-8df5-4e5e-aa1d-4e09a4a170c0,Casacas,Tienda de ropa casual para mujer y casacas,SI,gpt-4o,2026-10-31 10:28:04
+Q004|01630070-7e4e-4209-bd32-c30244871cd7,Ternos,"Tienda de ternos, blazers, camisas y pantalones para hombre",SI,gpt-4o,2026-10-31 10:28:04
+Q008|ba201714-2190-4336-922e-6e7edcd54e29,Jeans,Tienda de jeans y casacas denim para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q010|42a2e728-a61a-45dd-a385-2a449658cd63,Poleras,Tienda de polos básicos y camiseros reactivos,NO,gpt-4o,2026-10-31 10:28:04
+Q016|96e13fa4-2652-4be3-85d5-b1402d2ed321,Camisetas,Tienda de Camisetas Deportivas de Equipos,SI,gpt-4o,2026-10-31 10:28:04
+Q015|198920c6-1681-408a-8f11-3d8cce9a1d15,Buzo niño,Tienda de ropa para bebés y niños,SI,gpt-4o,2026-10-31 10:28:04
+Q020|2f4b4734-2a9d-41ae-a1b1-ec4a65568893,Polos camiseros,Tienda de polos básicos y camiseros en colores,SI,gpt-4o,2026-10-31 10:28:04
+Q014|f50a4954-467f-4d83-bf3b-68194770c4ac,DTF,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q014|0267943a-b93a-4778-b1d8-ae12e28dbce0,DTF,Tienda de ropa casual para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q014|f4a1d66e-e56d-434c-b7c9-a0bc877ba351,DTF,Tienda de ropa casual para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q022|ba6378b2-87a7-4574-9eb8-c0bd424dfd0b,Polos Lacoste,Tienda de polos básicos y oversize,NO,gpt-4o,2026-10-31 10:28:04
+Q026|13c0e603-02d8-4efd-ba56-daa699143009,Ternos para dama,Tienda de ropa interior para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q026|e59e79f1-3784-4cf5-b918-cf3e06385160,Ternos para dama,Ropa interior y Ropa de Cama para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q026|f89ce831-19b1-471a-837b-2d717f77fd42,Ternos para dama,"Tienda de lencería, panties y bóxers",NO,gpt-4o,2026-10-31 10:28:04
+Q028|057df564-18c5-4077-8c71-26a1ec4da003,Toca para enfermera,Tienda de Brasieres Lencería y disfraces sexys,NO,gpt-4o,2026-10-31 10:28:04
+Q028|93636f4b-dec8-4e3d-8fc8-3d8755d1ebd4,Toca para enfermera,Tienda de vestidos de fiesta y disfraces infantiles,NO,gpt-4o,2026-10-31 10:28:04
+Q029|e1e89c7b-c11c-4ed0-9cc8-7d13cecb8e38,Togas de graduación,Tienda de casacas varsity y polos estampados,NO,gpt-4o,2026-10-31 10:28:04
+Q029|cbcd3549-374e-4c52-8420-7b498ca73f7b,Togas de graduación,Tienda de polos básicos y uniformes personalizados,NO,gpt-4o,2026-10-31 10:28:04
+Q031|a2c74dd1-24a1-499d-981b-448325f0f459,Truzas de tela,Tienda de telas por rollo en varios colores,NO,gpt-4o,2026-10-31 10:28:04
+Q036|0db6af60-1cf3-4d7f-b9c7-4f1fb84ec158,Buzos conjunto,Tienda de Buzos y Poleras Unisex,SI,gpt-4o,2026-10-31 10:28:04
+Q037|3038ffec-70c6-43f8-8116-7e01d7127697,Buzos deportivos para mujer,"Tienda de Casacas, Buzos y Shorts Deportivos",SI,gpt-4o,2026-10-31 10:28:04
+Q032|f50a4954-467f-4d83-bf3b-68194770c4ac,Urbani,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q032|4e9070da-721f-46fd-9f98-5dab390e99d7,Urbani,Tienda de ropa casual y elegante para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q032|8b631a4c-5991-40e2-b03d-564a6b6dd118,Urbani,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q040|f50a4954-467f-4d83-bf3b-68194770c4ac,Caja husncayo,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q040|4e9070da-721f-46fd-9f98-5dab390e99d7,Caja husncayo,Tienda de ropa casual y elegante para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q040|8b631a4c-5991-40e2-b03d-564a6b6dd118,Caja husncayo,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q042|fbf758ac-35c4-40f1-9c69-3ff87f18161a,Cama mascotas,Tienda de accesorios y decoración para eventos,NO,gpt-4o,2026-10-31 10:28:04
+Q041|774fe07b-eadc-4357-9d61-4c1f46c2a50e,Calcetines,Tienda de pijamas y polerones afelpados,NO,gpt-4o,2026-10-31 10:28:04
+Q043|776da559-c409-4dca-b6f0-c2fbcdeb4116,Camisas de mujer,Tienda de blusas y polos para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q043|94bc7d65-1ef3-44b0-bfcf-6c04f570e0ff,Camisas de mujer,Tienda de blusas y polos para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q044|8b631a4c-5991-40e2-b03d-564a6b6dd118,Camisas sport hombre,Tienda de ropa casual para hombre,SI,gpt-4o,2026-10-31 10:28:04
+Q047|7e86d2bb-bec2-497f-b8d4-a09a3c2b674d,Camisetas de fútbol,Tienda de Camisetas y Uniformes de Fútbol,SI,gpt-4o,2026-10-31 10:28:04
+Q049|97ea25d7-61a4-44cf-b671-6d8419fe4ab9,Caracas fleece,Tienda de polos y uniformes corporativos,NO,gpt-4o,2026-10-31 10:28:04
+Q049|7c73af4e-abce-4f78-ac97-3f0035de36a1,Caracas fleece,Tienda de polos básicos y oversize,NO,gpt-4o,2026-10-31 10:28:04
+Q049|4825c5de-720a-48f5-900d-99626eb31aed,Caracas fleece,Tienda de uniformes y ropa industrial,NO,gpt-4o,2026-10-31 10:28:04
+Q051|b3932072-13f8-47e4-bba2-7df64e339a4c,Casacas jeans cortas colores neones,Jeans Stretch y Pantalones Ajustados para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q054|62e49401-0494-4385-9019-ee8ef0176f49,China,"Tienda de moda femenina con polos, blusas y vestidos",NO,gpt-4o,2026-10-31 10:28:04
+Q054|9a266778-e3f9-47ba-9597-aec52b8eb4d8,China,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q054|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,China,Tienda de Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q055|76a043e4-0524-4147-b90c-cf383ba73c66,Chompas,Tienda de abrigos y sacos para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q055|fd16fa80-a5d1-477d-9cc8-8a50ba043507,Chompas,Tienda de abrigos y sacos de vestir para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q055|aec87c4e-6d05-4489-8431-fe63b4694343,Chompas,Tienda de casacas varsity y chalecos acolchados,NO,gpt-4o,2026-10-31 10:28:04
+Q056|76a043e4-0524-4147-b90c-cf383ba73c66,Chuyos,Tienda de abrigos y sacos para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q056|fbf758ac-35c4-40f1-9c69-3ff87f18161a,Chuyos,Tienda de accesorios y decoración para eventos,NO,gpt-4o,2026-10-31 10:28:04
+Q056|aec87c4e-6d05-4489-8431-fe63b4694343,Chuyos,Tienda de casacas varsity y chalecos acolchados,NO,gpt-4o,2026-10-31 10:28:04
+Q060|9bb356ac-d8db-4266-be53-2fffc881b660,Conjunto para matrimonio civil,Tienda de ternos y trajes de vestir,NO,gpt-4o,2026-10-31 10:28:04
+Q062|a2c74dd1-24a1-499d-981b-448325f0f459,Conjuntos entela wafer,Tienda de telas por rollo en varios colores,NO,gpt-4o,2026-10-31 10:28:04
+Q062|4753bf01-e5e8-4143-91de-af5d9d1697b6,Conjuntos entela wafer,Tienda de telas por rollo en varios colores,NO,gpt-4o,2026-10-31 10:28:04
+Q062|b6d77441-244f-46cd-96bd-e1a2caf18008,Conjuntos entela wafer,Tienda de telas rib y algodón por rollo,NO,gpt-4o,2026-10-31 10:28:04
+Q061|4b540ec5-6dbd-4b13-be4a-7c6b4f2f47a2,Conjuntos,Lencería y Ropa Interior Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q061|d3a5966e-6e51-4f3e-a78d-d3cffefea05d,Conjuntos,Tienda de Ropa Denim Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q061|25755efa-6b5c-4723-be7b-820924cf595e,Conjuntos,Boutique de Ropa Femenina Elegante y Casual,SI,gpt-4o,2026-10-31 10:28:04
+Q065|ffd89a61-af07-4641-af1b-08b33dca5dc0,Deportivo,Tienda de Ropa Deportiva y Fitness,SI,gpt-4o,2026-10-31 10:28:04
+Q065|15e90439-433c-41f0-a1be-bad8ac9245f6,Deportivo,Tienda de ropa deportiva para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q065|a445e1d7-b906-4eb7-add5-6a70b70c30c8,Deportivo,Tienda de ropa deportiva y moda fitness para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q064|c91eeb5b-c231-4878-ac81-99c5477070c3,De cuero específicamente,"Tienda de ropa casual masculina con casacas, poleras y pantalones cargo",NO,gpt-4o,2026-10-31 10:28:04
+Q064|aec87c4e-6d05-4489-8431-fe63b4694343,De cuero específicamente,Tienda de casacas varsity y chalecos acolchados,NO,gpt-4o,2026-10-31 10:28:04
+Q064|fd16fa80-a5d1-477d-9cc8-8a50ba043507,De cuero específicamente,Tienda de abrigos y sacos de vestir para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q068|d3f59694-0887-40f4-b27f-53d3515bb212,donde venden tela con el diseño de tablero de ajedrez,Taller de Bordados Computarizados ,NO,gpt-4o,2026-10-31 10:28:04
+Q068|44c9eb80-0d21-4ecb-94c3-b5a4dafbdef3,donde venden tela con el diseño de tablero de ajedrez,Taller de Bordado Computarizado,NO,gpt-4o,2026-10-31 10:28:04
+Q067|97ea25d7-61a4-44cf-b671-6d8419fe4ab9,"Donde vendeb ropa tipo alternativa y , emo",Tienda de polos y uniformes corporativos,NO,gpt-4o,2026-10-31 10:28:04
+Q067|7c73af4e-abce-4f78-ac97-3f0035de36a1,"Donde vendeb ropa tipo alternativa y , emo",Tienda de polos básicos y oversize,NO,gpt-4o,2026-10-31 10:28:04
+Q067|4825c5de-720a-48f5-900d-99626eb31aed,"Donde vendeb ropa tipo alternativa y , emo",Tienda de uniformes y ropa industrial,NO,gpt-4o,2026-10-31 10:28:04
+Q069|b9405ff7-091f-44bd-91bc-97385efde64b,Edredones,Tienda de Pijamas y Ropa de Dormir,NO,gpt-4o,2026-10-31 10:28:04
+Q069|b32cf557-30e2-4b51-9e03-a45d58969b89,Edredones,"Tienda de Pijamas, Batas y Ropa de Dormir",NO,gpt-4o,2026-10-31 10:28:04
+Q069|758c1b6a-dc80-4932-a5f1-b8a0c355c1c4,Edredones,Tienda de Pijamas y ropa de dormir,NO,gpt-4o,2026-10-31 10:28:04
+Q066|61fdcf06-09ee-42db-84db-07c655a2e5a9,"Dónde ubico una tienda dónde venden ropa streetwear asiático o algo similar, de paso dónde vendan baggys unisex, baggy medio balloon pero de esos baggys que ""baguean""","Tienda de mochilas, bolsos y carteras",NO,gpt-4o,2026-10-31 10:28:04
+Q066|c135f9d7-ea8f-4985-bed5-d762b398d471,"Dónde ubico una tienda dónde venden ropa streetwear asiático o algo similar, de paso dónde vendan baggys unisex, baggy medio balloon pero de esos baggys que ""baguean""",Bordado de gorras y mochilas,NO,gpt-4o,2026-10-31 10:28:04
+Q066|c2a0af93-9f30-4af8-aea2-ae429c8026b2,"Dónde ubico una tienda dónde venden ropa streetwear asiático o algo similar, de paso dónde vendan baggys unisex, baggy medio balloon pero de esos baggys que ""baguean""",Tienda de casacas universitarias y polos bordados,NO,gpt-4o,2026-10-31 10:28:04
+Q072|352647b3-75ae-4594-8a3a-96ae835c0175,Fabrica jeans,Tienda de jeans y faldas denim para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q072|c9811436-e064-46bf-be96-08474e9ac256,Fabrica jeans,Tienda Femenina especializada en Denim,NO,gpt-4o,2026-10-31 10:28:04
+Q070|62e49401-0494-4385-9019-ee8ef0176f49,Efit,"Tienda de moda femenina con polos, blusas y vestidos",NO,gpt-4o,2026-10-31 10:28:04
+Q070|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Efit,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q070|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,Efit,Tienda de Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q075|202c6c58-989a-40f9-84aa-45b0f33ef35c,Faldas,Tienda de vestidos casuales y de fiesta para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q081|d3c8e41f-3f71-4baa-b3fd-fb764e24667f,Futsal,Tienda de Camisetas y Uniformes de Fútbol ,NO,gpt-4o,2026-10-31 10:28:04
+Q077|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Faldas largas jeans con abertura ala costado,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q079|b9405ff7-091f-44bd-91bc-97385efde64b,Frazadas,Tienda de Pijamas y Ropa de Dormir,NO,gpt-4o,2026-10-31 10:28:04
+Q079|b32cf557-30e2-4b51-9e03-a45d58969b89,Frazadas,"Tienda de Pijamas, Batas y Ropa de Dormir",NO,gpt-4o,2026-10-31 10:28:04
+Q079|758c1b6a-dc80-4932-a5f1-b8a0c355c1c4,Frazadas,Tienda de Pijamas y ropa de dormir,NO,gpt-4o,2026-10-31 10:28:04
+Q084|62e49401-0494-4385-9019-ee8ef0176f49,Geans,"Tienda de moda femenina con polos, blusas y vestidos",NO,gpt-4o,2026-10-31 10:28:04
+Q084|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,Geans,Tienda de Moda Denim Femenina,SI,gpt-4o,2026-10-31 10:28:04
+Q086|a187d538-466e-4266-88e1-ea32b49b51ea,"Hola, necesito boxers con diseño, que tinedas me sugieres?",Venta de Botones y Accesorios para Confección,NO,gpt-4o,2026-10-31 10:28:04
+Q085|a187d538-466e-4266-88e1-ea32b49b51ea,guantes mascarilla,Venta de Botones y Accesorios para Confección,NO,gpt-4o,2026-10-31 10:28:04
+Q085|fbf758ac-35c4-40f1-9c69-3ff87f18161a,guantes mascarilla,Tienda de accesorios y decoración para eventos,NO,gpt-4o,2026-10-31 10:28:04
+Q085|70bbbd8b-ec3e-425f-a440-51197986ada9,guantes mascarilla,Tienda de ropa industrial y chalecos reflectivos,NO,gpt-4o,2026-10-31 10:28:04
+Q087|f50a4954-467f-4d83-bf3b-68194770c4ac,Hombre,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q083|62e49401-0494-4385-9019-ee8ef0176f49,gama moda plaza opciones,"Tienda de moda femenina con polos, blusas y vestidos",NO,gpt-4o,2026-10-31 10:28:04
+Q083|9a266778-e3f9-47ba-9597-aec52b8eb4d8,gama moda plaza opciones,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q083|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,gama moda plaza opciones,Tienda de Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q088|f50a4954-467f-4d83-bf3b-68194770c4ac,Horarios,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q088|4e9070da-721f-46fd-9f98-5dab390e99d7,Horarios,Tienda de ropa casual y elegante para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q088|8b631a4c-5991-40e2-b03d-564a6b6dd118,Horarios,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q089|8eb0d23e-a210-4413-9458-06a6e0c01746,Jean bootcut hombre,Tienda de jeans y casacas denim para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q091|8eb0d23e-a210-4413-9458-06a6e0c01746,Jean materno,Tienda de jeans y casacas denim para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q091|d1111f12-6965-4959-b574-c984b0c05fc7,Jean materno,Tienda de jeans y casacas denim para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q091|27b5de63-c1b2-48cc-a51b-8f59383feae9,Jean materno,Tienda de jeans y casacas denim para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q090|8eb0d23e-a210-4413-9458-06a6e0c01746,Jean hombres,Tienda de jeans y casacas denim para hombre,SI,gpt-4o,2026-10-31 10:28:04
+Q090|27b5de63-c1b2-48cc-a51b-8f59383feae9,Jean hombres,Tienda de jeans y casacas denim para hombre,SI,gpt-4o,2026-10-31 10:28:04
+Q090|d1111f12-6965-4959-b574-c984b0c05fc7,Jean hombres,Tienda de jeans y casacas denim para hombre,SI,gpt-4o,2026-10-31 10:28:04
+Q092|00e7e763-01f2-4726-bac6-b731efbd028d,Jean para mujer,Tienda de jeans para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q092|4407bb11-6968-4b61-990a-feab8d2ccd20,Jean para mujer,Tienda de jeans para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q092|44ce9730-f12d-4727-b3f0-b514912dd046,Jean para mujer,Tienda de jeans para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q093|44ce9730-f12d-4727-b3f0-b514912dd046,Jean tallas grandes,Tienda de jeans para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q093|d32fa0f1-3a08-4ea6-8499-0b4e4fc25dea,Jean tallas grandes,Tienda de jeans skinny para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q093|e6bb426e-3ff6-4cd3-a683-055eba704c23,Jean tallas grandes,Tienda de jeans y pantalones stretch para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q094|00e7e763-01f2-4726-bac6-b731efbd028d,Jean waileg,Tienda de jeans para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q094|2eb63e03-91a2-4ef1-ab4c-b157d1f2cced,Jean waileg,Tienda de jeans y tops para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q094|44ce9730-f12d-4727-b3f0-b514912dd046,Jean waileg,Tienda de jeans para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q097|b3932072-13f8-47e4-bba2-7df64e339a4c,Jeans cristel,Jeans Stretch y Pantalones Ajustados para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q100|50221d3c-e2db-4c84-a8c0-74fd1502383d,Jeans petit,Jeans y Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q102|f50a4954-467f-4d83-bf3b-68194770c4ac,Jeshu,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q102|0267943a-b93a-4778-b1d8-ae12e28dbce0,Jeshu,Tienda de ropa casual para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q102|f4a1d66e-e56d-434c-b7c9-a0bc877ba351,Jeshu,Tienda de ropa casual para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q107|27b5de63-c1b2-48cc-a51b-8f59383feae9,Levis,Tienda de jeans y casacas denim para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q111|fbf758ac-35c4-40f1-9c69-3ff87f18161a,Maletas,Tienda de accesorios y decoración para eventos,NO,gpt-4o,2026-10-31 10:28:04
+Q113|6d0ab8bb-6c2d-4d4b-a105-8dc1cee52a6a,Manteles para cocina,Moldes Terminados para confección,NO,gpt-4o,2026-10-31 10:28:04
+Q109|15e90439-433c-41f0-a1be-bad8ac9245f6,Licras,Tienda de ropa deportiva para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q109|a445e1d7-b906-4eb7-add5-6a70b70c30c8,Licras,Tienda de ropa deportiva y moda fitness para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q112|e15b2de7-13fe-4358-8d30-bb3e0a7c3cd3,Mandiles,Tienda de uniformes y ropa corporativa,SI,gpt-4o,2026-10-31 10:28:04
+Q112|70bbbd8b-ec3e-425f-a440-51197986ada9,Mandiles,Tienda de ropa industrial y chalecos reflectivos,NO,gpt-4o,2026-10-31 10:28:04
+Q110|f50a4954-467f-4d83-bf3b-68194770c4ac,Llamas para varón,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q110|4e9070da-721f-46fd-9f98-5dab390e99d7,Llamas para varón,Tienda de ropa casual y elegante para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q114|f4200ec3-4848-49eb-ade6-f650107278e4,media pima,Tienda de telas deportivas y para sublimar,NO,gpt-4o,2026-10-31 10:28:04
+Q114|6a90a9ad-c9ca-4d92-8f8e-5046455456d6,media pima,Tienda de Shorts y Bividis Deportivos y para Playa,NO,gpt-4o,2026-10-31 10:28:04
+Q119|7dab2806-9a27-42e9-86d4-e314151d0b0d,"Necesito shorts de dama a la cadera que no sean super cortos, ya que es para adolescente",Tienda de Ropa Denim para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q119|b97d8982-70e9-4640-a337-4411c143fc8a,"Necesito shorts de dama a la cadera que no sean super cortos, ya que es para adolescente",Tienda de Jeans y Shorts Denim para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q121|e1e89c7b-c11c-4ed0-9cc8-7d13cecb8e38,No hsy mas tiendas de camisa,Tienda de casacas varsity y polos estampados,NO,gpt-4o,2026-10-31 10:28:04
+Q122|f50a4954-467f-4d83-bf3b-68194770c4ac,Notte,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q122|0267943a-b93a-4778-b1d8-ae12e28dbce0,Notte,Tienda de ropa casual para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q122|f4a1d66e-e56d-434c-b7c9-a0bc877ba351,Notte,Tienda de ropa casual para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q125|e1e89c7b-c11c-4ed0-9cc8-7d13cecb8e38,Oxford,Tienda de casacas varsity y polos estampados,NO,gpt-4o,2026-10-31 10:28:04
+Q125|5784c8ca-89f7-427f-b78e-16f5f8ca8218,Oxford,Tienda de camisas y camisas escolares,NO,gpt-4o,2026-10-31 10:28:04
+Q123|ffd89a61-af07-4641-af1b-08b33dca5dc0,Outdoor,Tienda de Ropa Deportiva y Fitness,NO,gpt-4o,2026-10-31 10:28:04
+Q123|15e90439-433c-41f0-a1be-bad8ac9245f6,Outdoor,Tienda de ropa deportiva para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q123|a445e1d7-b906-4eb7-add5-6a70b70c30c8,Outdoor,Tienda de ropa deportiva y moda fitness para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q126|62e49401-0494-4385-9019-ee8ef0176f49,Paganni,"Tienda de moda femenina con polos, blusas y vestidos",NO,gpt-4o,2026-10-31 10:28:04
+Q126|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Paganni,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q126|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,Paganni,Tienda de Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q128|0f0d993e-5bb4-412e-9e06-6d0d41a2a3dd,Pantalón de vestir,Tienda de pantalones y bermudas para hombre,SI,gpt-4o,2026-10-31 10:28:04
+Q127|4753bf01-e5e8-4143-91de-af5d9d1697b6,Paño azul,Tienda de telas por rollo en varios colores,NO,gpt-4o,2026-10-31 10:28:04
+Q127|a2c74dd1-24a1-499d-981b-448325f0f459,Paño azul,Tienda de telas por rollo en varios colores,NO,gpt-4o,2026-10-31 10:28:04
+Q127|f4200ec3-4848-49eb-ade6-f650107278e4,Paño azul,Tienda de telas deportivas y para sublimar,NO,gpt-4o,2026-10-31 10:28:04
+Q129|70ae47fe-4423-429f-be43-152ed2c1a5b7,Pantalón fri,Tienda de ropa casual masculina con pantalones y camisas,NO,gpt-4o,2026-10-31 10:28:04
+Q134|00e7e763-01f2-4726-bac6-b731efbd028d,Pantalones damas,Tienda de jeans para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q136|29b7a44b-723a-43c4-8ca9-f8717246f59a,Pantalones de vestir para damas,Tienda de tops y pantalones casuales para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q137|70ae47fe-4423-429f-be43-152ed2c1a5b7,Pantalones hombre,Tienda de ropa casual masculina con pantalones y camisas,SI,gpt-4o,2026-10-31 10:28:04
+Q138|7c4570b3-d143-443c-8984-a1a8d61fa4b3,Pantalones jean,Tienda De Jeans Y Pantalones Para Mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q140|b3932072-13f8-47e4-bba2-7df64e339a4c,Pantalones jeans mujer,Jeans Stretch y Pantalones Ajustados para Mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q142|0f0d993e-5bb4-412e-9e06-6d0d41a2a3dd,Pantalones jeans varon,Tienda de pantalones y bermudas para hombre,SI,gpt-4o,2026-10-31 10:28:04
+Q145|4bf84cbd-7e46-4484-9d35-a6649720f782,Pantañon tela mojada para dama,Tienda de trenchs y vestidos para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q146|4d3a6dd7-5e43-4206-b080-9bd2fe4f4ea4,Para estampar,Taller de estampado en polos y camisetas,SI,gpt-4o,2026-10-31 10:28:04
+Q153|d5072b10-2d85-4175-95f8-3d573a46f1aa,Blusas,Tienda de blusas drapeadas y faldas para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q154|7e86d2bb-bec2-497f-b8d4-a09a3c2b674d,Poleras de mesii,Tienda de Camisetas y Uniformes de Fútbol,NO,gpt-4o,2026-10-31 10:28:04
+Q154|6bae124a-9008-44c2-bb71-0fe687826b53,Poleras de mesii,Tienda de Camisetas de Fútbol y Jerseys Deportivos,NO,gpt-4o,2026-10-31 10:28:04
+Q154|0f972348-4a1a-4b3a-920d-a86a2dab1aee,Poleras de mesii,Tienda de Camisetas y Conjuntos de Futbol,NO,gpt-4o,2026-10-31 10:28:04
+Q152|7206679b-9eaf-41ac-9864-94f6d543db6d,Pistola de hidrogel,Tienda de conjuntos y ropa casual para niños,NO,gpt-4o,2026-10-31 10:28:04
+Q152|b5a03b85-d023-451b-8b34-77c81acd2984,Pistola de hidrogel,Tienda de ropa para niña y pijamas infantiles,NO,gpt-4o,2026-10-31 10:28:04
+Q152|fbf758ac-35c4-40f1-9c69-3ff87f18161a,Pistola de hidrogel,Tienda de accesorios y decoración para eventos,NO,gpt-4o,2026-10-31 10:28:04
+Q156|b43b54fd-2c01-4316-b597-f42b51de1c58,Polerones canguro con capucha,Tienda de polos y poleras básicas unisex,NO,gpt-4o,2026-10-31 10:28:04
+Q157|7e56b2d1-78f2-45cc-98fa-7831afde64f6,polo algodon pyma xl,Tienda de telas para polos y piqué,NO,gpt-4o,2026-10-31 10:28:04
+Q159|3728bc2a-b7bc-404e-9d8a-31001d2ee7e5,polo Raplh lauren,Tienda de polos para niños y hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q160|4825c5de-720a-48f5-900d-99626eb31aed,Zapatos punta de acero,Tienda de uniformes y ropa industrial,SI,gpt-4o,2026-10-31 10:28:04
+Q160|70bbbd8b-ec3e-425f-a440-51197986ada9,Zapatos punta de acero,Tienda de ropa industrial y chalecos reflectivos,NO,gpt-4o,2026-10-31 10:28:04
+Q163|751b8420-502d-4285-a516-7451de00e441,Polos algodón licrado baratos,Tienda de polos básicos y oversize,NO,gpt-4o,2026-10-31 10:28:04
+Q164|e0649dc4-25ab-48c0-8e2a-d0f170b1294e,Baggy jeans con estampados y2kpara hombre baratos,Tienda de jeans y polos oversize para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q168|7c73af4e-abce-4f78-ac97-3f0035de36a1,Polos buzos,Tienda de polos básicos y oversize,NO,gpt-4o,2026-10-31 10:28:04
+Q166|a187d538-466e-4266-88e1-ea32b49b51ea,Bagues x mayor económicos,Venta de Botones y Accesorios para Confección,NO,gpt-4o,2026-10-31 10:28:04
+Q166|fbf758ac-35c4-40f1-9c69-3ff87f18161a,Bagues x mayor económicos,Tienda de accesorios y decoración para eventos,NO,gpt-4o,2026-10-31 10:28:04
+Q166|61fdcf06-09ee-42db-84db-07c655a2e5a9,Bagues x mayor económicos,"Tienda de mochilas, bolsos y carteras",NO,gpt-4o,2026-10-31 10:28:04
+Q170|7c73af4e-abce-4f78-ac97-3f0035de36a1,Polos con diseño,Tienda de polos básicos y oversize,NO,gpt-4o,2026-10-31 10:28:04
+Q169|f50a4954-467f-4d83-bf3b-68194770c4ac,Bandera de Venezuela,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q169|0267943a-b93a-4778-b1d8-ae12e28dbce0,Bandera de Venezuela,Tienda de ropa casual para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q169|f4a1d66e-e56d-434c-b7c9-a0bc877ba351,Bandera de Venezuela,Tienda de ropa casual para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q173|42a2e728-a61a-45dd-a385-2a449658cd63,polos de algodon para hombres,Tienda de polos básicos y camiseros reactivos,NO,gpt-4o,2026-10-31 10:28:04
+Q175|b7c84aa6-1504-4a08-8656-52e9a784eb53,Polos de colegio,Tienda de polos básicos y conjuntos de niña,NO,gpt-4o,2026-10-31 10:28:04
+Q174|42a2e728-a61a-45dd-a385-2a449658cd63,Polos de algodón por mayor,Tienda de polos básicos y camiseros reactivos,SI,gpt-4o,2026-10-31 10:28:04
+Q178|4a2f3092-f218-4c06-8010-6ec7b8fc8c46,polos de olivia rodrigo,"Tienda de polos, blusas y boleros para mujer",NO,gpt-4o,2026-10-31 10:28:04
+Q178|d0289a24-7c5e-480a-92a6-f66156b3ad29,polos de olivia rodrigo,Tienda de polos básicos para hombre y mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q178|776da559-c409-4dca-b6f0-c2fbcdeb4116,polos de olivia rodrigo,Tienda de blusas y polos para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q181|e3104b1f-ca57-4030-92b1-c83e832dd5a2,Batas,Tienda de Pijamas y Ropa de Dormir Familiar,SI,gpt-4o,2026-10-31 10:28:04
+Q181|b9405ff7-091f-44bd-91bc-97385efde64b,Batas,Tienda de Pijamas y Ropa de Dormir,SI,gpt-4o,2026-10-31 10:28:04
+Q181|89e0bb5b-d624-4fb2-b5c7-38f46d7fd255,Batas,"Tienda de toallas, batas y ropa de hogar",SI,gpt-4o,2026-10-31 10:28:04
+Q185|202c6c58-989a-40f9-84aa-45b0f33ef35c,Beiser de mujer,Tienda de vestidos casuales y de fiesta para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q185|dc7a1306-c89d-4133-b9e5-ee1133d72f17,Beiser de mujer,Tienda de vestidos de fiesta y ropa elegante para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q185|06c16af0-ebf1-47c3-ad02-8aa64311c44f,Beiser de mujer,Tienda de vestidos elegantes para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q184|b01b4c9f-71e8-4219-bf8e-9e66f07e1e48,Polos industrial,Tienda de polos piqué y camisetas publicitarias,NO,gpt-4o,2026-10-31 10:28:04
+Q184|cbcd3549-374e-4c52-8420-7b498ca73f7b,Polos industrial,Tienda de polos básicos y uniformes personalizados,NO,gpt-4o,2026-10-31 10:28:04
+Q184|c385f902-99d3-4cd6-9ee4-46fac87d45f8,Polos industrial,"Tienda de polos, camiseros y gorras publicitarias",NO,gpt-4o,2026-10-31 10:28:04
+Q191|b76cc8fb-4960-4f1d-8810-582317cff6df,Polos pima,"Tienda de polos básicos para hombre, mujer y niños",NO,gpt-4o,2026-10-31 10:28:04
+Q190|2f4b4734-2a9d-41ae-a1b1-ec4a65568893,Polos peru,Tienda de polos básicos y camiseros en colores,NO,gpt-4o,2026-10-31 10:28:04
+Q192|4604382b-c10a-401f-beaf-2abc47658486,Polos réplica a1,Tienda de Polos de Exportación para Hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q192|2f4b4734-2a9d-41ae-a1b1-ec4a65568893,Polos réplica a1,Tienda de polos básicos y camiseros en colores,NO,gpt-4o,2026-10-31 10:28:04
+Q194|7c73af4e-abce-4f78-ac97-3f0035de36a1,Polos tela viscosa,Tienda de polos básicos y oversize,NO,gpt-4o,2026-10-31 10:28:04
+Q196|687fa8b9-09cf-4b97-8bf2-32489f191222,Polos varones moda,"Tienda de polos, poleras y joggers para hombre",SI,gpt-4o,2026-10-31 10:28:04
+Q195|4604382b-c10a-401f-beaf-2abc47658486,Polos Tommy,Tienda de Polos de Exportación para Hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q195|2f4b4734-2a9d-41ae-a1b1-ec4a65568893,Polos Tommy,Tienda de polos básicos y camiseros en colores,NO,gpt-4o,2026-10-31 10:28:04
+Q198|c02703d3-b15a-499c-8ffe-c8e78602a68b,Prendas de dama exclusivos por mayor importado y nacional,"Tienda de abrigos, blazers y vestidos para mujer",NO,gpt-4o,2026-10-31 10:28:04
+Q198|532dd2f4-6e6b-437d-b200-4aa7425d38e5,Prendas de dama exclusivos por mayor importado y nacional,Tienda de blazers y conjuntos elegantes para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q204|dc7a1306-c89d-4133-b9e5-ee1133d72f17,Quiero vestidos,Tienda de vestidos de fiesta y ropa elegante para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q200|62e49401-0494-4385-9019-ee8ef0176f49,proveedores,"Tienda de moda femenina con polos, blusas y vestidos",NO,gpt-4o,2026-10-31 10:28:04
+Q200|9a266778-e3f9-47ba-9597-aec52b8eb4d8,proveedores,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q200|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,proveedores,Tienda de Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q202|057df564-18c5-4077-8c71-26a1ec4da003,Quiero comprar un cosplay de sua de zombie stage en gamarra,Tienda de Brasieres Lencería y disfraces sexys,NO,gpt-4o,2026-10-31 10:28:04
+Q202|30945aee-c3eb-47bf-9afd-ece0925bed3c,Quiero comprar un cosplay de sua de zombie stage en gamarra,Lencería y trajes de baño,NO,gpt-4o,2026-10-31 10:28:04
+Q203|62e49401-0494-4385-9019-ee8ef0176f49,Quiero encontrar ropa estilo baddie,"Tienda de moda femenina con polos, blusas y vestidos",NO,gpt-4o,2026-10-31 10:28:04
+Q203|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Quiero encontrar ropa estilo baddie,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q203|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,Quiero encontrar ropa estilo baddie,Tienda de Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q205|dd9d99dd-65a8-4dcc-bce0-68f1f02c8806,ropa al por mayor niña de 3 años talla 6,Tienda de Ropa Infantil y de Niña,SI,gpt-4o,2026-10-31 10:28:04
+Q206|f50a4954-467f-4d83-bf3b-68194770c4ac,Ropa ancha,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q206|0267943a-b93a-4778-b1d8-ae12e28dbce0,Ropa ancha,Tienda de ropa casual para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q206|f4a1d66e-e56d-434c-b7c9-a0bc877ba351,Ropa ancha,Tienda de ropa casual para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q210|c86c5f1e-e3c2-4467-acbd-872433c556ba,Ropa de hombre,Tienda de ternos y camisas para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q210|01630070-7e4e-4209-bd32-c30244871cd7,Ropa de hombre,"Tienda de ternos, blazers, camisas y pantalones para hombre",SI,gpt-4o,2026-10-31 10:28:04
+Q210|59165362-c831-4932-81ad-8e2c078b039d,Ropa de hombre,Tienda de Ternos y Camisas para Hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q209|62e49401-0494-4385-9019-ee8ef0176f49,Ropa coreana,"Tienda de moda femenina con polos, blusas y vestidos",NO,gpt-4o,2026-10-31 10:28:04
+Q209|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Ropa coreana,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q209|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,Ropa coreana,Tienda de Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q207|97ea25d7-61a4-44cf-b671-6d8419fe4ab9,Ropa antigua,Tienda de polos y uniformes corporativos,NO,gpt-4o,2026-10-31 10:28:04
+Q207|7c73af4e-abce-4f78-ac97-3f0035de36a1,Ropa antigua,Tienda de polos básicos y oversize,NO,gpt-4o,2026-10-31 10:28:04
+Q207|4825c5de-720a-48f5-900d-99626eb31aed,Ropa antigua,Tienda de uniformes y ropa industrial,NO,gpt-4o,2026-10-31 10:28:04
+Q208|3038ffec-70c6-43f8-8116-7e01d7127697,ropa ciclismo,"Tienda de Casacas, Buzos y Shorts Deportivos",NO,gpt-4o,2026-10-31 10:28:04
+Q208|79e538b1-d5b2-46fc-a1c8-1e04da6dc62e,ropa ciclismo,Tienda de ropa urbana para hombre y mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q208|f2e8a91b-c833-4f8a-97b9-b0e2f5c3d1e9,ropa ciclismo,Tienda de Uniformes y Camisetas Deportivas,NO,gpt-4o,2026-10-31 10:28:04
+Q212|5b442e72-10ab-4ccc-a82c-701ded57082b,Ropa de los 2000s,Tienda de polos estampados y oversize urbanos,NO,gpt-4o,2026-10-31 10:28:04
+Q216|758c1b6a-dc80-4932-a5f1-b8a0c355c1c4,Ropa de pinterest,Tienda de Pijamas y ropa de dormir,NO,gpt-4o,2026-10-31 10:28:04
+Q216|f81e316f-7220-45d3-af97-fdea6d22a81b,Ropa de pinterest,Pijamas y Ropa de Dormir para Mujer y Hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q213|25755efa-6b5c-4723-be7b-820924cf595e,ropa de mujer san pedro,Boutique de Ropa Femenina Elegante y Casual,SI,gpt-4o,2026-10-31 10:28:04
+Q213|fd16fa80-a5d1-477d-9cc8-8a50ba043507,ropa de mujer san pedro,Tienda de abrigos y sacos de vestir para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q213|1e5b2c5a-ffb7-455d-8740-d47e119d0cda,ropa de mujer san pedro,Boutique de Ropa Femenina,SI,gpt-4o,2026-10-31 10:28:04
+Q217|6a21750c-0b3e-48d4-9533-dee2233f11c5,Ropa de verano,Trajes de baño y lencería,SI,gpt-4o,2026-10-31 10:28:04
+Q222|62e49401-0494-4385-9019-ee8ef0176f49,Ropa estilo y2k,"Tienda de moda femenina con polos, blusas y vestidos",NO,gpt-4o,2026-10-31 10:28:04
+Q222|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Ropa estilo y2k,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q222|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,Ropa estilo y2k,Tienda de Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q221|62e49401-0494-4385-9019-ee8ef0176f49,Ropa estilo de los 2000',"Tienda de moda femenina con polos, blusas y vestidos",NO,gpt-4o,2026-10-31 10:28:04
+Q221|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Ropa estilo de los 2000',Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q221|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,Ropa estilo de los 2000',Tienda de Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q224|6a21750c-0b3e-48d4-9533-dee2233f11c5,Vestido para playa,Trajes de baño y lencería,NO,gpt-4o,2026-10-31 10:28:04
+Q225|c5f8f2db-2570-4c2c-ae5c-3c3abaaf23c2,Ropa interior hilo para hombres,Tienda de polos y joggers para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q225|687fa8b9-09cf-4b97-8bf2-32489f191222,Ropa interior hilo para hombres,"Tienda de polos, poleras y joggers para hombre",NO,gpt-4o,2026-10-31 10:28:04
+Q228|97ea25d7-61a4-44cf-b671-6d8419fe4ab9,Ropa neón,Tienda de polos y uniformes corporativos,NO,gpt-4o,2026-10-31 10:28:04
+Q228|7c73af4e-abce-4f78-ac97-3f0035de36a1,Ropa neón,Tienda de polos básicos y oversize,NO,gpt-4o,2026-10-31 10:28:04
+Q228|4825c5de-720a-48f5-900d-99626eb31aed,Ropa neón,Tienda de uniformes y ropa industrial,NO,gpt-4o,2026-10-31 10:28:04
+Q227|76a043e4-0524-4147-b90c-cf383ba73c66,Ropa maternidad,Tienda de abrigos y sacos para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q229|0db6af60-1cf3-4d7f-b9c7-4f1fb84ec158,sudadera,Tienda de Buzos y Poleras Unisex,SI,gpt-4o,2026-10-31 10:28:04
+Q231|61cbb91e-f5ae-460a-a931-c99cdf0f0d9b,Ropa para adolescentes,Tienda de ropa infantil y juvenil de polos y bermudas,NO,gpt-4o,2026-10-31 10:28:04
+Q231|49a46244-7378-49ae-b8e9-bab1e9515576,Ropa para adolescentes,Tienda de Ropa Infantil Femenina ,NO,gpt-4o,2026-10-31 10:28:04
+Q231|3d719710-ca78-477b-bffd-cabcc1f1530a,Ropa para adolescentes,Tienda de ropa infantil femenina de moda casual,NO,gpt-4o,2026-10-31 10:28:04
+Q233|736cf82b-a29d-4907-a667-411a14009554,ropa para mujer y2k,"Tienda de ropa casual para mujer con tops, polos y jeans",NO,gpt-4o,2026-10-31 10:28:04
+Q230|9bb356ac-d8db-4266-be53-2fffc881b660,Ropa old money,Tienda de ternos y trajes de vestir,NO,gpt-4o,2026-10-31 10:28:04
+Q230|4bec6054-7e68-40c0-baa1-5ca0eef0b6b4,Ropa old money,Tienda de ternos y trajes de vestir,NO,gpt-4o,2026-10-31 10:28:04
+Q230|532dd2f4-6e6b-437d-b200-4aa7425d38e5,Ropa old money,Tienda de blazers y conjuntos elegantes para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q236|148f3995-cc18-4fb4-9123-1a86fccfb61e,Ropa para niños,Tienda de Ropa Infantil y Buzos para Niños y Niñas,NO,gpt-4o,2026-10-31 10:28:04
+Q239|97ea25d7-61a4-44cf-b671-6d8419fe4ab9,Ropa yk2,Tienda de polos y uniformes corporativos,NO,gpt-4o,2026-10-31 10:28:04
+Q239|7c73af4e-abce-4f78-ac97-3f0035de36a1,Ropa yk2,Tienda de polos básicos y oversize,NO,gpt-4o,2026-10-31 10:28:04
+Q239|4825c5de-720a-48f5-900d-99626eb31aed,Ropa yk2,Tienda de uniformes y ropa industrial,NO,gpt-4o,2026-10-31 10:28:04
+Q238|4b540ec5-6dbd-4b13-be4a-7c6b4f2f47a2,Ropa pettit,Lencería y Ropa Interior Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q238|d3a5966e-6e51-4f3e-a78d-d3cffefea05d,Ropa pettit,Tienda de Ropa Denim Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q238|25755efa-6b5c-4723-be7b-820924cf595e,Ropa pettit,Boutique de Ropa Femenina Elegante y Casual,NO,gpt-4o,2026-10-31 10:28:04
+Q241|c86c5f1e-e3c2-4467-acbd-872433c556ba,Sastre,Tienda de ternos y camisas para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q241|01630070-7e4e-4209-bd32-c30244871cd7,Sastre,"Tienda de ternos, blazers, camisas y pantalones para hombre",NO,gpt-4o,2026-10-31 10:28:04
+Q241|59165362-c831-4932-81ad-8e2c078b039d,Sastre,Tienda de Ternos y Camisas para Hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q242|e59e79f1-3784-4cf5-b918-cf3e06385160,Sastre mujer,Ropa interior y Ropa de Cama para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q244|6120a223-6c61-4f75-8a0d-afb588dd5fad,Set comfy,Tienda de ropa casual para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q244|700094cb-cbcf-45a8-9b3d-91baf6df068e,Set comfy,Tienda de ropa casual y abrigos para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q245|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Short,Jeans y Moda Denim para Mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q245|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,Short,Tienda de Moda Denim Femenina,SI,gpt-4o,2026-10-31 10:28:04
+Q247|ffd89a61-af07-4641-af1b-08b33dca5dc0,Short licra,Tienda de Ropa Deportiva y Fitness,SI,gpt-4o,2026-10-31 10:28:04
+Q247|15e90439-433c-41f0-a1be-bad8ac9245f6,Short licra,Tienda de ropa deportiva para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q246|8b631a4c-5991-40e2-b03d-564a6b6dd118,Short casual hombre,Tienda de ropa casual para hombre,SI,gpt-4o,2026-10-31 10:28:04
+Q248|a2c74dd1-24a1-499d-981b-448325f0f459,Short tela drill,Tienda de telas por rollo en varios colores,NO,gpt-4o,2026-10-31 10:28:04
+Q249|c86c5f1e-e3c2-4467-acbd-872433c556ba,Blaser,Tienda de ternos y camisas para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q249|01630070-7e4e-4209-bd32-c30244871cd7,Blaser,"Tienda de ternos, blazers, camisas y pantalones para hombre",SI,gpt-4o,2026-10-31 10:28:04
+Q249|59165362-c831-4932-81ad-8e2c078b039d,Blaser,Tienda de Ternos y Camisas para Hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q251|617c5379-f8da-4fab-8cd5-5357e952ce34,Vestidos de algodon,Tienda de polos básicos y poleras de algodón,NO,gpt-4o,2026-10-31 10:28:04
+Q251|42a2e728-a61a-45dd-a385-2a449658cd63,Vestidos de algodon,Tienda de polos básicos y camiseros reactivos,NO,gpt-4o,2026-10-31 10:28:04
+Q254|48d2c0fb-37a5-434c-afee-d196e8d5e761,Vestidos fiesta,Tienda de vestidos de fiesta para niñas,NO,gpt-4o,2026-10-31 10:28:04
+Q255|9bc953bc-035f-42c6-885e-65474b9415f9,Vestidos jeans,Tienda de jeans y prendas denim para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q257|028dfcea-211e-4951-8f5f-681cf572d541,Vestidos quinceañera,Tienda de vestidos de fiesta y ceremonia para niñas,NO,gpt-4o,2026-10-31 10:28:04
+Q258|62e49401-0494-4385-9019-ee8ef0176f49,Vialbri,"Tienda de moda femenina con polos, blusas y vestidos",NO,gpt-4o,2026-10-31 10:28:04
+Q258|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Vialbri,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q258|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,Vialbri,Tienda de Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:28:04
+Q260|f50a4954-467f-4d83-bf3b-68194770c4ac,Y holanda zarate,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q260|4e9070da-721f-46fd-9f98-5dab390e99d7,Y holanda zarate,Tienda de ropa casual y elegante para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q260|8b631a4c-5991-40e2-b03d-564a6b6dd118,Y holanda zarate,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q259|f6fc2930-b0fd-4868-af0e-ad6b7d4c4005,Wile Jean azul oscuro más casaca Jean,Tienda de jeans y casacas denim para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q266|c1b2d885-347c-44d6-9f6f-6c24b5e062a2,blusas de algodon,"Tienda de blusas, vestidos y jeans para mujer",NO,gpt-4o,2026-10-31 10:28:04
+Q267|b6524247-6ae4-4bff-8545-fea3cd302139,Blusas elegantes mujer,Tienda de ropa elegante para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q267|e1fb581b-d92b-4350-9b8a-0fc68847acb0,Blusas elegantes mujer,Tienda de ropa elegante para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q268|d5072b10-2d85-4175-95f8-3d573a46f1aa,Blusas estilo coreano,Tienda de blusas drapeadas y faldas para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q270|d5072b10-2d85-4175-95f8-3d573a46f1aa,Blusas pequeñas,Tienda de blusas drapeadas y faldas para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q270|3e08c6e2-bdf3-4d7d-8301-fd010f281bca,Blusas pequeñas,Tienda de blusas y ropa casual para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q272|c2a0af93-9f30-4af8-aea2-ae429c8026b2,Bolsos,Tienda de casacas universitarias y polos bordados,NO,gpt-4o,2026-10-31 10:28:04
+Q273|b8e3439b-f2d5-43af-bc8c-7a58c4e7999b,Bordados,Taller de bordado personalizado,NO,gpt-4o,2026-10-31 10:28:04
+Q273|c4b6e5f6-e4eb-4fe5-b2c4-c28a71977012,Bordados,Taller de bordado computarizado para prendas,NO,gpt-4o,2026-10-31 10:28:04
+Q274|7e56b2d1-78f2-45cc-98fa-7831afde64f6,Boxer algodon,Tienda de telas para polos y piqué,NO,gpt-4o,2026-10-31 10:28:04
+Q275|c5f8f2db-2570-4c2c-ae5c-3c3abaaf23c2,Boxer caballeros,Tienda de polos y joggers para hombre,NO,gpt-4o,2026-10-31 10:28:04
+Q275|4e9070da-721f-46fd-9f98-5dab390e99d7,Boxer caballeros,Tienda de ropa casual y elegante para hombre,SI,gpt-4o,2026-10-31 10:28:04
+Q276|dc21cfbe-a070-4e98-92ec-2e96d2c3b91c,Busco chalecos de entrenamiento deportivos para futbol,Tienda de Camisetas y Uniformes de Fútbol,NO,gpt-4o,2026-10-31 10:28:04
+Q280|202c6c58-989a-40f9-84aa-45b0f33ef35c,Vedtidos,Tienda de vestidos casuales y de fiesta para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q280|d9a494ef-9ffc-406b-a611-c23d0a02bcd8,Vedtidos,Tienda de vestidos de fiesta y ropa elegante para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q280|dc7a1306-c89d-4133-b9e5-ee1133d72f17,Vedtidos,Tienda de vestidos de fiesta y ropa elegante para mujer,SI,gpt-4o,2026-10-31 10:28:04
+Q279|76a043e4-0524-4147-b90c-cf383ba73c66,Busos,Tienda de abrigos y sacos para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q279|fd16fa80-a5d1-477d-9cc8-8a50ba043507,Busos,Tienda de abrigos y sacos de vestir para mujer,NO,gpt-4o,2026-10-31 10:28:04
+Q279|aec87c4e-6d05-4489-8431-fe63b4694343,Busos,Tienda de casacas varsity y chalecos acolchados,NO,gpt-4o,2026-10-31 10:28:04
+Q125|101c2c22-61f4-4ba7-9865-8e851e4ba525,Oxford,"Tienda de camisas, camiseros y corbatas ",NO,gpt-4o,2026-10-31 10:38:04
+Q258|f50a4954-467f-4d83-bf3b-68194770c4ac,Vialbri,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:38:04
+Q258|4e9070da-721f-46fd-9f98-5dab390e99d7,Vialbri,Tienda de ropa casual y elegante para hombre,NO,gpt-4o,2026-10-31 10:38:04
+Q258|8b631a4c-5991-40e2-b03d-564a6b6dd118,Vialbri,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:38:04
+Q032|62e49401-0494-4385-9019-ee8ef0176f49,Urbani,"Tienda de moda femenina con polos, blusas y vestidos",NO,gpt-4o,2026-10-31 10:47:41
+Q032|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Urbani,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:47:41
+Q032|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,Urbani,Tienda de Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:47:41
+Q062|7206679b-9eaf-41ac-9864-94f6d543db6d,Conjuntos entela wafer,Tienda de conjuntos y ropa casual para niños,NO,gpt-4o,2026-10-31 10:47:41
+Q070|f50a4954-467f-4d83-bf3b-68194770c4ac,Efit,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:47:41
+Q070|4e9070da-721f-46fd-9f98-5dab390e99d7,Efit,Tienda de ropa casual y elegante para hombre,NO,gpt-4o,2026-10-31 10:47:41
+Q070|8b631a4c-5991-40e2-b03d-564a6b6dd118,Efit,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:47:41
+Q072|024e53e2-1d92-4dae-a1e2-6a421cde3630,Fabrica jeans,Jeans – Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:47:41
+Q072|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Fabrica jeans,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:47:41
+Q072|ba201714-2190-4336-922e-6e7edcd54e29,Fabrica jeans,Tienda de jeans y casacas denim para mujer,NO,gpt-4o,2026-10-31 10:47:41
+Q079|76a043e4-0524-4147-b90c-cf383ba73c66,Frazadas,Tienda de abrigos y sacos para mujer,NO,gpt-4o,2026-10-31 10:47:41
+Q079|fd16fa80-a5d1-477d-9cc8-8a50ba043507,Frazadas,Tienda de abrigos y sacos de vestir para mujer,NO,gpt-4o,2026-10-31 10:47:41
+Q079|aec87c4e-6d05-4489-8431-fe63b4694343,Frazadas,Tienda de casacas varsity y chalecos acolchados,NO,gpt-4o,2026-10-31 10:47:41
+Q094|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Jean waileg,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:47:41
+Q108|79e538b1-d5b2-46fc-a1c8-1e04da6dc62e,Librería cristiana,Tienda de ropa urbana para hombre y mujer,NO,gpt-4o,2026-10-31 10:47:41
+Q108|c5f8f2db-2570-4c2c-ae5c-3c3abaaf23c2,Librería cristiana,Tienda de polos y joggers para hombre,NO,gpt-4o,2026-10-31 10:47:41
+Q108|f81e316f-7220-45d3-af97-fdea6d22a81b,Librería cristiana,Pijamas y Ropa de Dormir para Mujer y Hombre,NO,gpt-4o,2026-10-31 10:47:41
+Q166|f0fb2b6e-f10f-4a26-b08c-5d5229b95241,Bagues x mayor económicos,"Tienda de carteras, relojes y lentes de sol",NO,gpt-4o,2026-10-31 10:47:41
+Q206|97ea25d7-61a4-44cf-b671-6d8419fe4ab9,Ropa ancha,Tienda de polos y uniformes corporativos,NO,gpt-4o,2026-10-31 10:47:41
+Q206|7c73af4e-abce-4f78-ac97-3f0035de36a1,Ropa ancha,Tienda de polos básicos y oversize,SI,gpt-4o,2026-10-31 10:47:41
+Q206|4825c5de-720a-48f5-900d-99626eb31aed,Ropa ancha,Tienda de uniformes y ropa industrial,NO,gpt-4o,2026-10-31 10:47:41
+Q210|f50a4954-467f-4d83-bf3b-68194770c4ac,Ropa de hombre,Tienda de ropa casual para hombre,NO,gpt-4o,2026-10-31 10:47:41
+Q260|62e49401-0494-4385-9019-ee8ef0176f49,Y holanda zarate,"Tienda de moda femenina con polos, blusas y vestidos",NO,gpt-4o,2026-10-31 10:47:41
+Q260|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Y holanda zarate,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:47:41
+Q260|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,Y holanda zarate,Tienda de Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:47:41
+Q049|7e56b2d1-78f2-45cc-98fa-7831afde64f6,Caracas fleece,Tienda de telas para polos y piqué,NO,gpt-4o,2026-10-31 10:55:18
+Q049|f4200ec3-4848-49eb-ade6-f650107278e4,Caracas fleece,Tienda de telas deportivas y para sublimar,NO,gpt-4o,2026-10-31 10:55:18
+Q122|62e49401-0494-4385-9019-ee8ef0176f49,Notte,"Tienda de moda femenina con polos, blusas y vestidos",NO,gpt-4o,2026-10-31 10:55:18
+Q122|9a266778-e3f9-47ba-9597-aec52b8eb4d8,Notte,Jeans y Moda Denim para Mujer,NO,gpt-4o,2026-10-31 10:55:18
+Q122|2268e0c8-e1c0-4eb8-95b5-f0a6933366f2,Notte,Tienda de Moda Denim Femenina,NO,gpt-4o,2026-10-31 10:55:18
+Q169|c135f9d7-ea8f-4985-bed5-d762b398d471,Bandera de Venezuela,Bordado de gorras y mochilas,NO,gpt-4o,2026-10-31 10:55:18
+Q169|78d16465-ebda-4648-8256-f248dd54765f,Bandera de Venezuela,"Venta de Etiquetas, Empaques y Accesorios para Ropa",NO,gpt-4o,2026-10-31 10:55:18
+Q202|1fd91804-11f6-4857-9a80-ce65fada8891,Quiero comprar un cosplay de sua de zombie stage en gamarra,Boutique de Vestidos de Fiesta para Mujer,NO,gpt-4o,2026-10-31 10:55:18
+Q032|447563b9-9c35-41b9-8e08-439dce9dadc3,Urbani,Tienda de Ropa Urbana y Denim  Streetwear,SI,gpt-4o,2026-10-31 11:42:56
+Q032|12e83deb-5228-4946-9167-443297d76aa1,Urbani,Tienda de Ropa Urbana y Streetwear,SI,gpt-4o,2026-10-31 11:42:56
+Q049|76a043e4-0524-4147-b90c-cf383ba73c66,Caracas fleece,Tienda de abrigos y sacos para mujer,NO,gpt-4o,2026-10-31 11:42:56
+Q049|fd16fa80-a5d1-477d-9cc8-8a50ba043507,Caracas fleece,Tienda de abrigos y sacos de vestir para mujer,NO,gpt-4o,2026-10-31 11:42:56
+Q042|93636f4b-dec8-4e3d-8fc8-3d8755d1ebd4,Cama mascotas,Tienda de vestidos de fiesta y disfraces infantiles,NO,gpt-4o,2026-10-31 11:42:56
+Q054|93636f4b-dec8-4e3d-8fc8-3d8755d1ebd4,China,Tienda de vestidos de fiesta y disfraces infantiles,NO,gpt-4o,2026-10-31 11:42:56
+Q054|057df564-18c5-4077-8c71-26a1ec4da003,China,Tienda de Brasieres Lencería y disfraces sexys,NO,gpt-4o,2026-10-31 11:42:56
+Q054|30945aee-c3eb-47bf-9afd-ece0925bed3c,China,Lencería y trajes de baño,NO,gpt-4o,2026-10-31 11:42:56
+Q091|00e7e763-01f2-4726-bac6-b731efbd028d,Jean materno,Tienda de jeans para mujer,NO,gpt-4o,2026-10-31 11:42:56
+Q091|44ce9730-f12d-4727-b3f0-b514912dd046,Jean materno,Tienda de jeans para mujer,NO,gpt-4o,2026-10-31 11:42:56
+Q100|ba201714-2190-4336-922e-6e7edcd54e29,Jeans petit,Tienda de jeans y casacas denim para mujer,NO,gpt-4o,2026-10-31 11:42:56
+Q203|25755efa-6b5c-4723-be7b-820924cf595e,Quiero encontrar ropa estilo baddie,Boutique de Ropa Femenina Elegante y Casual,NO,gpt-4o,2026-10-31 11:42:56
+Q222|25755efa-6b5c-4723-be7b-820924cf595e,Ropa estilo y2k,Boutique de Ropa Femenina Elegante y Casual,NO,gpt-4o,2026-10-31 11:42:56
+Q249|9bb356ac-d8db-4266-be53-2fffc881b660,Blaser,Tienda de ternos y trajes de vestir,NO,gpt-4o,2026-10-31 11:42:56
+Q249|4bec6054-7e68-40c0-baa1-5ca0eef0b6b4,Blaser,Tienda de ternos y trajes de vestir,NO,gpt-4o,2026-10-31 11:42:56
+Q249|532dd2f4-6e6b-437d-b200-4aa7425d38e5,Blaser,Tienda de blazers y conjuntos elegantes para mujer,SI,gpt-4o,2026-10-31 11:42:56
+Q260|93636f4b-dec8-4e3d-8fc8-3d8755d1ebd4,Y holanda zarate,Tienda de vestidos de fiesta y disfraces infantiles,NO,gpt-4o,2026-10-31 11:42:56
+Q260|057df564-18c5-4077-8c71-26a1ec4da003,Y holanda zarate,Tienda de Brasieres Lencería y disfraces sexys,NO,gpt-4o,2026-10-31 11:42:56
+Q260|30945aee-c3eb-47bf-9afd-ece0925bed3c,Y holanda zarate,Lencería y trajes de baño,NO,gpt-4o,2026-10-31 11:42:56

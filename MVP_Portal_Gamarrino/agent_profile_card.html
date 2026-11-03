@@ -152,16 +152,16 @@
           <article class="box">
             <h3>Domain Definition</h3>
             <p><strong>Dominio:</strong> Búsqueda y recomendación de tiendas de ropa del Emporio de Gamarra a partir de una necesidad descrita en lenguaje natural.</p>
-            <p><strong>Alcance:</strong> Entender la consulta, decidir si ya tiene suficiente detalle o hace falta preguntar, buscar por significado (no por palabra exacta) en el catálogo, y devolver el top-3 con ubicación real.</p>
+            <p><strong>Alcance:</strong> Entender la consulta, buscar de inmediato salvo que no nombre ningún producto (entonces hace una pregunta corta), buscar por significado (no por palabra exacta) en el catálogo, y devolver el top-3 con ubicación real.</p>
             <p><strong>Restricción clave:</strong> No garantiza stock, talla ni precio en tiempo real (supuesto eliminado tras validación con el equipo); no reserva ni compra nada; no accede a ningún dato fuera del catálogo de 438 tiendas indexado.</p>
           </article>
           <article class="box">
             <h3>Objectives Definition</h3>
             <ul>
-              <li>Interpretar la consulta y decidir si busca de inmediato o pide una aclaración (1 sola pregunta corta si falta un atributo diferenciador además del tipo de prenda).</li>
+              <li>Interpretar la consulta y buscar de inmediato si nombra cualquier prenda, disfraz, personaje, tema o estilo (basta una palabra); solo pide una aclaración (1 pregunta corta) si no nombra ningún producto, y responde con calidez a los saludos.</li>
               <li>Corregir errores de tipeo obvios del comprador en su propia búsqueda, sin repetir el typo literal.</li>
               <li>Recuperar las 3 tiendas semánticamente más relevantes del catálogo, no solo las que repiten las mismas palabras.</li>
-              <li>Reconocer cuando ningún resultado es confiable (por debajo del umbral de relevancia) y pedir más detalle en vez de inventar una recomendación débil.</li>
+              <li>Reconocer cuando ningún resultado es confiable (por debajo del umbral de relevancia) y reintentar con una descripción más amplia de la categoría (hasta 3 búsquedas), presentando las tiendas más cercanas con honestidad en vez de inventar una recomendación exacta.</li>
               <li>Explicar brevemente por qué cada tienda calza con lo pedido.</li>
               <li>Entregar ubicación exacta (galería/piso/stand) y WhatsApp solo si existe, nunca inventado.</li>
               <li>Recordar lo ya dicho en la sesión (género, color, estilo, personaje) para no volver a preguntarlo.</li>
@@ -210,7 +210,7 @@
       <div class="section autonomy">
         <h2>Autonomy Dimension Definition</h2>
         <h3>Semi-autónomo</h3>
-        <p>Decide por su cuenta cuándo buscar directo y cuándo preguntar antes, qué tiendas son relevantes, y cómo redactar la explicación de cada una, sin pedir confirmación para esas decisiones.</p>
+        <p>Decide por su cuenta cuándo buscar, cuándo ampliar la búsqueda y cuándo preguntar, qué tiendas son relevantes, y cómo redactar la explicación de cada una, sin pedir confirmación para esas decisiones.</p>
         <p><strong>Limitaciones:</strong> no ejecuta ninguna acción fuera del catálogo (no reserva, no contacta a la tienda por el usuario), no decide el umbral de relevancia final de H2 (eso lo decide el equipo con la regla pre-registrada), y no continúa la conversación si el guardrail de entrada la bloquea.</p>
       </div>
 
@@ -224,16 +224,16 @@
               <li>Recuperación semántica imprecisa: Hit Rate@3 ponderado de 66,9% (IC 95% [61,9%–71,4%]) — 1 de cada 3 consultas no encuentra tienda relevante en el top-3, peor en consultas con marca/talla/precio explícito (20,0% de acierto).</li>
               <li>Catálogo desactualizado si una tienda cierra o cambia de stand y no se reindexa.</li>
               <li>Riesgo ético ya identificado en el Model Card de E5: posible recomendación de réplicas no confirmadas (no hay forma de validar legalidad del producto desde el catálogo).</li>
-              <li>DetectJailbreak no detecta ataques de jailbreak en español (verificado: 0 de 2 intentos en español detectados por esa capa específica; sí los frenó la capa de relevancia, pero como efecto colateral, no como garantía).</li>
+              <li>DetectJailbreak no detecta ataques de jailbreak en español (verificado: 0 de 2 intentos en español detectados por esa capa específica; sí los frenó la capa de relevancia, pero como efecto colateral; desde el 31-oct-2026 un filtro determinista de patrones ES/EN cubre además los ataques que mezclan una prenda con la orden — es heurístico, no una garantía).</li>
             </ul>
           </article>
           <article class="box">
             <h3>Reglas de Operación + Guardrails</h3>
             <p><span class="rule-tag">REGLA</span>El agente nunca inventa stock, talla, precio ni un WhatsApp que no exista en el catálogo.</p>
-            <p><span class="rule-tag">GUARDRAIL</span>Seguridad pre-input: <code>DetectJailbreak</code> (Guardrails AI), local, bloquea con <code>on_fail="exception"</code>.</p>
-            <p><span class="rule-tag">GUARDRAIL</span>Relevancia pre-input: clasificador LLM barato, mantiene la conversación en ropa/tiendas de Gamarra usando el historial de la sesión.</p>
+            <p><span class="rule-tag">GUARDRAIL</span>Seguridad pre-input: <code>DetectJailbreak</code> (Guardrails AI), local, bloquea con <code>on_fail="exception"</code>, más un filtro determinista de patrones de inyección ES/EN.</p>
+            <p><span class="rule-tag">GUARDRAIL</span>Relevancia pre-input: clasificador LLM barato, mantiene la conversación en ropa/tiendas de Gamarra usando el historial de la sesión. Los saludos puros, los mensajes de hasta 3 palabras y la respuesta a una repregunta del agente pasan por reglas deterministas (el clasificador los bloqueaba por error).</p>
             <p><span class="rule-tag">GUARDRAIL</span>PII pre-output: <code>GuardrailsPII</code> (<code>on_fail="fix"</code>), excluye a propósito <code>PHONE_NUMBER</code> (dato de negocio) y <code>PERSON</code> (el detector de nombres confundía "¿hombre, mujer o niño?" con nombres propios).</p>
-            <p><span class="rule-tag">REGLA</span>Si ningún resultado de <code>buscar_tiendas</code> supera el umbral de relevancia, el agente lo dice y pide más detalle — nunca presenta un match débil como si fuera bueno.</p>
+            <p><span class="rule-tag">REGLA</span>Si ningún resultado de <code>buscar_tiendas</code> supera el umbral de relevancia, el agente reintenta con una búsqueda más amplia (máx. 3) y, si presenta tiendas cercanas, aclara que no puede confirmar lo específico — nunca presenta un match débil como si fuera exacto.</p>
             <p><span class="rule-tag">PENDIENTE</span>Moderación pre-output (<code>BiasCheck</code>): bloqueada por falta de Windows Long Path Support en el equipo de desarrollo.</p>
           </article>
         </div>

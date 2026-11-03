@@ -52,6 +52,12 @@ def init_db():
             )
             """
         )
+        # Un voto final por interaccion, no uno por cada vez que el
+        # comprador cambia de opinion (ver guardar_feedback).
+        conn.execute(
+            "CREATE UNIQUE INDEX IF NOT EXISTS idx_feedback_interaccion "
+            "ON feedback(interaccion_id)"
+        )
 
 
 def guardar_interaccion(session_id: str, mensaje: str, respuesta: str) -> int:
@@ -68,10 +74,19 @@ def guardar_interaccion(session_id: str, mensaje: str, respuesta: str) -> int:
 
 def guardar_feedback(interaccion_id: int, util: int) -> None:
     """util: 1 = pulgar arriba, 0 = pulgar abajo (mismo criterio que
-    devuelve el widget st.feedback('thumbs') de Streamlit)."""
+    devuelve el widget st.feedback('thumbs') de Streamlit). Si el
+    comprador cambia de voto, reemplaza el anterior (ON CONFLICT) en vez
+    de sumar una fila nueva: un voto final por interaccion, no un
+    historial de cambios de opinion."""
     with _conectar() as conn:
         conn.execute(
-            "INSERT INTO feedback (interaccion_id, util, timestamp_utc) VALUES (?, ?, ?)",
+            """
+            INSERT INTO feedback (interaccion_id, util, timestamp_utc)
+            VALUES (?, ?, ?)
+            ON CONFLICT(interaccion_id) DO UPDATE SET
+                util = excluded.util,
+                timestamp_utc = excluded.timestamp_utc
+            """,
             (interaccion_id, util, datetime.now(timezone.utc).isoformat()),
         )
 

@@ -124,3 +124,60 @@ lo, hi = np.percentile(boot, [2.5, 97.5])
 ```
 
 Es una técnica estándar para estimar incertidumbre sin asumir ninguna fórmula teórica — remuestrea los datos que ya se tienen muchas veces y mide cuánto varía el resultado.
+
+---
+
+## 6. Pregunta fija de la presentación final (21-nov): ¿de dónde sale el 46,8 % de "Lo que se hace hoy"?
+
+El docente pidió explicar esta fila de la tabla de métodos:
+
+| Método | Hit Rate@3 [IC 95 %] | Costo / tiempo | n |
+|---|---|---|---|
+| Lo que se hace hoy | 46,8 % [41,8 – 51,6] | $0 / <50 ms de cómputo | 378 (280 distintas) |
+
+### 6.1 Respuesta corta (para decirla en voz alta)
+
+> "Hoy el directorio de Portal Gamarrino recomienda por categoría. No teníamos registros de cómo navega la gente en el portal, así que **simulamos** esa forma de recomendar: un programa que solo puede leer la **categoría y subcategoría** de cada tienda, compara esas palabras con la consulta del comprador y devuelve las 3 tiendas más parecidas. Lo corrimos sobre **378 consultas reales** del portal, y el equipo juzgó **a mano y a doble ciego** si cada una de esas 3 tiendas le servía al comprador. En el **46,8 %** de las consultas, al menos una de las 3 servía. El intervalo de 41,8 % a 51,6 % sale de un bootstrap de 1.000 remuestreos."
+
+### 6.2 Qué técnica se usó: TF-IDF sobre el texto de la categoría
+
+- **Qué ve el método:** solo el texto `categoría + subcategoría` de cada una de las 438 tiendas del catálogo (por ejemplo, "Ropa de Mujer Ropa para mujer"). No ve el nombre de la tienda, ni su descripción, ni sus etiquetas. Así imita a un comprador que solo puede elegir una categoría del directorio.
+- **Cómo compara:** con **TF-IDF y similitud coseno**. TF-IDF convierte cada texto en un puntaje por palabra: una palabra pesa más cuanto más rara es en el catálogo (por ejemplo, "uniformes" pesa más que "ropa", que aparece en casi todas las tiendas). La similitud coseno mide cuántas palabras con peso comparten la consulta y la categoría. Si ninguna palabra coincide, el puntaje es 0 y las 3 tiendas devueltas no tienen relación con la consulta, igual que un comprador que no encuentra su categoría.
+- **Qué devuelve:** las 3 tiendas con mayor puntaje (top-3), porque el producto muestra 3 tiendas (el 65,1 % de los encuestados pidió 3 opciones).
+- **Por qué esta técnica:** el comprador escribe texto libre, no elige una categoría. Para pasar de texto libre a categoría hace falta alguna regla de coincidencia, y TF-IDF es la más simple, sin costo de API, determinista y reproducible. Asignar a mano una categoría a cada consulta habría sido subjetivo.
+- **Código:** `Muestra_378_Evaluacion/scripts/01_muestra_378.py`, líneas 87 y 103–121. Es la misma función que el método léxico (52,9 %); la única diferencia es el texto que lee: el léxico lee la ficha completa de la tienda (`rag_text`), y "lo que se hace hoy" lee solo la categoría.
+
+```python
+catalogo["categoria_texto"] = catalogo["categories"].fillna("") + " " + catalogo["subcategory"].fillna("")
+vec = TfidfVectorizer()
+m_cat = vec.fit_transform(catalogo["categoria_texto"])      # 438 tiendas
+m_q = vec.transform(consultas["texto"])                     # 280 consultas distintas
+sim = cosine_similarity(m_q, m_cat)
+top3 = np.argsort(-sim[i])[:3]                              # las 3 tiendas más parecidas
+```
+
+### 6.3 Cómo se sacó la cifra, paso a paso
+
+1. **Consultas:** 378 consultas reales sacadas de las 4.000 del portal con muestreo sistemático con arranque al azar (semilla 42). Son 280 textos distintos, porque varios se repiten.
+2. **Recomendaciones:** el método devolvió 3 tiendas para cada una de las 280 consultas, es decir 840 pares consulta–tienda (`candidatos_por_metodo_378.xlsx`).
+3. **Etiquetado humano:** cada par se marcó Sí/No respondiendo "¿le serviría de verdad a un comprador ir a esa tienda?". Lo hicieron dos integrantes por separado (doble ciego), con las 10 reglas de `CRITERIOS_ETIQUETADO.md` y un desempate cuando no coincidían. El acuerdo bruto fue 87,4 % (κ = 0,627). Las etiquetas finales están en `ground_truth_378_FINAL.xlsx`.
+4. **Acierto por consulta:** una consulta cuenta como acierto si al menos 1 de sus 3 tiendas recibió Sí. Ejemplos reales:
+
+| Consulta | Tiendas que devolvió "lo que se hace hoy" | Etiqueta | Resultado |
+|---|---|---|---|
+| «Polos básicos» | Tienda de polos básicos y camiseros · Tienda de polos y poleras básicas unisex · Tienda de polos básicos y poleras de algodón (todas en *Ropa y Moda / Polos Básicos*) | Sí, Sí, Sí | Acierto |
+| «Blazer para mujer» | Tienda de ropa casual y elegante para mujer · Tienda de polos, blusas y boleros para mujer · Tienda de ropa casual para mujer (todas en *Ropa de Mujer / Ropa para mujer*) | No, No, No | Fallo |
+
+   En el blazer solo coincide la palabra "mujer"; ninguna tienda menciona blazers y, por la regla 2, no se asume que una tienda genérica los venda.
+
+5. **Porcentaje:** acertaron 91 de las 280 consultas distintas (32,5 %). Contando cada consulta tantas veces como aparece en las 378 (ponderado por frecuencia real), el resultado es **46,8 %**. Sube al ponderar porque las consultas más repetidas son genéricas («polos básicos», «vestidos») y coinciden directo con una categoría del catálogo.
+6. **Intervalo:** bootstrap no paramétrico de 1.000 remuestreos, semilla 42 (sección 5.2) → **41,8 % – 51,6 %**. Se calcula en `scripts/09_tabla_final_378_4metodos.py` y queda en `TABLA_FINAL_378_4metodos_ponderado.xlsx`.
+7. **Costo y tiempo:** "$0 / <50 ms" porque TF-IDF corre en la computadora, sin llamar a ninguna API.
+
+### 6.4 Qué decir si el docente repregunta
+
+- **"¿Ese 46,8 % es del portal real?"** No: es una simulación de recomendar por categoría, no una medición del portal en vivo, porque no hay registros de sesiones ni de clics. Lo que sí mide es qué tan bien responden las categorías del catálogo a lo que la gente escribe de verdad.
+- **"¿Es una comparación justa?"** Sí: los 4 métodos se evaluaron con las mismas 378 consultas, el mismo catálogo de 438 tiendas, el mismo top-3 y las mismas etiquetas humanas. Solo cambia cómo cada método elige sus 3 tiendas.
+- **"¿Qué tan seguro es?"** El intervalo va de 41,8 % a 51,6 %, y no se toca con el del modelo v0 (61,9 % a 71,4 %): la mejora de 20 puntos no es ruido de la muestra.
+- **"¿Por qué falla?"** Las categorías son gruesas ("Ropa para mujer" no distingue un blazer de una blusa) y no conocen estilos, marcas ni tallas. Por eso falla en consultas específicas, que es justo donde el buscador por significado (embeddings) gana.
+- **Limitaciones a admitir:** un comprador real puede revisar más de 3 tiendas o elegir otra categoría a mano; la regla de coincidencia (TF-IDF) es una aproximación de cómo elige un comprador; y el κ de 0,627 está por debajo del 0,80 que pide la rúbrica.

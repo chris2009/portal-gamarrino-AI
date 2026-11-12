@@ -5,13 +5,13 @@
 ## 1. Qué hace el agente
 
 Un comprador escribe en lenguaje natural qué prenda busca. El agente:
-1. Busca primero y pregunta después: si el mensaje nombra cualquier prenda, disfraz, personaje, tema o estilo (basta una palabra, ej. "ternos"), busca de inmediato; solo hace una pregunta corta cuando no nombra ningún producto (ej. "quiero ropa"). A un saludo responde con calidez y pregunta qué busca.
+1. Busca primero y pregunta después: si el mensaje nombra cualquier prenda, disfraz, personaje, tema o estilo (basta una palabra, ej. "ternos"), busca de inmediato; solo hace una pregunta corta cuando no nombra ningún producto (ej. "quiero ropa"). Además pregunta "¿Es para hombre o para mujer?" antes de mostrar tiendas cuando lo encontrado se vende por separado para hombre y para mujer y el comprador no dijo para quién es (lo decide la herramienta con el catálogo, no el LLM); una vez dicho, la búsqueda solo trae tiendas de ese género o para ambos. A un saludo responde con calidez y pregunta qué busca.
 2. Corrige en su propia búsqueda los errores de tipeo obvios del comprador (no repite el typo literal).
 3. Busca por **significado** (no por palabra exacta) en el catálogo de 438 tiendas del Emporio de Gamarra.
 4. Si ningún resultado supera un umbral mínimo de relevancia, no presenta esas coincidencias débiles como buenas recomendaciones: reintenta con una descripción más amplia de la categoría (hasta 3 búsquedas; ej. "Freddy Krueger", luego "disfraces de terror" y por último "disfraces") y muestra las tiendas más cercanas diciendo con honestidad que no puede confirmar lo específico. Solo si tampoco así hay resultados confiables, lo dice y sugiere cómo reformular.
 5. Devuelve el top-3 de tiendas más relevantes: nombre, por qué calza, ubicación exacta (galería/piso/stand), WhatsApp si existe, link al mapa.
 6. Recuerda lo ya dicho en esa misma conversación (género, color, estilo, personaje si es un disfraz) sin que el usuario lo repita.
-7. Guarda la consulta + respuesta en una base de datos local, y deja que el comprador vote 👍/👎 sobre si le sirvió.
+7. Guarda la consulta + respuesta en una base de datos local y, bajo cada respuesta con tiendas, pregunta "¿Te sirvieron estas recomendaciones?" con botones 👍/👎; al votar muestra una confirmación.
 
 ## 2. Stack tecnológico
 
@@ -22,7 +22,7 @@ Un comprador escribe en lenguaje natural qué prenda busca. El agente:
 | Framework LLM | **LangChain** (`langchain`, `langchain-openai`, `langchain-chroma`, `langchain-community`) | 1.4.7 | Capa común que conecta el LLM, el vectorstore y las tools; LangGraph se apoya en sus abstracciones (`ChatOpenAI`, `OpenAIEmbeddings`, `Document`, `@tool`) |
 | LLM de chat | OpenAI `gpt-4o-mini` | — (API) | Decide cuándo buscar, ampliar la búsqueda o preguntar; redacta la respuesta final |
 | Embeddings | OpenAI `text-embedding-3-small` | — (API) | Mismo modelo que ganó la evaluación offline de E5 (66,9% Hit Rate@3 ponderado vs. 52,9% léxico vs. 46,8% categoría vs. 23,0% azar) |
-| Base vectorial | **ChromaDB** | 1.5.9 | Guarda el embedding de cada una de las 438 tiendas; `similarity_search(consulta, k=3)` es la búsqueda real |
+| Base vectorial | **ChromaDB** | 1.5.9 | Guarda el embedding de cada una de las 438 tiendas; `similarity_search(consulta, k=3)` es la búsqueda real (k=10 y filtro por género si el comprador ya dijo el género) |
 | Guardrails | **Guardrails AI** (`guardrails-ai`, `guardrails-ai-detect-jailbreak`, `guardrails-ai-guardrails-pii`) | 0.10.2 / 0.1.6 / 1.0.8 | Seguridad (jailbreak), relevancia, PII — ver sección 5 |
 | Observabilidad | **LangSmith** (`langsmith`, viene con `langchain`) | 0.14.14 | Trazas de cada ejecución: tokens, costo estimado, latencia por paso — activado solo por variables de entorno |
 | Interfaz | **Streamlit** | 1.66.1 | Chat web en `localhost:8501` |
@@ -60,7 +60,7 @@ MVP_Portal_Gamarrino/
 flowchart TD
     U["🧑 Comprador<br/>(chat web)"] -->|"consulta en texto"| APP["app.py<br/>Streamlit — session_id por pestaña"]
 
-    APP --> RESP["agente.responder(mensaje, session_id)"]
+    APP --> RESP["agente.responder_detallado(mensaje, session_id)"]
 
     RESP --> HIST["_historial_reciente()<br/>lee los ultimos turnos de ESTA sesion<br/>(checkpointer LangGraph)"]
 
@@ -81,24 +81,24 @@ flowchart TD
         direction TB
         GRAPH --> LLM1["ChatOpenAI gpt-4o-mini<br/>¿pregunto o busco?"]
         LLM1 -->|"sin ningun producto"| ASK["Pregunta de aclaracion"]
-        LLM1 -->|"nombra prenda, tema o estilo"| TOOL["tool: buscar_tiendas(consulta)"]
+        LLM1 -->|"nombra prenda, tema o estilo"| TOOL["tool: buscar_tiendas(consulta)<br/>pide preguntar el genero si el catalogo lo separa<br/>con el genero dicho, descarta tiendas del otro genero"]
         TOOL --> VS[("ChromaDB<br/>coleccion tiendas_gamarra_mvp<br/>438 tiendas indexadas")]
-        VS -->|"similarity_search k=3"| TOOL
-        TOOL --> LLM2["ChatOpenAI gpt-4o-mini<br/>redacta top-3 + ubicacion + WhatsApp"]
+        VS -->|"similarity_search k=3<br/>(10 si filtra por genero)"| TOOL
+        TOOL --> LLM2["ChatOpenAI gpt-4o-mini<br/>redacta top-3 + ubicacion + WhatsApp<br/>(o pregunta el genero si la tool lo pide)"]
     end
 
     ASK --> OUT["guardrails_mvp.limpiar_salida()"]
     LLM2 --> OUT
 
     subgraph SALIDA["Guard de SALIDA (pre-output)"]
-        OUT --> PII["PII: GuardrailsPII (fix)<br/>excluye PHONE_NUMBER y PERSON a proposito"]
+        OUT --> PII["PII: GuardrailsPII (fix)<br/>excluye PHONE_NUMBER, PERSON<br/>y US_SSN a proposito<br/>+ reglas propias: DNI y tarjeta"]
     end
 
     PII --> LOG["historial_db.guardar_interaccion()<br/>SQLite: historial.db"]
     LOG --> APP
     APP -->|"respuesta + guarda en st.session_state"| U
 
-    U -->|"👍 / 👎 st.feedback"| FB["historial_db.guardar_feedback()<br/>ligado al interaccion_id"]
+    U -->|"👍 / 👎 st.feedback<br/>(solo bajo respuestas con tiendas)"| FB["historial_db.guardar_feedback()<br/>ligado al interaccion_id"]
     FB --> LOG
 
     GRAPH -.->|"traza: tokens, costo USD, latencia<br/>(si LANGSMITH_TRACING=true)"| LS[/"LangSmith<br/>smith.langchain.com<br/>proyecto: mvp-portal-gamarrino"/]
@@ -138,17 +138,17 @@ flowchart TD
 ### Paso a paso en detalle (con los nombres de función tal cual están en el código)
 
 1. **`app.py`** — el usuario escribe en el `st.chat_input`. Cada pestaña del navegador tiene su propio `session_id` (`uuid.uuid4()`, guardado en `st.session_state`), así que la memoria de una conversación no se mezcla con otra.
-2. **`agente.responder(mensaje, session_id)`** es el punto de entrada único:
+2. **`agente.responder_detallado(mensaje, session_id)`** es el punto de entrada único. Devuelve el texto, el `interaccion_id` y si la respuesta trajo tiendas; `responder()` es la versión de dos valores que usa el notebook de evaluación:
    - `_historial_reciente(config)` lee del checkpointer de LangGraph (`agente.get_state(config)`) los últimos turnos de **esa misma sesión** — necesario para que el guardrail de relevancia entienda respuestas cortas de seguimiento ("talla M", "de Drácula").
    - `guardrails_mvp.verificar_entrada(mensaje, historial)` corre las 2 capas de pre-input (ver sección 5). Si alguna bloquea, `responder()` devuelve el mensaje de bloqueo **sin llamar al LLM principal** (ahorra costo y evita que el ataque llegue siquiera al agente).
 3. Si pasa, `agente.invoke({"messages": [...]}, config)` entra al grafo de LangGraph (`create_agent`):
    - El LLM (`gpt-4o-mini`, con el `SYSTEM_PROMPT` del dominio) decide: ¿el mensaje nombra alguna prenda, artículo, disfraz, personaje, tema o estilo? Si sí (basta una palabra), invoca la tool de inmediato, sin pedir más detalle antes. Si el mensaje es solo un saludo, responde con calidez sin buscar; si no nombra ningún producto (ej. "quiero ropa"), hace una pregunta corta. Al invocar la tool, corrige en el texto de búsqueda los typos obvios del comprador (la búsqueda semántica interpreta mal un error de tipeo literal, así que no se repite tal cual).
-   - **`buscar_tiendas(consulta)`** (la única tool): llama a `similarity_search_with_relevance_scores(consulta, k=3)` sobre `_vectorstore`, la colección `tiendas_gamarra_mvp` en ChromaDB. Si el mejor score no supera `UMBRAL_RELEVANCIA = 0.15` (calibrado empíricamente con 4 consultas reales, no es una cifra científica), devuelve `"BUSQUEDA_SIN_RESULTADOS_CONFIABLES"` en vez de tiendas — el aviso le indica al LLM que reintente con una descripción más amplia de la categoría (máximo 3 búsquedas en total) en lugar de presentar coincidencias débiles como recomendación. Si pasa el umbral, devuelve nombre, categoría, ubicación y WhatsApp (o "no disponible") de las 3 tiendas más parecidas.
-   - El LLM recibe el resultado de la tool y redacta la respuesta final en español, sin inventar stock/talla/precio (instrucción explícita del `SYSTEM_PROMPT`), sin frase de cierre tipo "¡espero que...!" (recorte para ahorrar tokens de salida).
+   - **`buscar_tiendas(consulta)`** (la única tool): llama a `_buscar`, que hace `similarity_search_with_relevance_scores(consulta, k=3)` sobre `_vectorstore`, la colección `tiendas_gamarra_mvp` en ChromaDB. Una vez que el comprador dijo el género, la búsqueda lo usa en el resto de la conversación: lo agrega a la consulta si el LLM no lo puso, pide 10 candidatos y descarta las tiendas que venden solo para el otro género (`_buscar` y `_genero_pedido`). Lo hace el código porque ni el LLM ni los embeddings son confiables para esto: en una prueba del 12-nov-2026, tras «para hombre» el LLM buscó «ropa para ir al gym» sin el género, y con «ropa de oficina para hombre» 2 de las 3 primeras tiendas eran de mujer (los embeddings casi no distinguen «para hombre» de «para mujer»). Si el mejor score no supera `UMBRAL_RELEVANCIA = 0.15` (calibrado empíricamente con 4 consultas reales, no es una cifra científica), devuelve `"BUSQUEDA_SIN_RESULTADOS_CONFIABLES"` en vez de tiendas — el aviso le indica al LLM que reintente con una descripción más amplia de la categoría (máximo 3 búsquedas en total) en lugar de presentar coincidencias débiles como recomendación. Si pasa el umbral pero al menos 2 de las 3 tiendas venden solo para un género y el comprador no dijo para quién es (ni que le da igual) en ninguno de sus mensajes, devuelve `"PREGUNTAR_GENERO"` y el LLM pregunta "¿Es para hombre o para mujer?" sin mostrar tiendas, una sola vez por conversación (`_hace_falta_preguntar_genero`; la herramienta lee los mensajes con `ToolRuntime`). Lo decide el código y no el LLM porque, con la regla solo en el prompt, `gpt-4o-mini` evitaba preguntar. En otro caso devuelve nombre, categoría, ubicación y WhatsApp (o "no disponible") de las 3 tiendas más parecidas.
+   - El LLM recibe el resultado de la tool y redacta la respuesta final en español, sin inventar stock/talla/precio (instrucción explícita del `SYSTEM_PROMPT`), sin frase de cierre tipo "¡espero que...!" (recorte para ahorrar tokens de salida). El prompt abre con un bloque de alcance: solo recomienda tiendas y no hace otras tareas (exámenes, traducciones, textos, código) aunque el mensaje mencione ropa; en un mensaje mezclado atiende solo la prenda.
    - `MemorySaver` guarda automáticamente este turno bajo el `session_id`, para que el siguiente mensaje de la misma sesión tenga memoria.
-4. **`guardrails_mvp.limpiar_salida(respuesta)`** corre el guardrail de pre-output (PII) antes de devolver el texto.
+4. **`guardrails_mvp.limpiar_salida(respuesta)`** corre el guardrail de pre-output (PII: `GuardrailsPII` para emails y reglas propias para DNI y tarjeta) antes de devolver el texto.
 5. **`historial_db.guardar_interaccion(...)`** guarda la consulta + respuesta en `historial.db` (SQLite) y devuelve un `interaccion_id`. Esto corre siempre, incluso si el mensaje fue bloqueado por un guardrail — útil para medir cuántas veces se activan.
-6. **`app.py`** muestra la respuesta en el chat, la guarda en `st.session_state.historial` junto con su `interaccion_id` (memoria del lado de la interfaz, para redibujar el chat completo en cada rerun de Streamlit), y dibuja los botones `st.feedback("thumbs")`. Si el comprador vota, `historial_db.guardar_feedback(interaccion_id, valor)` lo graba ligado a esa interacción exacta.
+6. **`app.py`** muestra la respuesta en el chat, la guarda en `st.session_state.historial` junto con su `interaccion_id` (memoria del lado de la interfaz, para redibujar el chat completo en cada rerun de Streamlit), y, solo si la respuesta trajo tiendas, muestra "¿Te sirvieron estas recomendaciones?" con los botones `st.feedback("thumbs")`. Si el comprador vota, `historial_db.guardar_feedback(interaccion_id, valor)` lo graba ligado a esa interacción exacta y la interfaz lo confirma (`st.toast` + mensaje fijo bajo la respuesta).
 7. **En paralelo, sin que el código lo pida explícitamente:** si `LANGSMITH_TRACING=true` en `.env`, LangChain envía la traza completa de ese `invoke()` (cada llamada al LLM, la llamada a `buscar_tiendas`, tokens de entrada/salida, costo estimado en USD, latencia por paso) a LangSmith. Cero instrumentación manual — es el mismo patrón que `CONECTAR_LANGSMITH.md` de tu curso (Módulo 5 / Sesión 12).
 
 ## 5. Guardrails (detalle — código completo en `src/guardrails_mvp.py`)
@@ -167,7 +167,7 @@ usuario -> [guard_entrada] -> agente (LLM + tool) -> [guard_salida] -> usuario
 | Seguridad | pre-input | `DetectJailbreak` de Guardrails AI, corre 100% local (3 modelos propios descargados con `post_install`, no llama a ninguna API externa) | **Activo, con límite real:** detectó el ataque de prueba en inglés; no detectó 2 de 2 variantes del mismo ataque en español. Documentado también en el curso (Sesión 24: "lo evaden... payloads multilingües"). **Cubierto parcialmente el 31-oct-2026** con un filtro determinista de patrones de inyección ES/EN (`_PATRONES_INYECCION`): 0 falsos positivos sobre las 280 consultas reales de E5 y bloquea los ataques de prueba que mezclan una prenda con la orden; es una lista de patrones, no una garantía (una paráfrasis fuera de los patrones puede pasar). |
 | Relevancia | pre-input | Clasificador propio (una llamada barata a `gpt-4o-mini`), usa el historial de la sesión | **Activo.** Corregido un falso positivo real antes de producción: bloqueaba "De Drácula" (seguimiento corto) por no tener contexto; ahora sí lo tiene. **31-oct-2026:** la evaluación contra E5 mostró que bloqueaba 47 de 378 consultas reales («Short», «Maletas», «Yoger», o «Me da igual, muéstrame opciones» tras una repregunta); desde entonces los saludos puros, los mensajes de hasta 3 palabras y la respuesta a una repregunta del agente pasan por reglas deterministas (`_es_saludo_puro`, `_es_mensaje_corto`, `_responde_a_repregunta`), lo que destraba 40 de esos 47. `DetectJailbreak` y el filtro de inyección siguen corriendo antes. |
 | Tool safeguards | gate intermedio | `buscar_tiendas` es de solo lectura, no escribe ni ejecuta nada irreversible | Evaluado: riesgo bajo, no necesita pausa/escalación por diseño |
-| PII | pre-output | `GuardrailsPII` (`on_fail="fix"`), entidades: `EMAIL_ADDRESS, US_SSN, CREDIT_CARD, ES_NIF` | **Activo.** Excluye a propósito `PHONE_NUMBER` (el WhatsApp de la tienda es dato de negocio que el agente debe mostrar) y `PERSON` (el detector de nombres confundía listas tipo "¿hombre, mujer o niño?" con nombres propios y las tachaba como `<PERSON>`, rompiendo la respuesta — solo pasa en formato lista, no en una oración normal). |
+| PII | pre-output | `GuardrailsPII` (`on_fail="fix"`), entidades: `EMAIL_ADDRESS, CREDIT_CARD, ES_NIF`; más dos reglas propias (regex): DNI = número suelto de 8 dígitos, salvo justo después de "WhatsApp"/"teléfono"/"celular"; tarjeta = 13 a 19 dígitos (seguidos o en grupos) que pasan el verificador de Luhn | **Activo.** Excluye a propósito `PHONE_NUMBER` (el WhatsApp de la tienda es dato de negocio que el agente debe mostrar) y `PERSON` (el detector de nombres confundía listas tipo "¿hombre, mujer o niño?" con nombres propios y las tachaba como `<PERSON>`, rompiendo la respuesta — solo pasa en formato lista, no en una oración normal) y `US_SSN` (el seguro social de EE. UU. tiene 9 dígitos, igual que un celular peruano, y tachaba el WhatsApp de la tienda como `<US_SSN>`). Las reglas propias existen porque en la prueba del 11-nov `GuardrailsPII` no tachó una tarjeta de prueba ni un NIF, y ninguna de sus entidades cubre el DNI peruano; no dieron falsos positivos sobre las respuestas de la corrida v5 ni sobre el catálogo. |
 | Moderación | pre-output | `BiasCheck` de Guardrails AI | **Pendiente.** Necesita TensorFlow, que falla en este equipo por tener desactivado el "Long Path Support" de Windows. Instrucciones de activación en el `README.md`. |
 
 ## 6. Observabilidad (LangSmith)

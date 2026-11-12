@@ -152,19 +152,19 @@
           <article class="box">
             <h3>Domain Definition</h3>
             <p><strong>Dominio:</strong> Búsqueda y recomendación de tiendas de ropa del Emporio de Gamarra a partir de una necesidad descrita en lenguaje natural.</p>
-            <p><strong>Alcance:</strong> Entender la consulta, buscar de inmediato salvo que no nombre ningún producto (entonces hace una pregunta corta), buscar por significado (no por palabra exacta) en el catálogo, y devolver el top-3 con ubicación real.</p>
+            <p><strong>Alcance:</strong> Entender la consulta, buscar de inmediato salvo que no nombre ningún producto (entonces hace una pregunta corta), preguntar el género solo si lo encontrado se vende por separado para hombre y para mujer y no se dijo para quién es, buscar por significado (no por palabra exacta) en el catálogo, y devolver el top-3 con ubicación real. Solo recomienda tiendas: no resuelve exámenes ni tareas, no traduce, no redacta ni programa, aunque el mensaje mencione ropa.</p>
             <p><strong>Restricción clave:</strong> No garantiza stock, talla ni precio en tiempo real (supuesto eliminado tras validación con el equipo); no reserva ni compra nada; no accede a ningún dato fuera del catálogo de 438 tiendas indexado.</p>
           </article>
           <article class="box">
             <h3>Objectives Definition</h3>
             <ul>
-              <li>Interpretar la consulta y buscar de inmediato si nombra cualquier prenda, disfraz, personaje, tema o estilo (basta una palabra); solo pide una aclaración (1 pregunta corta) si no nombra ningún producto, y responde con calidez a los saludos.</li>
+              <li>Interpretar la consulta y buscar de inmediato si nombra cualquier prenda, disfraz, personaje, tema o estilo (basta una palabra); solo pide una aclaración (1 pregunta corta) si no nombra ningún producto o si hace falta el género, y responde con calidez a los saludos.</li>
               <li>Corregir errores de tipeo obvios del comprador en su propia búsqueda, sin repetir el typo literal.</li>
               <li>Recuperar las 3 tiendas semánticamente más relevantes del catálogo, no solo las que repiten las mismas palabras.</li>
               <li>Reconocer cuando ningún resultado es confiable (por debajo del umbral de relevancia) y reintentar con una descripción más amplia de la categoría (hasta 3 búsquedas), presentando las tiendas más cercanas con honestidad en vez de inventar una recomendación exacta.</li>
               <li>Explicar brevemente por qué cada tienda calza con lo pedido.</li>
               <li>Entregar ubicación exacta (galería/piso/stand) y WhatsApp solo si existe, nunca inventado.</li>
-              <li>Recordar lo ya dicho en la sesión (género, color, estilo, personaje) para no volver a preguntarlo.</li>
+              <li>Recordar lo ya dicho en la sesión (género, color, estilo, personaje) para no volver a preguntarlo; el género, además, filtra las búsquedas siguientes.</li>
               <li>Guardar cada consulta y respuesta, y el feedback (útil / no útil) del comprador, para mejorar el agente después.</li>
             </ul>
           </article>
@@ -185,7 +185,7 @@
           <article class="box">
             <h3>Tools</h3>
             <ul>
-              <li><code>buscar_tiendas</code> — única tool: similarity search con score en ChromaDB (k=3), filtra por <code>UMBRAL_RELEVANCIA</code> (0,15, calibrado empíricamente), devuelve nombre, categoría, ubicación y WhatsApp.</li>
+              <li><code>buscar_tiendas</code> — única tool: similarity search con score en ChromaDB (k=3; si el comprador ya dijo el género, pide 10 candidatos y descarta los del otro género), filtra por <code>UMBRAL_RELEVANCIA</code> (0,15, calibrado empíricamente), devuelve nombre, categoría, ubicación y WhatsApp.</li>
               <li>Solo lectura: no escribe, no reserva, no modifica el catálogo.</li>
               <li><code>historial_db.guardar_interaccion</code> / <code>guardar_feedback</code> — registro (no es una tool del LLM, corre siempre después de cada respuesta) en SQLite local.</li>
             </ul>
@@ -230,10 +230,12 @@
           <article class="box">
             <h3>Reglas de Operación + Guardrails</h3>
             <p><span class="rule-tag">REGLA</span>El agente nunca inventa stock, talla, precio ni un WhatsApp que no exista en el catálogo.</p>
+            <p><span class="rule-tag">REGLA</span>Si el mensaje mezcla una prenda con otra tarea (resolver un ejercicio, traducir, redactar), el agente atiende solo la prenda y dice que con lo otro no puede ayudar; si no pide ninguna prenda, explica que solo ayuda a encontrar ropa, disfraces y tiendas de Gamarra.</p>
             <p><span class="rule-tag">GUARDRAIL</span>Seguridad pre-input: <code>DetectJailbreak</code> (Guardrails AI), local, bloquea con <code>on_fail="exception"</code>, más un filtro determinista de patrones de inyección ES/EN.</p>
             <p><span class="rule-tag">GUARDRAIL</span>Relevancia pre-input: clasificador LLM barato, mantiene la conversación en ropa/tiendas de Gamarra usando el historial de la sesión. Los saludos puros, los mensajes de hasta 3 palabras y la respuesta a una repregunta del agente pasan por reglas deterministas (el clasificador los bloqueaba por error).</p>
-            <p><span class="rule-tag">GUARDRAIL</span>PII pre-output: <code>GuardrailsPII</code> (<code>on_fail="fix"</code>), excluye a propósito <code>PHONE_NUMBER</code> (dato de negocio) y <code>PERSON</code> (el detector de nombres confundía "¿hombre, mujer o niño?" con nombres propios).</p>
+            <p><span class="rule-tag">GUARDRAIL</span>PII pre-output: <code>GuardrailsPII</code> (<code>on_fail="fix"</code>), excluye a propósito <code>PHONE_NUMBER</code> (dato de negocio) y <code>PERSON</code> (el detector de nombres confundía "¿hombre, mujer o niño?" con nombres propios) y <code>US_SSN</code> (9 dígitos, como un celular peruano: tachaba el WhatsApp de la tienda). DNI (8 dígitos sueltos) y tarjeta (13–19 dígitos que pasan Luhn) los tacha una regla propia, porque <code>GuardrailsPII</code> no los detectó en la prueba.</p>
             <p><span class="rule-tag">REGLA</span>Si ningún resultado de <code>buscar_tiendas</code> supera el umbral de relevancia, el agente reintenta con una búsqueda más amplia (máx. 3) y, si presenta tiendas cercanas, aclara que no puede confirmar lo específico — nunca presenta un match débil como si fuera exacto.</p>
+            <p><span class="rule-tag">REGLA</span>Si al menos 2 de las 3 tiendas encontradas venden solo para hombre o solo para mujer y el comprador no dijo para quién es, el agente pregunta "¿Es para hombre o para mujer?" antes de mostrar tiendas, una sola vez por conversación. Lo decide la herramienta con el catálogo, no el LLM (con la regla solo en el prompt, el modelo evitaba preguntar). Una vez dicho el género, la búsqueda lo usa en el resto de la conversación y descarta las tiendas que venden solo para el otro género.</p>
             <p><span class="rule-tag">PENDIENTE</span>Moderación pre-output (<code>BiasCheck</code>): bloqueada por falta de Windows Long Path Support en el equipo de desarrollo.</p>
           </article>
         </div>

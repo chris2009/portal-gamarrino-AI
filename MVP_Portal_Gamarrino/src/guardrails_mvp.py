@@ -31,6 +31,8 @@ Capas aplicadas y por que van donde van (tabla de coherencia del curso):
   lo que se publica. Se excluye PHONE_NUMBER a proposito: el WhatsApp de la
   tienda es informacion de negocio que el agente SI debe mostrar (autorizada
   por Portal Gamarrino), no un dato personal que haya que esconder.
+  US_SSN tambien se excluye: tiene 9 digitos, como un celular peruano,
+  y tachaba ese mismo WhatsApp como <US_SSN>.
 - Tool safeguards -> gate intermedio: la unica tool (buscar_tiendas) es de
   solo lectura, no escribe nada ni es irreversible -> riesgo bajo, no
   necesita pausa/escalacion. Documentado aqui para que quede explicito que
@@ -226,20 +228,63 @@ def verificar_entrada(mensaje: str, historial: str = "") -> None:
 # que PERSON cubriria aqui es bajo (este agente no maneja nombres de usuarios),
 # asi que no vale el costo del falso positivo en un patron de respuesta que el
 # agente usa seguido.
+# US_SSN tambien se excluye: el seguro social de EE.UU. tiene 9 digitos, igual
+# que un celular peruano (9XX XXX XXX), y el detector tachaba el WhatsApp de la
+# tienda como <US_SSN>. En Peru no aplica (el DNI tiene 8 digitos).
 _guard_pii_salida = Guard().use(
     GuardrailsPII(
-        entities=["EMAIL_ADDRESS", "US_SSN", "CREDIT_CARD", "ES_NIF"],
+        entities=["EMAIL_ADDRESS", "CREDIT_CARD", "ES_NIF"],
         on_fail="fix",
     )
 )
 
+# Reglas propias para DNI y tarjeta. En la prueba del 11-nov GuardrailsPII no
+# tacho una tarjeta de prueba (4111 1111 1111 1111) ni un NIF, y ninguna de sus
+# entidades cubre el DNI peruano, asi que estas dos reglas fijas hacen ese trabajo:
+# - DNI: numero suelto de 8 digitos (el largo del DNI). No choca con los
+#   telefonos: un celular peruano tiene 9 digitos y un fijo de Lima 7. Igual no
+#   se toca un numero que venga justo despues de "WhatsApp"/"telefono"/"celular".
+# - Tarjeta: 13 a 19 digitos seguidos o en grupos (4-4-4-x, Amex 4-6-5) que
+#   ademas pasen el digito verificador de Luhn, el que usan las tarjetas.
+# En ambas se ignoran digitos pegados a letras, puntos, guiones o barras, para
+# no romper links ni codigos.
+_RE_DNI = re.compile(r"(?<![\w./-])\d{8}(?![\w/-]|\.\d)")
+_RE_TARJETA = re.compile(
+    r"(?<![\w./-])(?:\d{13,19}|\d{4}(?:[ -]\d{4}){2}[ -]\d{1,7}|\d{4}[ -]\d{6}[ -]\d{5})(?![\w/-]|\.\d)"
+)
+_RE_ETIQUETA_TELEFONO = re.compile(r"\b(whatsapp|wsp|telefono|tel|celular|cel)\W{0,4}$", re.IGNORECASE)
+
+
+def _pasa_luhn(digitos: str) -> bool:
+    total = 0
+    for i, d in enumerate(int(c) for c in reversed(digitos)):
+        if i % 2:
+            d = d * 2 - 9 if d > 4 else d * 2
+        total += d
+    return total % 10 == 0
+
+
+def _tachar_dni_y_tarjeta(texto: str) -> str:
+    def tarjeta(m):
+        return "<TARJETA>" if _pasa_luhn(re.sub(r"\D", "", m.group())) else m.group()
+
+    def dni(m):
+        antes = _sin_tildes(texto[max(0, m.start() - 15):m.start()])
+        return m.group() if _RE_ETIQUETA_TELEFONO.search(antes) else "<DNI>"
+
+    texto = _RE_TARJETA.sub(tarjeta, texto)
+    return _RE_DNI.sub(dni, texto)
+
 
 def limpiar_salida(respuesta: str) -> str:
-    """Corre la capa de pre-output (PII, sin tocar telefonos). Si falla la
-    validacion por una razon inesperada, devuelve la respuesta original en
-    vez de romper la conversacion (defensa en capas, no punto unico de falla)."""
+    """Corre la capa de pre-output: GuardrailsPII (sin tocar telefonos) y las
+    reglas propias de DNI y tarjeta. Si GuardrailsPII falla por una razon
+    inesperada, sigue con la respuesta original en vez de romper la
+    conversacion (defensa en capas, no punto unico de falla); las reglas
+    propias corren igual."""
     try:
         resultado = _guard_pii_salida.validate(respuesta)
-        return resultado.validated_output or respuesta
+        respuesta = resultado.validated_output or respuesta
     except Exception:
-        return respuesta
+        pass
+    return _tachar_dni_y_tarjeta(respuesta)

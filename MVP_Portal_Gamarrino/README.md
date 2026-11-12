@@ -35,7 +35,7 @@ MVP_Portal_Gamarrino/
 - **ChromaDB** (`chroma_db/`): el conocimiento persistente del catálogo (el embedding de las 438 tiendas). Se calcula una vez y se reutiliza siempre.
 - **`historial.db`** (SQLite, `src/historial_db.py`): registro permanente de cada consulta + respuesta + voto. A diferencia de ChromaDB, el agente no lo vuelve a leer durante la conversación — es almacenamiento para análisis, no memoria que el agente consuma en vivo.
 
-**Feedback**: cada respuesta del agente muestra botones de 👍/👎 (`st.feedback("thumbs")` de Streamlit), ligados a esa interacción exacta en `historial.db`.
+**Feedback**: cada respuesta del agente que trae tiendas muestra "¿Te sirvieron estas recomendaciones?" con botones de 👍/👎 (`st.feedback("thumbs")` de Streamlit), ligados a esa interacción exacta en `historial.db`. Al votar aparece una confirmación; los saludos, repreguntas y bloqueos no llevan botones.
 
 Para revisar lo guardado (consultas, respuestas y su voto si lo tienen):
 ```powershell
@@ -73,7 +73,7 @@ usuario -> [guard_entrada] -> agente (LLM + tool) -> [guard_salida] -> usuario
 | Seguridad (`DetectJailbreak`) | Bloquea intentos de hackear el prompt. Corre 100% local (3 modelos descargados con `post_install`). | Activa. **Limitacion verificada:** el modelo esta entrenado sobre todo en ingles — no detecto 2 de 2 intentos de jailbreak en español en las pruebas. Para cubrirlo se añadió un filtro determinista de patrones de inyección (ES/EN) en `guardrails_mvp.py`: es heurístico, no una garantía. |
 | Relevancia | Mantiene la conversacion en "ropa/tiendas de Gamarra"; usa el historial de la sesion para no bloquear respuestas cortas de seguimiento ("De Dracula", "talla M"). Desde el 31-oct-2026 los saludos puros, los mensajes de hasta 3 palabras y la respuesta a una repregunta del agente pasan por reglas deterministas, sin el clasificador LLM, que los bloqueaba por error (40 de sus 47 bloqueos en la evaluacion de 378 consultas reales contra E5). | Activa |
 | Tool safeguards | `buscar_tiendas` es de solo lectura, sin escritura ni accion irreversible -> riesgo bajo, no necesita pausa. | Evaluado, no necesita guard |
-| PII (`GuardrailsPII`, `on_fail="fix"`) | Sanea email / DNI / tarjeta en la respuesta. Excluye a proposito `PHONE_NUMBER` (el WhatsApp de la tienda es dato de negocio que SI debe mostrarse) y `PERSON` (el detector de nombres confundia listas tipo "hombre, mujer o nino?" con nombres propios). | Activa |
+| PII (`GuardrailsPII`, `on_fail="fix"`) + reglas propias | Tacha email (`GuardrailsPII`) y DNI / tarjeta (reglas propias: numero suelto de 8 digitos, salvo justo despues de "WhatsApp"/"telefono"; 13-19 digitos que pasan el verificador de Luhn) en la respuesta. Excluye a proposito `PHONE_NUMBER` (el WhatsApp de la tienda es dato de negocio que SI debe mostrarse) y `PERSON` (el detector de nombres confundia listas tipo "hombre, mujer o nino?" con nombres propios) y `US_SSN` (tiene 9 digitos, como un celular peruano, y tachaba el WhatsApp como `<US_SSN>`). | Activa |
 | Moderacion (`BiasCheck`) | Revisa lenguaje sesgado en la respuesta. | **Pendiente** — requiere TensorFlow, que falla por el limite de rutas largas de Windows. Una vez corrido `Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1` (PowerShell como Administrador), se instala con `pip install guardrails-ai-bias-check` y se agrega en `guardrails_mvp.py`. |
 
 Detalle completo de cada capa y por que va donde va: `src/guardrails_mvp.py`.
@@ -106,7 +106,7 @@ jupyter lab evaluacion/evaluacion_agente_vs_E5.ipynb      # kernel: "Python (Por
 - Parámetros (sección 3 del notebook): `N_MUESTRA` (filas a sortear; `None` = las 378), `SEMILLA` (`None` = muestra
   nueva; un entero repite una corrida), `USAR_JUEZ_LLM`, `MAX_WORKERS`.
 - Corrida completa sin abrir JupyterLab (~7 min):
-  `jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.kernel_name=gamarrino --ExecutePreprocessor.timeout=-1 evaluacion/resultados/ejecucion_378_completas_v4_guardrail_juez.ipynb`
+  `jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.kernel_name=gamarrino --ExecutePreprocessor.timeout=-1 evaluacion/resultados/ejecucion_378_completas_v7_filtro_genero.ipynb`
 - Cada corrida deja en `evaluacion/resultados/` un xlsx (detalle, top-3, pares sin etiqueta), un gráfico y una fila
   en `registro_corridas.csv`.
 - Abrir el notebook en un solo editor a la vez (JupyterLab o VS Code): una copia vieja abierta en el otro editor
@@ -119,19 +119,21 @@ puntual provisional con un juez LLM (`evaluacion/juez_llm.py`: gpt-4o con `CRITE
 con la etiqueta humana final en 75 % de los pares (κ = 0,486; entre dos humanos κ = 0,872), medido con
 `validar_juez_llm.py`. Las etiquetas humanas siempre mandan sobre las del juez.
 
-Resultado de referencia (31-oct-2026, 378 filas, versión v4 del agente):
+Resultado de referencia (12-nov-2026, 378 filas, versión v7 del agente: pregunta el género, se niega a otras tareas y, una vez dicho el género, filtra la búsqueda por él):
 
-| Medida | Hit Rate@3 | Veredicto |
-|---|---|---|
-| Modelo v0 de E5 (misma muestra) | 66,9 % | — |
-| Agente M2, solo etiquetas humanas | 60,6 % – 86,8 % | Indeterminado |
-| Agente M2, estimación con juez LLM (provisional) | 65,9 % (IC 95 % 61,1 – 70,6) | Se cubre |
+| Medida | v6 (11-nov) | v7 (12-nov, final) | Veredicto v7 |
+|---|---|---|---|
+| Modelo v0 de E5 (misma muestra) | 66,9 % | 66,9 % | — |
+| Agente M2, solo etiquetas humanas | 62,2 % – 88,4 % | 60,8 % – 88,4 % | Indeterminado |
+| Agente M2, estimación con juez LLM (provisional) | 67,2 % (IC 95 % 62,2 – 72,2) | 67,5 % (IC 95 % 62,7 – 72,2) | Se cubre |
+| Agente M1 (solo el primer mensaje), con juez LLM | 52,4 % | 52,6 % | Indeterminado |
 
-Diferencia pareada con E5 usando el juez: −1,1 pp (IC 95 % −4,0 a +2,1). El guardrail de relevancia bloquea 6 de las
-378 consultas (antes del arreglo, 47). Las corridas de las 09:40 y 09:41 del 31-oct (0,0 %) fallaron por un error del
+Diferencia pareada con E5 usando el juez: +0,5 pp (IC 95 % −2,1 a +3,7); en v6 y v5 era +0,3 pp, y en v4 −1,1 pp.
+Nota sobre la fila «solo etiquetas humanas»: depende de las tiendas que nadie revisó y oscila entre corridas. En v6 el peor caso llegaba justo al 66,9 % de E5 y el notebook daba «se cubre» por muy poco; en v7 vuelve a «indeterminado» (el peor caso, 60,8 %, con IC 55,6 – 65,6 %, no alcanza a E5). La cifra de referencia es la del juez.
+M1 baja a propósito: el agente pregunta el género en el primer mensaje en 63 de las 280 consultas distintas (jeans, pantalones, ropa interior, chompas, leggings...) y no muestra tiendas hasta que le responden; no lo preguntó en ninguna consulta que ya trajera el género. M2, que responde esa repregunta con un seguimiento neutro, es la medida comparable con E5. El guardrail de relevancia bloquea 5 de las 378 consultas (antes del arreglo del 31-oct, 47). v7 agrega el filtro de género en la búsqueda: una vez que el comprador dijo el género, solo se muestran tiendas de ese género o para ambos. En las 55 consultas del examen que dicen el género y reciben tiendas, las tiendas del otro género mostradas pasaron de 2 (v6) a 0. El caso que lo motivó (el género dicho en un mensaje anterior: «para hombre» y después «ropa para ir al gym») no está en el examen, que mide consultas sueltas; se verificó a mano. v6 había agregado el bloque de alcance del prompt (no hace otras tareas, pero busca cualquier producto); su primera versión, que rechazaba cortinas, telas y manteles, se descartó (queda marcada como DESCARTADA en `registro_corridas.csv`). Capturas inconsistentes en v7: 1 («Wile Jean azul oscuro más casaca Jean», que busca dos prendas). Las corridas de las 09:40 y 09:41 del 31-oct (0,0 %) fallaron por un error del
 notebook ya corregido: no son resultados.
 
-Para cerrar el número oficial falta etiquetar a mano 308 pares, con el mismo protocolo de E5:
+Decisión del 11-nov: la evaluación se reporta con el juez LLM y no se hará el etiquetado humano de los pares pendientes. Si más adelante se quisiera el número solo con etiquetas humanas, habría que etiquetarlos a mano con el mismo protocolo de E5. Con v7 quedan 323 pares sin etiqueta humana, en 171 consultas. Las hojas `PARES_AGENTE_MITAD_*` del 3-nov se generaron para los 308 pares de v4 y nadie las ha etiquetado; habría que regenerarlas con la corrida v7 antes de repartirlas. Pasos:
 
 1. `evaluacion/etiquetas/PARES_AGENTE_MITAD_{A,B}_copia{1,2}.xlsx` (generadas con `generar_hojas_etiquetado.py`):
    cada mitad la etiquetan dos personas por separado y guardan su copia como `*_ETIQUETADA.xlsx`.
@@ -142,10 +144,10 @@ Para cerrar el número oficial falta etiquetar a mano 308 pares, con el mismo pr
 ## Estado actual
 
 - Catálogo: 438 tiendas indexadas en ChromaDB.
-- Búsqueda: busca primero (pregunta solo si no se nombra ningún producto), filtra por umbral de relevancia, corrige typos y, si nada supera el umbral, reintenta con una consulta más amplia (hasta 3 búsquedas).
-- Guardrails: seguridad + relevancia activos en entrada; PII activo en salida; moderación pendiente.
+- Búsqueda: busca primero (pregunta solo si no se nombra ningún producto, o el género si al menos 2 de las 3 tiendas encontradas venden solo para hombre o solo para mujer y el comprador no dijo para quién es; esto último lo decide el código, no el LLM); una vez dicho el género, solo muestra tiendas de ese género o para ambos (también lo hace el código: `_buscar`), filtra por umbral de relevancia, corrige typos y, si nada supera el umbral, reintenta con una consulta más amplia (hasta 3 búsquedas).
+- Guardrails: seguridad + relevancia activos en entrada; PII activo en salida; moderación pendiente. Alcance: el prompt le prohíbe hacer otras tareas (exámenes, traducciones, textos, código) aunque el mensaje mencione ropa; en un mensaje mezclado atiende solo la prenda.
 - Persistencia: cada consulta + respuesta + feedback queda en `historial.db`.
 - Observabilidad: trazas a LangSmith si se activa la API key.
 - Interfaz: chat funcionando en `localhost:8501`.
-- Evaluación vs. E5 (31-oct, 378 consultas): 65,9 % con juez LLM provisional frente a 66,9 % de E5 (se cubre); el número oficial espera el etiquetado humano de 308 pares (ver sección Evaluación).
+- Evaluación vs. E5 (12-nov, v7, 378 consultas): 67,5 % con juez LLM provisional frente a 66,9 % de E5 (se cubre; v6 daba 67,2 % y v4 65,9 %); 323 pares siguen sin etiqueta humana y no se etiquetarán (decisión del 11-nov; ver sección Evaluación).
 - Pendiente: fotos de tienda (H4), autenticación, despliegue más allá de local.

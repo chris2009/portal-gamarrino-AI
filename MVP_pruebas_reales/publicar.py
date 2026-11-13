@@ -143,6 +143,11 @@ def paso4_subir_codigo(revisar: bool, mensaje: str) -> bool:
         distintos = [r for r in archivos if _publicado(r) != (AQUI / r).read_bytes()]
         print(f"   se subirían {len(distintos)} archivo(s) distinto(s): {distintos or 'ninguno'}")
         return False
+    dockerfile = AQUI / "Dockerfile"
+    if b"\r\n" in dockerfile.read_bytes():
+        # git en Windows puede devolverlo con CRLF; los RUN los ejecuta Linux y el \r los rompe
+        dockerfile.write_bytes(dockerfile.read_bytes().replace(b"\r\n", b"\n"))
+        print("   Dockerfile pasado a finales de línea LF")
     antes = api.space_info(SPACE).sha
     api.upload_folder(repo_id=SPACE, repo_type="space", folder_path=AQUI,
                       ignore_patterns=NO_SUBIR, commit_message=mensaje)

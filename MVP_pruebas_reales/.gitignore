@@ -1,0 +1,5 @@
+.env
+historial.db
+__pycache__/
+*.pyc
+chroma_db/

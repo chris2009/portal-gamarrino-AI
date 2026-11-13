@@ -1,0 +1,153 @@
+# -*- coding: utf-8 -*-
+"""
+Interfaz para las pruebas con usuarios reales (MVP_pruebas_reales/).
+
+Es el mismo chat de MVP_Portal_Gamarrino/src/app.py (el agente v7 y la
+pregunta "¿Te sirvieron estas recomendaciones?" con 👍/👎 solo bajo
+respuestas con tiendas), mas lo necesario para abrirlo a probadores:
+
+- Contraseña de acceso (variable APP_PASSWORD): solo entran los probadores,
+  y nadie mas gasta la cuenta de OpenAI. Si no esta definida, no se pide.
+- Barra lateral con foto de Gamarra, que hace el agente, consultas de ejemplo
+  (un clic las envia al chat), aviso de privacidad y boton "Nuevo chat".
+- Sin burbuja de bienvenida: el agente no la ve (no esta en su memoria) y, si el
+  comprador escribe "hola...", saluda de nuevo y se veian dos presentaciones.
+  Lo que decia la bienvenida va en el subtitulo.
+
+Para correrlo: streamlit run src/app.py (desde la carpeta MVP_pruebas_reales)
+"""
+import hmac
+import os
+import uuid
+from pathlib import Path
+
+import streamlit as st
+from dotenv import load_dotenv
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
+FOTO = BASE_DIR / "assets" / "gamarra.jpg"
+
+st.set_page_config(
+    page_title="Portal Gamarrino AI",
+    page_icon="\U0001F6CD",
+    layout="centered",
+    initial_sidebar_state="expanded",
+)
+
+SUBTITULO = (
+    "Cuéntame qué prenda, disfraz o estilo buscas y te recomiendo 3 tiendas de Gamarra, "
+    "con su galería, piso y stand."
+)
+EJEMPLOS = ["Polos básicos", "Jeans para mujer", "Ropa deportiva para hombre", "Vestido de fiesta"]
+AVISO_PRIVACIDAD = (
+    "Esta es una prueba académica de la Maestría en Ciencia de Datos e IA de UTEC. "
+    "Tus mensajes, las respuestas y tus votos 👍/👎 se guardan sin tu nombre (en Supabase "
+    "y en LangSmith, la herramienta con la que analizamos el agente) para mejorarlo. "
+    "No escribas datos personales."
+)
+PREGUNTA_FEEDBACK = "**¿Te sirvieron estas recomendaciones?**"
+CONFIRMACION = {
+    1: ("¡Gracias! Registramos que estas recomendaciones te sirvieron.", "\U0001F44D"),
+    0: ("Gracias por avisarnos. Lo usaremos para mejorar las recomendaciones.", "\U0001F44E"),
+}
+
+
+# --- Acceso con contraseña -------------------------------------------------------
+def _acceso_permitido() -> bool:
+    clave = os.environ.get("APP_PASSWORD", "")
+    if not clave or st.session_state.get("acceso_ok"):
+        return True
+    st.title("Portal Gamarrino AI")
+    st.caption("Prueba con usuarios · ingresa la contraseña que te dio el equipo")
+    intento = st.text_input("Contraseña", type="password")
+    if intento:
+        if hmac.compare_digest(intento.encode("utf-8"), clave.encode("utf-8")):
+            st.session_state.acceso_ok = True
+            st.rerun()
+        st.error("Contraseña incorrecta.")
+    return False
+
+
+if not _acceso_permitido():
+    st.stop()
+
+# El agente se importa despues del acceso: carga los modelos de los guardrails (unos segundos la primera vez).
+with st.spinner("Preparando el asistente..."):
+    from agente import responder_detallado
+    from historial_db import guardar_feedback
+
+
+def _nueva_sesion() -> None:
+    st.session_state.session_id = str(uuid.uuid4())
+    st.session_state.historial = []        # lista de (rol, texto, interaccion_id, trajo_tiendas)
+    st.session_state.feedback_guardado = {}  # interaccion_id -> ultimo valor ya guardado
+
+
+if "session_id" not in st.session_state:
+    _nueva_sesion()
+
+
+# --- Barra lateral ---------------------------------------------------------------
+with st.sidebar:
+    if FOTO.exists():
+        st.image(str(FOTO), width="stretch")
+    st.markdown("### Portal Gamarrino AI")
+    st.caption("Tu asistente para encontrar tiendas en Gamarra")
+    st.markdown("**Dónde**  \nEmporio Comercial de Gamarra, La Victoria, Lima")
+    st.markdown(
+        "**Cómo funciona**  \nEscribe lo que buscas, como lo dirías en la calle. "
+        "Si hace falta, te pregunto si es para hombre o para mujer."
+    )
+    st.markdown("**Prueba con**")
+    for ejemplo in EJEMPLOS:
+        if st.button(ejemplo, key=f"ej_{ejemplo}", width="stretch"):
+            st.session_state.pendiente = ejemplo
+    st.divider()
+    if st.button("Nuevo chat", icon=":material/refresh:", width="stretch"):
+        _nueva_sesion()
+        st.rerun()
+    st.caption(AVISO_PRIVACIDAD)
+
+
+# --- Chat --------------------------------------------------------------------------
+st.title("Portal Gamarrino AI")
+st.caption(SUBTITULO)
+
+
+def _mostrar_feedback(interaccion_id: int) -> None:
+    st.markdown(PREGUNTA_FEEDBACK)
+    valor = st.feedback("thumbs", key=f"fb_{interaccion_id}")  # 1 = pulgar arriba, 0 = abajo
+    if valor is not None and st.session_state.feedback_guardado.get(interaccion_id) != valor:
+        guardar_feedback(interaccion_id, valor)
+        st.session_state.feedback_guardado[interaccion_id] = valor
+        st.toast("¡Gracias por tu opinión!", icon="✅")
+    if valor is not None:
+        texto, icono = CONFIRMACION[valor]
+        (st.success if valor == 1 else st.info)(texto, icon=icono)
+
+
+for rol, texto, interaccion_id, trajo_tiendas in st.session_state.historial:
+    with st.chat_message(rol):
+        st.markdown(texto)
+        if rol == "assistant" and trajo_tiendas:
+            _mostrar_feedback(interaccion_id)
+
+consulta = st.chat_input("Ej: busco un disfraz para Halloween de Vampiro en talla M")
+if not consulta:
+    consulta = st.session_state.pop("pendiente", None)  # clic en una consulta de ejemplo
+
+if consulta:
+    st.session_state.historial.append(("user", consulta, None, False))
+    with st.chat_message("user"):
+        st.markdown(consulta)
+
+    with st.chat_message("assistant"):
+        with st.spinner("Buscando en Gamarra..."):
+            respuesta, interaccion_id, trajo_tiendas = responder_detallado(
+                consulta, st.session_state.session_id
+            )
+        st.markdown(respuesta)
+        if trajo_tiendas:
+            _mostrar_feedback(interaccion_id)
+    st.session_state.historial.append(("assistant", respuesta, interaccion_id, trajo_tiendas))

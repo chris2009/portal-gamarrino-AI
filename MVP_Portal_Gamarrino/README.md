@@ -149,5 +149,6 @@ Decisión del 11-nov: la evaluación se reporta con el juez LLM y no se hará el
 - Persistencia: cada consulta + respuesta + feedback queda en `historial.db`.
 - Observabilidad: trazas a LangSmith si se activa la API key.
 - Interfaz: chat funcionando en `localhost:8501`.
+- Despliegue para pruebas con usuarios reales (12-nov): Hugging Face Spaces + Supabase, en `../MVP_pruebas_reales/` (todo documentado en su `DESPLIEGUE.md`). El agente se sigue editando y evaluando aquí; `MVP_pruebas_reales/publicar.py` lo copia y lo publica.
 - Evaluación vs. E5 (12-nov, v7, 378 consultas): 67,5 % con juez LLM provisional frente a 66,9 % de E5 (se cubre; v6 daba 67,2 % y v4 65,9 %); 323 pares siguen sin etiqueta humana y no se etiquetarán (decisión del 11-nov; ver sección Evaluación).
-- Pendiente: fotos de tienda (H4), autenticación, despliegue más allá de local.
+- Pendiente: fotos de tienda (H4), cuentas de usuario (el despliegue usa una contraseña compartida).

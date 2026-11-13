@@ -299,18 +299,19 @@ def _historial_reciente(config: dict, n_turnos: int = 4) -> str:
 
 
 def _turno_trajo_tiendas(mensajes: list) -> bool:
-    """True si en el turno actual (desde el ultimo mensaje del comprador)
-    buscar_tiendas devolvio tiendas, no uno de sus avisos (sin resultados
-    confiables / preguntar el genero).
+    """True si la respuesta final del turno actual (desde el ultimo mensaje del
+    comprador) nombra al menos una de las tiendas que devolvio buscar_tiendas en
+    ese turno. No basta con que una busqueda haya traido tiendas: el agente puede
+    buscar dos prendas a la vez, recibir tiendas en una y PREGUNTAR_GENERO en la
+    otra, y terminar solo preguntando el genero (pasaba en el despliegue, 12-nov).
     app.py lo usa para mostrar los botones de feedback solo bajo respuestas con
     recomendaciones (no bajo saludos, repreguntas ni bloqueos)."""
-    for m in reversed(mensajes):
-        if m.type == "human":
-            return False
-        if (m.type == "tool" and m.name == "buscar_tiendas"
-                and not str(m.content).startswith((AVISO_SIN_RESULTADOS, AVISO_PREGUNTAR_GENERO))):
-            return True
-    return False
+    inicio = max((i for i, m in enumerate(mensajes) if m.type == "human"), default=-1)
+    turno = mensajes[inicio + 1:]
+    nombres = [n for m in turno if m.type == "tool" and m.name == "buscar_tiendas"
+               for n in re.findall(r"^\d+\. (.+?) — ", str(m.content), flags=re.M)]
+    final = _normalizar(str(turno[-1].content)) if turno and turno[-1].type == "ai" else ""
+    return any(_normalizar(n) in final for n in nombres)
 
 
 def responder(mensaje: str, session_id: str) -> tuple[str, int]:

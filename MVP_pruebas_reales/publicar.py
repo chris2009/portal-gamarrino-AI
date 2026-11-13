@@ -13,6 +13,10 @@ Uso (desde la carpeta "Entregable 29-10"):
     MVP_Portal_Gamarrino/.venv/Scripts/python.exe MVP_pruebas_reales/publicar.py --chroma -m "..."
         Además sube chroma_db (las tiendas) al dataset privado y reconstruye el Space.
 
+    MVP_Portal_Gamarrino/.venv/Scripts/python.exe MVP_pruebas_reales/publicar.py --reconstruir
+        No sube nada: reconstruye el Space desde cero (Factory rebuild) y espera. Sirve
+        tras cambiar un secret que se usa al construir (HF_TOKEN). Tarda 4-5 min.
+
 Qué hace, en orden (explicado en DESPLIEGUE.md, sección 4):
 1. Trae agente.py y guardrails_mvp.py desde MVP_Portal_Gamarrino/src, que es donde se
    editan y se evalúan. Las copias de esta carpeta no se editan a mano.
@@ -185,10 +189,19 @@ def main() -> None:
     parser.add_argument("--chroma", action="store_true", help="sube también chroma_db al dataset privado")
     parser.add_argument("-m", "--mensaje", default="Actualización desde publicar.py",
                         help="descripción del cambio (queda en el historial del Space)")
+    parser.add_argument("--reconstruir", action="store_true",
+                        help="no sube nada: reconstruye el Space desde cero (tras cambiar HF_TOKEN)")
     args = parser.parse_args()
     if not get_token():
         sys.exit("No hay sesión de Hugging Face. Corre una vez:\n"
                  "  MVP_Portal_Gamarrino/.venv/Scripts/python.exe -m huggingface_hub.cli.hf auth login")
+
+    if args.reconstruir:
+        # Reiniciar no basta: HF_TOKEN solo se usa al construir. Factory rebuild = build sin caché.
+        api.restart_space(SPACE, factory_reboot=True)
+        print("Factory rebuild lanzado (sin caché: 4-5 min)")
+        paso5_esperar_build()
+        return
 
     paso1_traer_agente(args.revisar)
     paso2_revisar_version()

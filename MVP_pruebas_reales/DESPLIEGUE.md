@@ -16,6 +16,16 @@ se mantiene. Hecho el 12-nov-2026.
 | Trazas paso a paso | LangSmith, proyecto `portal-gamarrino-pruebas-reales` | Privado | Ver qué buscó el agente, qué recibió, tiempos y costo |
 | Código fuente | GitHub `portal-gamarrino-AI`, carpeta `MVP_pruebas_reales/` | Público | Historia del código (sin `.env` ni `chroma_db`) |
 
+**Qué enlace se comparte con los probadores: siempre el `.hf.space`.**
+
+| Enlace | Qué muestra | Para quién |
+|---|---|---|
+| `https://chris1803-portal-gamarrino-ai.hf.space` | Solo la app, a pantalla completa, sin nada de Hugging Face | **Probadores** (junto con la contraseña) |
+| `https://huggingface.co/spaces/Chris1803/portal-gamarrino-ai` | La app dentro de la página de Hugging Face: encabezado, pestañas *App / Files / Community / Settings*, botón *Logs*, y el código a un clic | El equipo, para administrar |
+
+El segundo deja ver el código y los archivos del Space; no tiene nada secreto, pero distrae y no
+es lo que debe ver un comprador.
+
 ```
                     ┌────────────────────── Hugging Face Space (Docker) ──────────────────────┐
  Probador ──HTTPS──▶│ Streamlit (src/app.py) ──▶ agente v7.1 (src/agente.py + guardrails)     │
@@ -167,6 +177,26 @@ MVP_Portal_Gamarrino/.venv/Scripts/python.exe MVP_pruebas_reales/publicar.py --c
 Sube `chroma_db` al dataset privado y reconstruye el Space. `chroma_db` nunca va a GitHub ni al
 Space público.
 
+### Caso D: cambiaste un secreto
+
+Los secretos se cambian en la web: *Settings → Variables and secrets → (el nombre) → Replace*.
+
+- `OPENAI_API_KEY`, `DATABASE_URL`, `APP_PASSWORD`, `LANGSMITH_*`: los usa la app **mientras corre**.
+  Al guardarlos, Hugging Face reinicia el Space solo; no hay que hacer nada más.
+- `HF_TOKEN`: solo se usa **al construir** (para bajar `chroma_db`). Un reinicio no lo prueba; hay
+  que reconstruir desde cero (*Factory rebuild*, botón en *Settings*, o por comando):
+
+```bash
+MVP_Portal_Gamarrino/.venv/Scripts/python.exe MVP_pruebas_reales/publicar.py --reconstruir
+```
+
+Por dentro es una llamada a la API de Hugging Face (la herramienta `hf` de la terminal no trae un
+comando para reiniciar Spaces):
+
+```bash
+MVP_Portal_Gamarrino/.venv/Scripts/python.exe -c "from huggingface_hub import HfApi; HfApi().restart_space('Chris1803/portal-gamarrino-ai', factory_reboot=True)"
+```
+
 ### Qué muestra `publicar.py`
 
 ```
@@ -197,7 +227,7 @@ nunca los valores).
 | `OPENAI_API_KEY` | Secret | Clave de OpenAI (agente, embeddings, clasificador de relevancia) |
 | `DATABASE_URL` | Secret | Conexión a Supabase: *Connect → Transaction pooler*, puerto 6543 |
 | `APP_PASSWORD` | Secret | Contraseña que se da a los probadores |
-| `HF_TOKEN` | Secret | Token de Hugging Face para bajar el dataset privado en el build |
+| `HF_TOKEN` | Secret | Token **de solo lectura** (`space-gamarrino-lectura-chroma`) para bajar el dataset privado en el build. No es el token de la PC, que sí escribe (lo usa `publicar.py`) |
 | `LANGSMITH_API_KEY` | Secret | Clave de LangSmith |
 | `LANGSMITH_TRACING` | Variable | `true` |
 | `LANGSMITH_PROJECT` | Variable | `portal-gamarrino-pruebas-reales` (aparte de las trazas de desarrollo) |
@@ -294,6 +324,12 @@ Todo el 12-nov-2026.
     lo dice.
 11. **`publicar.py` y este documento**, para que publicar sea un solo comando y no dependa de
     recordar pasos.
+12. **13-nov: `HF_TOKEN` de solo lectura.** Al crear el Space se había puesto en `HF_TOKEN` el token
+    principal de la cuenta (con permiso de escritura sobre todo), cuando el Space solo necesita leer
+    el dataset. Se creó el token `space-gamarrino-lectura-chroma` (*Access Tokens → Create new token
+    → Fine-grained*, preset *Custom* o *Read-Only*: la pantalla ya no muestra la lista de permisos
+    directamente) y se reemplazó el secret. Verificado con `publicar.py --reconstruir`: el build bajó
+    `chroma_db` con el token nuevo y la app quedó en línea.
 
 ---
 
@@ -303,7 +339,7 @@ Todo el 12-nov-2026.
 |---|---|---|
 | Hugging Face | PRO | 9 USD/mes (cubre el Space en CPU basic: 2 vCPU, 16 GB) |
 | Supabase | Gratis | 0 (se pausa tras 7 días sin actividad; se reactiva con un clic) |
-| OpenAI | Pago por uso | Cada consulta usa `gpt-4o-mini` + embeddings: centavos por conversación |
+| OpenAI | Crédito prepagado (10 USD) | Cada consulta usa `gpt-4o-mini` + embeddings: centavos por conversación. El crédito es el tope: si se agota, el agente deja de responder hasta recargar |
 | LangSmith | El que ya se usaba en desarrollo | — |
 
 ---
@@ -311,12 +347,6 @@ Todo el 12-nov-2026.
 ## 10. Pendientes y al terminar las pruebas
 
 **Pendientes:**
-- Cambiar el secret `HF_TOKEN` del Space por un token **de solo lectura** del dataset (hoy es el
-  token de escritura con el que se inició sesión; además estuvo en un archivo de texto plano).
-  En huggingface.co: *Settings → Access Tokens → Create new token → Fine-grained* → *Read access to
-  contents of selected repos* → `Chris1803/portal-gamarrino-chroma`; pegarlo en el secret
-  `HF_TOKEN` del Space.
-- Poner un límite de gasto en OpenAI (*Settings → Limits*) antes de compartir el enlace.
 - Confirmar con Portal Gamarrino que se pueden mostrar los WhatsApp de las tiendas a probadores.
 - Confirmar el origen y los derechos de `assets/gamarra.jpg`.
 

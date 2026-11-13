@@ -28,7 +28,7 @@ es lo que debe ver un comprador.
 
 ```
                     ┌────────────────────── Hugging Face Space (Docker) ──────────────────────┐
- Probador ──HTTPS──▶│ Streamlit (src/app.py) ──▶ agente v7.1 (src/agente.py + guardrails)     │
+ Probador ──HTTPS──▶│ Streamlit (src/app.py) ──▶ agente v7.2 (src/agente.py + guardrails)     │
  (navegador)        │        │                        │             │                          │
                     └────────┼────────────────────────┼─────────────┼──────────────────────────┘
                              │                        │             │
@@ -268,7 +268,7 @@ from gamarrino_feedback f join gamarrino_interacciones i on i.id = f.interaccion
 group by 1 order by 1;
 ```
 
-Las filas `v7` (ids 2–4) son la primera prueba propia, del 12-nov; las de probadores salen como `v7.1`.
+Las filas `v7` (ids 2–4) son la primera prueba propia, del 12-nov; después vienen `v7.1` (12–13-nov) y `v7.2` (desde el 13-nov, con la regla de réplicas y los mapas corregidos).
 
 **LangSmith**: proyecto `portal-gamarrino-pruebas-reales` → cada conversación con sus búsquedas
 (`buscar_tiendas`), lo que devolvieron, la respuesta, tiempos y tokens.
@@ -330,6 +330,15 @@ Todo el 12-nov-2026.
     → Fine-grained*, preset *Custom* o *Read-Only*: la pantalla ya no muestra la lista de permisos
     directamente) y se reemplazó el secret. Verificado con `publicar.py --reconstruir`: el build bajó
     `chroma_db` con el token nuevo y la app quedó en línea.
+13. **13-nov: v7.2, réplicas y mapas** (reportes de un probador real):
+    - Pidió «quiero polos lacoste replicas» y el agente mostró tiendas «que podrían tener réplicas».
+      El riesgo solo estaba anotado en el Agent Profile Card; ninguna regla lo cubría (el MVP local
+      respondía igual). Ahora el código responde que no recomienda réplicas ni imitaciones y ofrece
+      buscar la prenda sin la marca (`_RE_PIDE_REPLICA` en `agente.py`). El examen frente a E5 no
+      cambia: su única consulta así («Polos réplica a1») ya contaba como fallo con el juez.
+    - Los enlaces «Ver en mapa» de las tiendas en «Humboldt 1521» abrían Huancayo: ninguno de los 438
+      enlaces del catálogo traía distrito ni ciudad. `_url_mapa` les agrega «, La Victoria, Lima, Perú».
+    - Ambos se corrigieron en el MVP y se publicaron con `publicar.py` como `VERSION_AGENTE = "v7.2"`.
 
 ---
 

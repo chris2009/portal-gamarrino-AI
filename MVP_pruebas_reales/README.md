@@ -18,8 +18,9 @@ en Ciencia de Datos e IA de UTEC (Equipo 7).
 Esta carpeta es la versión publicada en Hugging Face Spaces para que la usen compradores reales.
 El agente es el mismo que se evaluó frente al buscador de E5 (67,5 % de Hit Rate@3 con juez LLM):
 `src/agente.py` y `src/guardrails_mvp.py` son copias idénticas de `MVP_Portal_Gamarrino/src/`.
-En el registro las respuestas quedan como `v7.1`: mismas recomendaciones que v7; solo corrige
-cuándo se muestran los botones de feedback.
+En el registro las respuestas quedan como `v7.2`: v7 más tres correcciones encontradas con
+probadores (feedback solo bajo respuestas con tiendas, rechazo de réplicas, enlaces de mapa con
+La Victoria, Lima); el 67,5 % no cambia.
 
 - App: https://chris1803-portal-gamarrino-ai.hf.space (pide contraseña)
 - Conversaciones y votos: Supabase · Trazas: LangSmith · Tiendas (`chroma_db`): dataset privado

@@ -198,7 +198,7 @@ def buscar_tiendas(consulta: str, runtime: ToolRuntime) -> str:
             f"{i}. {m['display_name']} — {m['categories']} / {m['subcategory']}\n"
             f"   Ubicacion: {m['gallery']}, piso {m['floor']}, stand {m['stand']}\n"
             f"   WhatsApp: {whatsapp}\n"
-            f"   Mapa: {m.get('google_maps_url', 'no disponible')}"
+            f"   Mapa: {_url_mapa(m.get('google_maps_url'))}"
         )
     return "\n".join(partes)
 
@@ -298,6 +298,36 @@ def _historial_reciente(config: dict, n_turnos: int = 4) -> str:
     return "\n".join(lineas)
 
 
+# Replicas: el Agent Profile Card listaba como riesgo etico "posible recomendacion
+# de replicas no confirmadas", pero ninguna regla lo cubria y el agente las
+# recomendaba ("quiero polos lacoste replicas", probador real, 13-nov-2026). Lo
+# decide el codigo, no el LLM (como el filtro de genero). Va aqui abajo para no
+# mover las lineas que cita la documentacion.
+_RE_PIDE_REPLICA = re.compile(
+    r"\b(replicas?|bambas?|falsificad[oa]s?|(imitacion|imitaciones|copias?|clones?) de marcas?)\b"
+)
+RESPUESTA_REPLICAS = (
+    "No recomiendo réplicas ni imitaciones de marcas: no puedo verificar qué es original. "
+    "Si quieres, te busco la prenda sin la marca: dime qué es y el estilo que buscas "
+    "(por ejemplo, «polo piqué para hombre» en vez de «polo Lacoste réplica»)."
+)
+
+
+def _url_mapa(url: str | None) -> str:
+    """Enlace de Google Maps con distrito y ciudad. En el catalogo, ninguno de los
+    438 enlaces trae la ciudad: buscan solo la calle ("Jr Humboldt 1521") y Google la ubicaba en otra
+    ciudad (un probador vio Huancayo, 13-nov-2026). Se agrega ", La Victoria, Lima,
+    Peru" si falta ", Lima" ("Galeria Victoria" es un nombre, no el distrito);
+    chroma_db no se toca. Va aqui abajo (y no junto a buscar_tiendas) para no
+    mover las lineas que cita la documentacion."""
+    from urllib.parse import quote, unquote
+    if not url:
+        return "no disponible"
+    if ", lima" in unquote(url).lower():
+        return url
+    return url + quote(", La Victoria, Lima, Perú")
+
+
 def _turno_trajo_tiendas(mensajes: list) -> bool:
     """True si la respuesta final del turno actual (desde el ultimo mensaje del
     comprador) nombra al menos una de las tiendas que devolvio buscar_tiendas en
@@ -341,6 +371,16 @@ def responder_detallado(mensaje: str, session_id: str) -> tuple[str, int, bool]:
         texto = str(e)
         interaccion_id = guardar_interaccion(session_id, mensaje, texto)
         return texto, interaccion_id, False
+
+    if _RE_PIDE_REPLICA.search(_normalizar(mensaje)):
+        # no se busca; el turno queda en la memoria para que un "ok, sin la marca"
+        # siguiente tenga contexto
+        agente.update_state(config, {"messages": [
+            {"role": "user", "content": mensaje},
+            {"role": "assistant", "content": RESPUESTA_REPLICAS},
+        ]})
+        interaccion_id = guardar_interaccion(session_id, mensaje, RESPUESTA_REPLICAS)
+        return RESPUESTA_REPLICAS, interaccion_id, False
 
     salida = agente.invoke({"messages": [{"role": "user", "content": mensaje}]}, config=config)
     respuesta = salida["messages"][-1].content

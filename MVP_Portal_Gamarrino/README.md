@@ -145,7 +145,8 @@ Decisión del 11-nov: la evaluación se reporta con el juez LLM y no se hará el
 
 - Catálogo: 438 tiendas indexadas en ChromaDB.
 - Búsqueda: busca primero (pregunta solo si no se nombra ningún producto, o el género si al menos 2 de las 3 tiendas encontradas venden solo para hombre o solo para mujer y el comprador no dijo para quién es; esto último lo decide el código, no el LLM); una vez dicho el género, solo muestra tiendas de ese género o para ambos (también lo hace el código: `_buscar`), filtra por umbral de relevancia, corrige typos y, si nada supera el umbral, reintenta con una consulta más amplia (hasta 3 búsquedas).
-- Guardrails: seguridad + relevancia activos en entrada; PII activo en salida; moderación pendiente. Alcance: el prompt le prohíbe hacer otras tareas (exámenes, traducciones, textos, código) aunque el mensaje mencione ropa; en un mensaje mezclado atiende solo la prenda.
+- Guardrails: seguridad + relevancia activos en entrada; PII activo en salida; moderación pendiente. Alcance: el prompt le prohíbe hacer otras tareas (exámenes, traducciones, textos, código) aunque el mensaje mencione ropa; en un mensaje mezclado atiende solo la prenda. Réplicas (13-nov): si piden réplicas, imitaciones o «bamba», el código (no el LLM) responde que no las recomienda y ofrece buscar la prenda sin la marca.
+- Mapas (13-nov): los enlaces de Google Maps se completan con «La Victoria, Lima, Perú»; el catálogo solo trae la calle y Google ubicaba algunas tiendas en otra ciudad (un probador vio Huancayo).
 - Persistencia: cada consulta + respuesta + feedback queda en `historial.db`.
 - Observabilidad: trazas a LangSmith si se activa la API key.
 - Interfaz: chat funcionando en `localhost:8501`.

@@ -223,7 +223,7 @@
             <ul>
               <li>Recuperación semántica imprecisa: Hit Rate@3 ponderado de 66,9% (IC 95% [61,9%–71,4%]) — 1 de cada 3 consultas no encuentra tienda relevante en el top-3, peor en consultas con marca/talla/precio explícito (20,0% de acierto).</li>
               <li>Catálogo desactualizado si una tienda cierra o cambia de stand y no se reindexa.</li>
-              <li>Riesgo ético ya identificado en el Model Card de E5: posible recomendación de réplicas no confirmadas (no hay forma de validar legalidad del producto desde el catálogo).</li>
+              <li>Riesgo ético identificado en el Model Card de E5: recomendación de réplicas. Mitigado el 13-nov: si el comprador pide réplicas, imitaciones o «bamba», el código responde que no las recomienda y ofrece buscar la prenda sin la marca. Sigue sin haber forma de validar desde el catálogo qué vende cada tienda.</li>
               <li>DetectJailbreak no detecta ataques de jailbreak en español (verificado: 0 de 2 intentos en español detectados por esa capa específica; sí los frenó la capa de relevancia, pero como efecto colateral; desde el 31-oct-2026 un filtro determinista de patrones ES/EN cubre además los ataques que mezclan una prenda con la orden — es heurístico, no una garantía).</li>
             </ul>
           </article>

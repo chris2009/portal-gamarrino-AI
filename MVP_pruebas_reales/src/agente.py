@@ -313,6 +313,27 @@ RESPUESTA_REPLICAS = (
 )
 
 
+# Frases de relleno al final de la respuesta. La regla 9 del SYSTEM_PROMPT las
+# prohibe, pero el LLM la ignora: en las pruebas reales del 12 al 17-nov, 30 de 32
+# respuestas con tiendas terminaban en "¡Espero que encuentres lo que buscas!".
+# Se quitan por codigo. La invitacion a afinar ("Si necesitas algo mas...") se
+# deja: la misma regla 9 la permite.
+_CIERRES_RELLENO = ("espero que", "suerte", "buena suerte", "éxito", "exito", "disfruta",
+                    "que tengas", "feliz compra")
+
+
+def _quitar_cierre(texto: str) -> str:
+    """Quita las frases de relleno de la ultima linea (el parrafo de cierre),
+    esten al final o antes de la invitacion a afinar. Solo mira la ultima
+    linea, asi que nunca toca una tienda; si no quedara nada, devuelve el texto
+    tal cual."""
+    lineas = texto.rstrip().split("\n")
+    frases = re.split(r"(?<=[.!?])\s+", lineas[-1].strip())
+    lineas[-1] = " ".join(f for f in frases if not f.lstrip("¡¿* ").lower().startswith(_CIERRES_RELLENO))
+    limpio = "\n".join(lineas).rstrip()
+    return limpio or texto
+
+
 def _url_mapa(url: str | None) -> str:
     """Enlace de Google Maps con distrito y ciudad. En el catalogo, ninguno de los
     438 enlaces trae la ciudad: buscan solo la calle ("Jr Humboldt 1521") y Google la ubicaba en otra
@@ -384,7 +405,7 @@ def responder_detallado(mensaje: str, session_id: str) -> tuple[str, int, bool]:
 
     salida = agente.invoke({"messages": [{"role": "user", "content": mensaje}]}, config=config)
     respuesta = salida["messages"][-1].content
-    texto = limpiar_salida(respuesta)
+    texto = _quitar_cierre(limpiar_salida(respuesta))
     interaccion_id = guardar_interaccion(session_id, mensaje, texto)
     return texto, interaccion_id, _turno_trajo_tiendas(salida["messages"])
 

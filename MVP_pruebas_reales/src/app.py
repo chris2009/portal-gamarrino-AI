@@ -13,6 +13,10 @@ respuestas con tiendas), mas lo necesario para abrirlo a probadores:
 - Sin burbuja de bienvenida: el agente no la ve (no esta en su memoria) y, si el
   comprador escribe "hola...", saluda de nuevo y se veian dos presentaciones.
   Lo que decia la bienvenida va en el subtitulo.
+- Mientras el agente responde, botones y caja de texto quedan desactivados: en
+  las pruebas reales del 13 y 14-nov, volver a hacer clic en un ejemplo durante
+  la espera (~7 s) cortaba la respuesta y mandaba la misma consulta otra vez
+  (hasta 3 veces en 5 segundos).
 
 Para correrlo: streamlit run src/app.py (desde la carpeta MVP_pruebas_reales)
 """
@@ -87,6 +91,21 @@ def _nueva_sesion() -> None:
 if "session_id" not in st.session_state:
     _nueva_sesion()
 
+# Mientras el agente responde, la interfaz queda bloqueada (ver docstring).
+st.session_state.setdefault("procesando", False)
+if st.session_state.procesando and "pendiente" not in st.session_state:
+    st.session_state.procesando = False  # una corrida anterior se corto a medias: desbloquear
+
+
+def _enviar(texto: str | None = None) -> None:
+    """Callback de los botones de ejemplo (texto) y de la caja de texto (lee
+    "entrada"). Corre ANTES de que Streamlit vuelva a dibujar la pagina, asi la
+    corrida que responde ya dibuja todo desactivado."""
+    texto = texto if texto is not None else st.session_state.get("entrada")
+    if texto and not st.session_state.procesando:
+        st.session_state.pendiente = texto
+        st.session_state.procesando = True
+
 
 # --- Barra lateral ---------------------------------------------------------------
 with st.sidebar:
@@ -101,10 +120,11 @@ with st.sidebar:
     )
     st.markdown("**Prueba con**")
     for ejemplo in EJEMPLOS:
-        if st.button(ejemplo, key=f"ej_{ejemplo}", width="stretch"):
-            st.session_state.pendiente = ejemplo
+        st.button(ejemplo, key=f"ej_{ejemplo}", width="stretch", disabled=st.session_state.procesando,
+                  on_click=_enviar, args=(ejemplo,))
     st.divider()
-    if st.button("Nuevo chat", icon=":material/refresh:", width="stretch"):
+    if st.button("Nuevo chat", icon=":material/refresh:", width="stretch",
+                 disabled=st.session_state.procesando):
         _nueva_sesion()
         st.rerun()
     st.caption(AVISO_PRIVACIDAD)
@@ -133,9 +153,9 @@ for rol, texto, interaccion_id, trajo_tiendas in st.session_state.historial:
         if rol == "assistant" and trajo_tiendas:
             _mostrar_feedback(interaccion_id)
 
-consulta = st.chat_input("Ej: busco un disfraz para Halloween de Vampiro en talla M")
-if not consulta:
-    consulta = st.session_state.pop("pendiente", None)  # clic en una consulta de ejemplo
+st.chat_input("Ej: busco un disfraz para Halloween de Vampiro en talla M", key="entrada",
+              on_submit=_enviar, disabled=st.session_state.procesando)
+consulta = st.session_state.pop("pendiente", None)  # la dejo _enviar (caja de texto o ejemplo)
 
 if consulta:
     st.session_state.historial.append(("user", consulta, None, False))
@@ -144,10 +164,13 @@ if consulta:
 
     with st.chat_message("assistant"):
         with st.spinner("Buscando en Gamarra..."):
-            respuesta, interaccion_id, trajo_tiendas = responder_detallado(
-                consulta, st.session_state.session_id
-            )
-        st.markdown(respuesta)
-        if trajo_tiendas:
-            _mostrar_feedback(interaccion_id)
-    st.session_state.historial.append(("assistant", respuesta, interaccion_id, trajo_tiendas))
+            try:
+                respuesta, interaccion_id, trajo_tiendas = responder_detallado(
+                    consulta, st.session_state.session_id
+                )
+                # al historial antes de dibujar nada: si un clic (p. ej. un voto) corta
+                # esta corrida, la respuesta igual aparece en la siguiente
+                st.session_state.historial.append(("assistant", respuesta, interaccion_id, trajo_tiendas))
+            finally:
+                st.session_state.procesando = False
+    st.rerun()  # redibuja desde el historial (respuesta + feedback) con todo reactivado

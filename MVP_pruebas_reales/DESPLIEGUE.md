@@ -28,7 +28,7 @@ es lo que debe ver un comprador.
 
 ```
                     ┌────────────────────── Hugging Face Space (Docker) ──────────────────────┐
- Probador ──HTTPS──▶│ Streamlit (src/app.py) ──▶ agente v7.2 (src/agente.py + guardrails)     │
+ Probador ──HTTPS──▶│ Streamlit (src/app.py) ──▶ agente v7.3 (src/agente.py + guardrails)     │
  (navegador)        │        │                        │             │                          │
                     └────────┼────────────────────────┼─────────────┼──────────────────────────┘
                              │                        │             │
@@ -83,7 +83,7 @@ subir, así nunca se desincronizan.
 |---|---|---|
 | `src/agente.py`, `src/guardrails_mvp.py` | Idénticos | Lo que prueban los usuarios es lo que se evaluó |
 | `src/historial_db.py` | Guarda en Supabase si existe `DATABASE_URL` (si no, en `historial.db` como el MVP); anota `VERSION_AGENTE` en cada respuesta | El disco del Space se borra en cada reinicio |
-| `src/app.py` | Contraseña, barra lateral (foto, cómo funciona, 4 ejemplos, "Nuevo chat", aviso de privacidad); sin burbuja de bienvenida | Abrirlo a desconocidos sin que gasten la cuenta de OpenAI, y que se entienda sin explicación |
+| `src/app.py` | Contraseña, barra lateral (foto, cómo funciona, 4 ejemplos, "Nuevo chat", aviso de privacidad); sin burbuja de bienvenida; botones y caja de texto desactivados mientras el agente responde | Abrirlo a desconocidos sin que gasten la cuenta de OpenAI, y que se entienda sin explicación |
 | `Dockerfile`, `requirements.txt` | Nuevos | Receta de la imagen, con las mismas versiones del `.venv` evaluado |
 | `src/descargar_chroma.py` | Nuevo | Baja `chroma_db` del dataset privado durante el build |
 | `src/precargar_modelos.py` | Nuevo | Baja los modelos de los guardrails durante el build, no con el primer usuario |
@@ -268,7 +268,7 @@ from gamarrino_feedback f join gamarrino_interacciones i on i.id = f.interaccion
 group by 1 order by 1;
 ```
 
-Las filas `v7` (ids 2–4) son la primera prueba propia, del 12-nov; después vienen `v7.1` (12–13-nov) y `v7.2` (desde el 13-nov, con la regla de réplicas y los mapas corregidos).
+Las filas `v7` (ids 2–4) son la primera prueba propia, del 12-nov; después vienen `v7.1` (12–13-nov) `v7.2` (13 al 17-nov, con la regla de réplicas y los mapas corregidos) y `v7.3` (desde el 17-nov, sin frases de relleno al cierre).
 
 **LangSmith**: proyecto `portal-gamarrino-pruebas-reales` → cada conversación con sus búsquedas
 (`buscar_tiendas`), lo que devolvieron, la respuesta, tiempos y tokens.
@@ -339,6 +339,16 @@ Todo el 12-nov-2026.
     - Los enlaces «Ver en mapa» de las tiendas en «Humboldt 1521» abrían Huancayo: ninguno de los 438
       enlaces del catálogo traía distrito ni ciudad. `_url_mapa` les agrega «, La Victoria, Lima, Perú».
     - Ambos se corrigieron en el MVP y se publicaron con `publicar.py` como `VERSION_AGENTE = "v7.2"`.
+14. **17-nov: revisión de las primeras pruebas y v7.3.** 42 mensajes en 16 conversaciones (12 al 17-nov); 32 respuestas con tiendas; 6 preguntas de género, todas contestadas y seguidas de tiendas; 10 votos, todos 👍 (con tan pocos, IC 95 % de 72 % a 100 %; parte de las sesiones son del propio equipo); 0 errores; tiempo de respuesta mediana 6,7 s (p90 9,6 s); costo en OpenAI de unos US$ 0,03 en total. Se corrigieron dos cosas:
+    - **Frase de relleno al cierre**: 30 de 32 respuestas con tiendas terminaban en «¡Espero que
+      encuentres lo que buscas!», aunque la regla 9 del prompt lo prohíbe. `_quitar_cierre`
+      (`agente.py`) la quita por código; validado sobre 322 respuestas reales y del examen.
+    - **Mensajes repetidos**: en dos conversaciones la misma consulta se mandó 2 y 3 veces en 1–5 s
+      (clics repetidos en un ejemplo mientras el agente respondía; cada clic cortaba la respuesta y
+      lanzaba otra). Ahora `app.py` desactiva botones y caja de texto mientras responde.
+    - Hallazgo, no error: 8 de 42 mensajes piden talla, precio o color («talla XL roja de 20
+      soles»), datos que el catálogo no tiene; el agente responde con honestidad que no puede
+      confirmarlo. Es lo siguiente que piden los usuarios.
 
 ---
 

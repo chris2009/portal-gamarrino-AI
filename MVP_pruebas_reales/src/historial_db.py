@@ -41,7 +41,7 @@ USA_SUPABASE = bool(DATABASE_URL)
 RUTA_SQLITE = os.path.join(BASE_DIR, "historial.db")
 
 # Version del agente que produjo cada respuesta (la evaluada frente a E5).
-VERSION_AGENTE = "v7.2"  # v7.1 + rechaza réplicas y mapas con La Victoria, Lima (13-nov)
+VERSION_AGENTE = "v7.3"  # v7.2 + sin frases de relleno al cierre (17-nov)
 
 T_INTERACCIONES = "gamarrino_interacciones" if USA_SUPABASE else "interacciones"
 T_FEEDBACK = "gamarrino_feedback" if USA_SUPABASE else "feedback"

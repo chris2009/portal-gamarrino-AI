@@ -68,21 +68,21 @@ Entregable 29-10/                          (repo de GitHub)
   en `MVP_pruebas_reales`, los probadores usarían un agente que nadie evaluó y el 67,5 % de la
   defensa ya no lo describiría.
 - **¿Vas a cambiar la página pública?** (textos, foto, ejemplos, contraseña, base de datos):
-  se edita en `MVP_pruebas_reales/`. El MVP no se toca.
+  se edita en `MVP_pruebas_reales/`. `MVP_Portal_Gamarrino` no se toca.
 - **`MVP_Portal_Gamarrino` no desaparece ni queda viejo**: sigue siendo la versión evaluada, la que
   corres en local para desarrollar y la que se presenta en la defensa. `MVP_pruebas_reales` solo
   la envuelve para internet.
 
 Las copias del agente en `MVP_pruebas_reales/src/` existen para poder probar la vitrina en la PC
-y para que Hugging Face las reciba; `publicar.py` las reemplaza siempre por las del MVP antes de
+y para que Hugging Face las reciba; `publicar.py` las reemplaza siempre por las de `MVP_Portal_Gamarrino` antes de
 subir, así nunca se desincronizan.
 
-### Qué cambia la vitrina frente al MVP
+### Qué cambia la vitrina frente a `MVP_Portal_Gamarrino`
 
-| Archivo | Frente al MVP | Por qué |
+| Archivo | Frente a `MVP_Portal_Gamarrino` | Por qué |
 |---|---|---|
 | `src/agente.py`, `src/guardrails_mvp.py` | Idénticos | Lo que prueban los usuarios es lo que se evaluó |
-| `src/historial_db.py` | Guarda en Supabase si existe `DATABASE_URL` (si no, en `historial.db` como el MVP); anota `VERSION_AGENTE` en cada respuesta | El disco del Space se borra en cada reinicio |
+| `src/historial_db.py` | Guarda en Supabase si existe `DATABASE_URL` (si no, en `historial.db`, como en `MVP_Portal_Gamarrino`); anota `VERSION_AGENTE` en cada respuesta | El disco del Space se borra en cada reinicio |
 | `src/app.py` | Contraseña, barra lateral (foto, cómo funciona, 4 ejemplos, "Nuevo chat", aviso de privacidad); sin burbuja de bienvenida; botones y caja de texto desactivados mientras el agente responde; encabezado (título y subtítulo) fijo arriba al desplazar el chat | Abrirlo a desconocidos sin que gasten la cuenta de OpenAI, y que se entienda sin explicación |
 | `Dockerfile`, `requirements.txt` | Nuevos | Receta de la imagen, con las mismas versiones del `.venv` evaluado |
 | `src/descargar_chroma.py` | Nuevo | Baja `chroma_db` del dataset privado durante el build |
@@ -125,7 +125,7 @@ streamlit run src/app.py --server.port=8501 --server.address=0.0.0.0 --server.he
 ```
 
 Al entrar un probador con la contraseña correcta, `app.py` importa el agente (carga los modelos
-desde la imagen, unos segundos) y desde ahí cada mensaje sigue el mismo camino que en el MVP.
+desde la imagen, unos segundos) y desde ahí cada mensaje sigue el mismo camino que en `MVP_Portal_Gamarrino`.
 
 ### 3.3 Dónde ver lo que pasa
 
@@ -139,7 +139,7 @@ desde la imagen, unos segundos) y desde ahí cada mensaje sigue el mismo camino 
 
 ## 4. Cómo se publica un cambio
 
-Todos los comandos se corren en la PC, desde la carpeta `Entregable 29-10`, con el `.venv` del MVP
+Todos los comandos se corren en la PC, desde la carpeta `Entregable 29-10`, con el `.venv` de `MVP_Portal_Gamarrino`
 (no hace falta otro entorno). La sesión de Hugging Face ya quedó iniciada en la PC; si algún día
 se pierde: `MVP_Portal_Gamarrino/.venv/Scripts/python.exe -m huggingface_hub.cli.hf auth login`.
 
@@ -156,7 +156,7 @@ MVP_Portal_Gamarrino/.venv/Scripts/python.exe MVP_pruebas_reales/publicar.py -m 
 git add MVP_Portal_Gamarrino MVP_pruebas_reales && git commit -m "v7.2: qué cambió" && git push
 ```
 
-`publicar.py` copia solo el agente del MVP a la vitrina; si olvidaste el paso 3, se detiene y lo pide.
+`publicar.py` copia solo el agente de `MVP_Portal_Gamarrino` a la vitrina; si olvidaste el paso 3, se detiene y lo pide.
 
 ### Caso B: cambiaste la página pública
 
@@ -168,7 +168,7 @@ MVP_Portal_Gamarrino/.venv/Scripts/python.exe MVP_pruebas_reales/publicar.py -m 
 git add MVP_pruebas_reales && git commit -m "interfaz: qué cambió" && git push
 ```
 
-### Caso C: cambiaron las tiendas (se reindexó `chroma_db` en el MVP)
+### Caso C: cambiaron las tiendas (se reindexó `chroma_db` en `MVP_Portal_Gamarrino`)
 
 ```bash
 MVP_Portal_Gamarrino/.venv/Scripts/python.exe MVP_pruebas_reales/publicar.py --chroma -m "tiendas actualizadas"
@@ -281,7 +281,7 @@ Todo el 12-nov-2026.
 
 1. **Elección de plataforma.** Vercel no sirve (es para páginas web y funciones cortas; el agente
    es un proceso Python que carga ~2,6 GB de modelos). Se eligió Hugging Face Spaces (Docker) +
-   Supabase (ya había cuenta). Se creó esta carpeta para no tocar el MVP evaluado.
+   Supabase (ya había cuenta). Se creó esta carpeta para no tocar el prototipo evaluado.
 2. **Supabase.** Proyecto `agente_gamarrino`, región Americas. *Data API* desactivada y *Automatically
    expose new tables* desactivado (la app se conecta directo a Postgres; así nadie puede leer las
    tablas por la API pública); *automatic RLS* activado. Primer intento de conexión: `password
@@ -317,7 +317,7 @@ Todo el 12-nov-2026.
      por hecho que hubo recomendación si *alguna* búsqueda del turno trajo tiendas; el agente puede
      buscar dos prendas a la vez y recibir tiendas en una y la pregunta de género en otra. Ahora
      el feedback sale solo si la respuesta **nombra** una tienda encontrada (`_turno_trajo_tiendas`
-     en `agente.py`). El error también estaba en el MVP: se corrigió allí y se copió. No cambia
+     en `agente.py`). El error también estaba en `MVP_Portal_Gamarrino`: se corrigió allí y se copió. No cambia
      recomendaciones ni la evaluación (el notebook no usa ese valor). Desde aquí, `VERSION_AGENTE = "v7.1"`.
 10. **LangSmith.** Se había dejado apagado en el Space para no mandar los mensajes de los
     probadores a otro servicio; se activó con un proyecto aparte y el aviso de privacidad de la app
@@ -332,13 +332,13 @@ Todo el 12-nov-2026.
     `chroma_db` con el token nuevo y la app quedó en línea.
 13. **13-nov: v7.2, réplicas y mapas** (reportes de un probador real):
     - Pidió «quiero polos lacoste replicas» y el agente mostró tiendas «que podrían tener réplicas».
-      El riesgo solo estaba anotado en el Agent Profile Card; ninguna regla lo cubría (el MVP local
+      El riesgo solo estaba anotado en el Agent Profile Card; ninguna regla lo cubría (el prototipo local
       respondía igual). Ahora el código responde que no recomienda réplicas ni imitaciones y ofrece
       buscar la prenda sin la marca (`_RE_PIDE_REPLICA` en `agente.py`). El examen frente a E5 no
       cambia: su única consulta así («Polos réplica a1») ya contaba como fallo con el juez.
     - Los enlaces «Ver en mapa» de las tiendas en «Humboldt 1521» abrían Huancayo: ninguno de los 438
       enlaces del catálogo traía distrito ni ciudad. `_url_mapa` les agrega «, La Victoria, Lima, Perú».
-    - Ambos se corrigieron en el MVP y se publicaron con `publicar.py` como `VERSION_AGENTE = "v7.2"`.
+    - Ambos se corrigieron en `MVP_Portal_Gamarrino` y se publicaron con `publicar.py` como `VERSION_AGENTE = "v7.2"`.
 14. **17-nov: revisión de las primeras pruebas y v7.3.** 42 mensajes en 16 conversaciones (12 al 17-nov); 32 respuestas con tiendas; 6 preguntas de género, todas contestadas y seguidas de tiendas; 10 votos, todos 👍 (con tan pocos, IC 95 % de 72 % a 100 %; parte de las sesiones son del propio equipo); 0 errores; tiempo de respuesta mediana 6,7 s (p90 9,6 s); costo en OpenAI de unos US$ 0,03 en total. Se corrigieron dos cosas:
     - **Frase de relleno al cierre**: 30 de 32 respuestas con tiendas terminaban en «¡Espero que
       encuentres lo que buscas!», aunque la regla 9 del prompt lo prohíbe. `_quitar_cierre`

@@ -1,4 +1,4 @@
-# Portal Gamarrino AI — MVP: arquitectura y tecnologías
+# Portal Gamarrino AI — Prototipo: arquitectura y tecnologías
 
 *Documenta el prototipo real en `MVP_Portal_Gamarrino/`, construido sobre los resultados de la evaluación offline de E5 (`Muestra_378_Evaluacion/`, dentro de este mismo repo).*
 
@@ -17,7 +17,7 @@ Un comprador escribe en lenguaje natural qué prenda busca. El agente:
 
 | Pieza | Tecnología | Versión instalada | Para qué se usa aquí |
 |---|---|---|---|
-| Lenguaje | Python | 3.14 | Todo el MVP |
+| Lenguaje | Python | 3.14 | Todo el prototipo |
 | Orquestación del agente | **LangGraph** | 1.2.18 | `create_agent` (de `langchain.agents`, API unificada de LangChain v1 — construye internamente un `StateGraph` de LangGraph): controla el ciclo "pensar → decidir si llama a una tool → responder", y la memoria conversacional por sesión (`MemorySaver`) |
 | Framework LLM | **LangChain** (`langchain`, `langchain-openai`, `langchain-chroma`, `langchain-community`) | 1.4.7 | Capa común que conecta el LLM, el vectorstore y las tools; LangGraph se apoya en sus abstracciones (`ChatOpenAI`, `OpenAIEmbeddings`, `Document`, `@tool`) |
 | LLM de chat | OpenAI `gpt-4o-mini` | — (API) | Decide cuándo buscar, ampliar la búsqueda o preguntar; redacta la respuesta final |

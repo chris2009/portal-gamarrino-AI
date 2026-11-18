@@ -1,4 +1,6 @@
-# Portal Gamarrino AI — MVP
+# Portal Gamarrino AI — Prototipo
+
+> **Prototipo, no MVP.** En Capstone I esto es un prototipo; el MVP, integrado a Portal Gamarrino y probado en un piloto de mayor tamaño, corresponde a Capstone II. La carpeta conserva el nombre `MVP_Portal_Gamarrino` porque ya la usan GitHub, Hugging Face y los scripts.
 
 El agente real (no la evaluación offline de E5, que está en `Muestra_378_Evaluacion/`, dentro de este mismo repo).
 Arquitectura: embeddings (OpenAI `text-embedding-3-small`) + ChromaDB + LangGraph

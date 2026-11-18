@@ -17,11 +17,18 @@ respuestas con tiendas), mas lo necesario para abrirlo a probadores:
   las pruebas reales del 13 y 14-nov, volver a hacer clic en un ejemplo durante
   la espera (~7 s) cortaba la respuesta y mandaba la misma consulta otra vez
   (hasta 3 veces en 5 segundos).
+- La conversación sobrevive a «Ver en mapa»: en la prueba de uso (T3, 14-nov), al
+  volver de Google Maps el celular recargó la página y el chat empezó de cero. El
+  identificador de la sesión va en la URL (?s=...) con una firma derivada de la
+  contraseña (&k=...), así que al recargar se recupera la conversación desde la base
+  sin volver a pedir la contraseña; sin la firma correcta, se pide de nuevo.
 
 Para correrlo: streamlit run src/app.py (desde la carpeta MVP_pruebas_reales)
 """
+import hashlib
 import hmac
 import os
+import re
 import uuid
 from pathlib import Path
 
@@ -57,10 +64,27 @@ CONFIRMACION = {
 }
 
 
+# --- Sesión en la URL (ver docstring) ------------------------------------------------
+def _firma(sid: str) -> str:
+    clave = os.environ.get("APP_PASSWORD", "")
+    return hmac.new(clave.encode("utf-8"), sid.encode("utf-8"), hashlib.sha256).hexdigest()[:16] if clave else ""
+
+
+def _sesion_de_url() -> str | None:
+    """El session_id de la URL, solo si es un uuid y trae la firma correcta."""
+    sid, firma = st.query_params.get("s", ""), st.query_params.get("k", "")
+    if re.fullmatch(r"[0-9a-f-]{36}", sid) and hmac.compare_digest(firma, _firma(sid)):
+        return sid
+    return None
+
+
 # --- Acceso con contraseña -------------------------------------------------------
 def _acceso_permitido() -> bool:
     clave = os.environ.get("APP_PASSWORD", "")
     if not clave or st.session_state.get("acceso_ok"):
+        return True
+    if _sesion_de_url():  # misma sesión, recargada (p. ej., al volver del mapa)
+        st.session_state.acceso_ok = True
         return True
     st.title("Portal Gamarrino AI")
     st.caption("Prueba con usuarios · ingresa la contraseña que te dio el equipo")
@@ -79,17 +103,28 @@ if not _acceso_permitido():
 # El agente se importa despues del acceso: carga los modelos de los guardrails (unos segundos la primera vez).
 with st.spinner("Preparando el asistente..."):
     from agente import responder_detallado
-    from historial_db import guardar_feedback
+    from historial_db import cargar_conversacion, guardar_feedback
 
 
-def _nueva_sesion() -> None:
-    st.session_state.session_id = str(uuid.uuid4())
+def _nueva_sesion(sid: str | None = None) -> None:
+    """Sin sid: conversación nueva. Con sid (vino en la URL): la recupera de la base."""
+    st.session_state.session_id = sid or str(uuid.uuid4())
     st.session_state.historial = []        # lista de (rol, texto, interaccion_id, trajo_tiendas)
     st.session_state.feedback_guardado = {}  # interaccion_id -> ultimo valor ya guardado
+    for mensaje, respuesta, interaccion_id, voto in (cargar_conversacion(sid) if sid else []):
+        # trajo tiendas = la respuesta tiene ubicación; así vuelve a salir el voto
+        trajo = "stand" in respuesta.lower() and "piso" in respuesta.lower()
+        st.session_state.historial += [("user", mensaje, None, False),
+                                       ("assistant", respuesta, interaccion_id, trajo)]
+        if voto is not None:
+            st.session_state.feedback_guardado[interaccion_id] = voto
+            st.session_state[f"fb_{interaccion_id}"] = voto
+    st.query_params["s"] = st.session_state.session_id
+    st.query_params["k"] = _firma(st.session_state.session_id)
 
 
 if "session_id" not in st.session_state:
-    _nueva_sesion()
+    _nueva_sesion(_sesion_de_url())
 
 # Mientras el agente responde, la interfaz queda bloqueada (ver docstring).
 st.session_state.setdefault("procesando", False)

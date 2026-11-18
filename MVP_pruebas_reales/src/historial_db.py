@@ -41,7 +41,7 @@ USA_SUPABASE = bool(DATABASE_URL)
 RUTA_SQLITE = os.path.join(BASE_DIR, "historial.db")
 
 # Version del agente que produjo cada respuesta (la evaluada frente a E5).
-VERSION_AGENTE = "v7.3"  # v7.2 + sin frases de relleno al cierre (17-nov)
+VERSION_AGENTE = "v7.4"  # v7.3 + nota de talla/precio y conversación que vuelve del mapa (prueba de uso, 18-nov)
 
 T_INTERACCIONES = "gamarrino_interacciones" if USA_SUPABASE else "interacciones"
 T_FEEDBACK = "gamarrino_feedback" if USA_SUPABASE else "feedback"
@@ -100,6 +100,14 @@ if USA_SUPABASE:
             ).fetchone()
             return fila[0]
 
+    def _leer_conversacion(session_id):
+        with _conectar() as conn:
+            return conn.execute(
+                f"SELECT i.mensaje_usuario, i.respuesta_agente, i.id, f.util FROM {T_INTERACCIONES} i "
+                f"LEFT JOIN {T_FEEDBACK} f ON f.interaccion_id = i.id WHERE i.session_id = %s ORDER BY i.id",
+                (session_id,),
+            ).fetchall()
+
     def _upsert_feedback(interaccion_id, util) -> None:
         with _conectar() as conn:
             conn.execute(
@@ -149,6 +157,14 @@ else:
             )
             return cur.lastrowid
 
+    def _leer_conversacion(session_id):
+        with _conectar() as conn:
+            return conn.execute(
+                f"SELECT i.mensaje_usuario, i.respuesta_agente, i.id, f.util FROM {T_INTERACCIONES} i "
+                f"LEFT JOIN {T_FEEDBACK} f ON f.interaccion_id = i.id WHERE i.session_id = ? ORDER BY i.id",
+                (session_id,),
+            ).fetchall()
+
     def _upsert_feedback(interaccion_id, util) -> None:
         with _conectar() as conn:
             conn.execute(
@@ -167,6 +183,17 @@ def guardar_interaccion(session_id: str, mensaje: str, respuesta: str) -> int:
     except Exception as e:
         _log(e, "guardar_interaccion")
         return -time.time_ns()
+
+
+def cargar_conversacion(session_id: str) -> list:
+    """Devuelve [(mensaje, respuesta, interaccion_id, voto o None), ...] de una sesión,
+    en orden. Lo usa app.py para recuperar la conversación si el celular reinicia la
+    página al volver de «Ver en mapa» (prueba de uso, T3). Si la base falla, []."""
+    try:
+        return [tuple(f) for f in _leer_conversacion(session_id)]
+    except Exception as e:
+        _log(e, "cargar_conversacion")
+        return []
 
 
 def guardar_feedback(interaccion_id: int, util: int) -> None:

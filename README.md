@@ -64,6 +64,8 @@ Entregable 29-10/              <- raíz de este repo
 ├── E5_Equipo7_Portal_Gamarrino.pptx   # Entregable final (plantilla llena)
 ├── E5_Equipo7_Portal_Gamarrino.pdf    # Mismo archivo, exportado para Canvas
 ├── E5_borrador.md                     # Borrador en texto del plan de evaluación
+├── catalogo/
+│   └── build_consolidated_catalog.py  # 565 filas del portal → catálogo operativo de 438 tiendas (corre sobre archivos privados)
 ├── MVP_Portal_Gamarrino/              # El prototipo: agente, guardrails, interfaz y evaluación vs. E5
 │   ├── src/                           # agente.py, guardrails_mvp.py, app.py, 01_indexar_catalogo.py
 │   ├── datos/catalogo_sin_contacto.csv
@@ -94,7 +96,7 @@ Entregable 29-10/              <- raíz de este repo
         └── 11_llenar_pptx_E5.py              # Llena la plantilla pptx con los resultados
 ```
 
-> Nota: el catálogo de tiendas y las consultas crudas (`Base de Datos - Portal Gamarrino/`) viven **fuera** de esta carpeta, en `Entregables/`, y no se suben — ver `.gitignore`.
+> Nota: el catálogo de tiendas y las consultas crudas (`Base de Datos - Portal Gamarrino/`) viven **fuera** de esta carpeta, en `Entregables/`, y no se suben — ver `.gitignore`. Por eso `catalogo/build_consolidated_catalog.py` se publica para mostrar el procedimiento, pero solo corre con esos archivos privados; su resultado público, sin contactos, es `MVP_Portal_Gamarrino/datos/catalogo_sin_contacto.csv`.
 
 ## Cómo reproducirlo
 

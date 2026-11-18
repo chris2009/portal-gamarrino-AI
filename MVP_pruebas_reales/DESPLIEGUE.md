@@ -83,7 +83,7 @@ subir, así nunca se desincronizan.
 |---|---|---|
 | `src/agente.py`, `src/guardrails_mvp.py` | Idénticos | Lo que prueban los usuarios es lo que se evaluó |
 | `src/historial_db.py` | Guarda en Supabase si existe `DATABASE_URL` (si no, en `historial.db` como el MVP); anota `VERSION_AGENTE` en cada respuesta | El disco del Space se borra en cada reinicio |
-| `src/app.py` | Contraseña, barra lateral (foto, cómo funciona, 4 ejemplos, "Nuevo chat", aviso de privacidad); sin burbuja de bienvenida; botones y caja de texto desactivados mientras el agente responde | Abrirlo a desconocidos sin que gasten la cuenta de OpenAI, y que se entienda sin explicación |
+| `src/app.py` | Contraseña, barra lateral (foto, cómo funciona, 4 ejemplos, "Nuevo chat", aviso de privacidad); sin burbuja de bienvenida; botones y caja de texto desactivados mientras el agente responde; encabezado (título y subtítulo) fijo arriba al desplazar el chat | Abrirlo a desconocidos sin que gasten la cuenta de OpenAI, y que se entienda sin explicación |
 | `Dockerfile`, `requirements.txt` | Nuevos | Receta de la imagen, con las mismas versiones del `.venv` evaluado |
 | `src/descargar_chroma.py` | Nuevo | Baja `chroma_db` del dataset privado durante el build |
 | `src/precargar_modelos.py` | Nuevo | Baja los modelos de los guardrails durante el build, no con el primer usuario |
@@ -349,6 +349,12 @@ Todo el 12-nov-2026.
     - Hallazgo, no error: 8 de 42 mensajes piden talla, precio o color («talla XL roja de 20
       soles»), datos que el catálogo no tiene; el agente responde con honestidad que no puede
       confirmarlo. Es lo siguiente que piden los usuarios.
+15. **17-nov: encabezado fijo.** El título «Portal Gamarrino AI» y el subtítulo se quedan arriba al
+    desplazar una conversación larga (`position: sticky` en `app.py`, tema claro fijo en
+    `.streamlit/config.toml`). Un primer intento no funcionó: Streamlit envuelve el contenedor en un
+    `stLayoutWrapper` de su mismo alto, y lo que hay que fijar es ese envoltorio. Verificado con
+    capturas de Edge sin ventana, controlado por su protocolo de depuración: al fondo y a media
+    conversación el encabezado queda a 60 px del borde, justo debajo de la franja del menú ⋮.
 
 ---
 

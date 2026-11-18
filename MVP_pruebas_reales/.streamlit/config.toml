@@ -1,2 +1,4 @@
 [theme]
+# Tema claro fijo: el encabezado fijo de app.py tiene fondo blanco.
+base = "light"
 primaryColor = "#C62828"

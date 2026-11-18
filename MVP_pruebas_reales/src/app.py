@@ -131,8 +131,34 @@ with st.sidebar:
 
 
 # --- Chat --------------------------------------------------------------------------
-st.title("Portal Gamarrino AI")
-st.caption(SUBTITULO)
+# Encabezado fijo: título y subtítulo quedan arriba aunque la conversación se alargue.
+# Streamlit le pone la clase .st-key-encabezado al contenedor con key="encabezado",
+# pero lo envuelve en un stLayoutWrapper de su mismo alto, y un "sticky" no puede
+# salirse de su padre: lo que se fija es ese envoltorio (verificado con capturas de
+# Edge, 17-nov). Queda justo debajo de la franja superior de Streamlit (la del menú
+# ⋮, 3.75rem en la versión 1.66), que se pinta de blanco para que el chat no se vea
+# pasar por detrás. Tema claro fijo en .streamlit/config.toml.
+st.markdown(
+    """
+    <style>
+    header[data-testid="stHeader"] { background-color: #ffffff; }
+    div[data-testid="stLayoutWrapper"]:has(> .st-key-encabezado) {
+        position: sticky;
+        top: 3.75rem;
+        z-index: 990;
+        background-color: #ffffff;
+    }
+    .st-key-encabezado {
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #eeeeee;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+with st.container(key="encabezado"):
+    st.title("Portal Gamarrino AI")
+    st.caption(SUBTITULO)
 
 
 def _mostrar_feedback(interaccion_id: int) -> None:

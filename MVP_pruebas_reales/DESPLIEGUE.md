@@ -28,7 +28,7 @@ es lo que debe ver un comprador.
 
 ```
                     ┌────────────────────── Hugging Face Space (Docker) ──────────────────────┐
- Probador ──HTTPS──▶│ Streamlit (src/app.py) ──▶ agente v7.3 (src/agente.py + guardrails)     │
+ Probador ──HTTPS──▶│ Streamlit (src/app.py) ──▶ agente v7.4 (src/agente.py + guardrails)     │
  (navegador)        │        │                        │             │                          │
                     └────────┼────────────────────────┼─────────────┼──────────────────────────┘
                              │                        │             │
@@ -83,7 +83,7 @@ subir, así nunca se desincronizan.
 |---|---|---|
 | `src/agente.py`, `src/guardrails_mvp.py` | Idénticos | Lo que prueban los usuarios es lo que se evaluó |
 | `src/historial_db.py` | Guarda en Supabase si existe `DATABASE_URL` (si no, en `historial.db`, como en `MVP_Portal_Gamarrino`); anota `VERSION_AGENTE` en cada respuesta | El disco del Space se borra en cada reinicio |
-| `src/app.py` | Contraseña, barra lateral (foto, cómo funciona, 4 ejemplos, "Nuevo chat", aviso de privacidad); sin burbuja de bienvenida; botones y caja de texto desactivados mientras el agente responde; encabezado (título y subtítulo) fijo arriba al desplazar el chat | Abrirlo a desconocidos sin que gasten la cuenta de OpenAI, y que se entienda sin explicación |
+| `src/app.py` | Contraseña, barra lateral (foto, cómo funciona, 4 ejemplos, "Nuevo chat", aviso de privacidad); sin burbuja de bienvenida; botones y caja de texto desactivados mientras el agente responde; encabezado (título y subtítulo) fijo arriba al desplazar el chat; la conversación sobrevive a recargar la página (sesión en la URL con firma, v7.4) | Abrirlo a desconocidos sin que gasten la cuenta de OpenAI, y que se entienda sin explicación |
 | `Dockerfile`, `requirements.txt` | Nuevos | Receta de la imagen, con las mismas versiones del `.venv` evaluado |
 | `src/descargar_chroma.py` | Nuevo | Baja `chroma_db` del dataset privado durante el build |
 | `src/precargar_modelos.py` | Nuevo | Baja los modelos de los guardrails durante el build, no con el primer usuario |
@@ -268,7 +268,7 @@ from gamarrino_feedback f join gamarrino_interacciones i on i.id = f.interaccion
 group by 1 order by 1;
 ```
 
-Las filas `v7` (ids 2–4) son la primera prueba propia, del 12-nov; después vienen `v7.1` (12–13-nov) `v7.2` (13 al 17-nov, con la regla de réplicas y los mapas corregidos) y `v7.3` (desde el 17-nov, sin frases de relleno al cierre).
+Las filas `v7` (ids 2–4) son la primera prueba propia, del 12-nov; después vienen `v7.1` (12–13-nov) `v7.2` (13 al 17-nov, con la regla de réplicas y los mapas corregidos) `v7.3` (17-nov, sin frases de relleno al cierre) y `v7.4` (desde el 18-nov, con los cambios de la prueba de uso).
 
 **LangSmith**: proyecto `portal-gamarrino-pruebas-reales` → cada conversación con sus búsquedas
 (`buscar_tiendas`), lo que devolvieron, la respuesta, tiempos y tokens.
@@ -355,6 +355,20 @@ Todo el 12-nov-2026.
     `stLayoutWrapper` de su mismo alto, y lo que hay que fijar es ese envoltorio. Verificado con
     capturas de Edge sin ventana, controlado por su protocolo de depuración: al fondo y a media
     conversación el encabezado queda a 60 px del borde, justo debajo de la franja del menú ⋮.
+16. **18-nov: cambios de la prueba de uso (v7.4).** Tres compradores reales (T1 y T3 el 14-nov, T6 el
+    17-nov) siguieron una guía de 6 tareas (registro en el Anexo C del informe de cierre):
+    - **La conversación se perdía al volver de «Ver en mapa»** (T3): el celular recargaba la página y
+      Streamlit abría una sesión nueva (en Supabase, sus consultas aparecen en tres sesiones en
+      25 minutos). Ahora `app.py` guarda el `session_id` en la URL (`?s=...&k=...`, con una firma
+      HMAC derivada de `APP_PASSWORD`) y, al recargar, recupera la conversación y los votos con
+      `cargar_conversacion` (`historial_db.py`) sin volver a pedir la contraseña; con una firma
+      falsa la pide. El agente conserva su memoria porque el `session_id` es el mismo.
+    - **Talla, color y precio** (T1 y T6): si el comprador los pide y la respuesta trae tiendas,
+      `agente.py` agrega una nota fija de que el catálogo no los tiene y que se confirman con la
+      tienda (`_con_nota_datos_tienda`).
+    - Verificado con AppTest (los 7 chequeos anteriores más 5 nuevos de la sesión en la URL), con
+      11 mensajes reales para la nota y con la consulta de `cargar_conversacion` en SQLite y, en solo
+      lectura, en Supabase.
 
 ---
 

@@ -150,6 +150,7 @@ Decisión del 11-nov: la evaluación se reporta con el juez LLM y no se hará el
 - Guardrails: seguridad + relevancia activos en entrada; PII activo en salida; moderación pendiente. Alcance: el prompt le prohíbe hacer otras tareas (exámenes, traducciones, textos, código) aunque el mensaje mencione ropa; en un mensaje mezclado atiende solo la prenda. Réplicas (13-nov): si piden réplicas, imitaciones o «bamba», el código (no el LLM) responde que no las recomienda y ofrece buscar la prenda sin la marca.
 - Mapas (13-nov): los enlaces de Google Maps se completan con «La Victoria, Lima, Perú»; el catálogo solo trae la calle y Google ubicaba algunas tiendas en otra ciudad (un probador vio Huancayo).
 - Cierre (17-nov): las frases de relleno («¡Espero que encuentres lo que buscas!», «¡Suerte!») se quitan por código (`_quitar_cierre`). El prompt ya las prohibía, pero 30 de 32 respuestas reales las traían.
+- Talla, color, precio y stock (18-nov, v7.4, por la prueba de uso): si el comprador los pide y la respuesta trae tiendas, el código agrega «Ojo: no tengo información de tallas, colores, precios ni stock de las tiendas. Confírmalos por WhatsApp (si la tienda lo tiene) o en su stand.» (`_con_nota_datos_tienda`, después de `create_agent`). No cambia qué tiendas se recomiendan ni el Hit Rate@3.
 - Persistencia: cada consulta + respuesta + feedback queda en `historial.db`.
 - Observabilidad: trazas a LangSmith si se activa la API key.
 - Interfaz: chat funcionando en `localhost:8501`.

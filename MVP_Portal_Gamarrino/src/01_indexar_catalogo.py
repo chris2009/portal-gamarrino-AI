@@ -22,8 +22,16 @@ from langchain_core.documents import Document
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
-RUTA_CATALOGO = r"D:\APRENDIZAJE\MAESTRIA\CICLO_V\CAPSTONE_I\Entregables\Base de Datos - Portal Gamarrino\Catalogo Consolidado MVP\catalogo_consolidado_mvp.xlsx"
-RUTA_CHROMA = os.path.join(BASE_DIR, "chroma_db")
+# Catálogo: el completo (con WhatsApp verificado) solo lo tiene el equipo, por la
+# autorización académica de Portal Gamarrino. Si no está, se usa el público del
+# repositorio, sin teléfonos ni WhatsApp: el agente funciona igual y muestra
+# «WhatsApp: no disponible». CATALOGO_PATH y CHROMA_PATH permiten cambiar las rutas.
+_CATALOGO_PRIVADO = r"D:\APRENDIZAJE\MAESTRIA\CICLO_V\CAPSTONE_I\Entregables\Base de Datos - Portal Gamarrino\Catalogo Consolidado MVP\catalogo_consolidado_mvp.xlsx"
+_CATALOGO_PUBLICO = os.path.join(BASE_DIR, "datos", "catalogo_sin_contacto.csv")
+RUTA_CATALOGO = os.environ.get("CATALOGO_PATH") or (
+    _CATALOGO_PRIVADO if os.path.exists(_CATALOGO_PRIVADO) else _CATALOGO_PUBLICO
+)
+RUTA_CHROMA = os.environ.get("CHROMA_PATH") or os.path.join(BASE_DIR, "chroma_db")
 COLECCION = "tiendas_gamarra_mvp"
 MODELO_EMBEDDING = "text-embedding-3-small"
 
@@ -38,8 +46,9 @@ try:
 except Exception:
     pass  # no existia todavia (primera corrida)
 
-catalogo = pd.read_excel(RUTA_CATALOGO)
-print(f"Catalogo: {len(catalogo)} tiendas")
+catalogo = (pd.read_csv(RUTA_CATALOGO) if RUTA_CATALOGO.endswith(".csv")
+            else pd.read_excel(RUTA_CATALOGO))
+print(f"Catalogo: {len(catalogo)} tiendas ({os.path.basename(RUTA_CATALOGO)})")
 
 documentos = []
 for _, tienda in catalogo.iterrows():
@@ -53,8 +62,8 @@ for _, tienda in catalogo.iterrows():
             "gallery": str(tienda["gallery"]),
             "floor": str(tienda["floor"]),
             "stand": str(tienda["stand"]),
-            "whatsapp": str(tienda["whatsapp"]) if pd.notna(tienda["whatsapp"]) else "",
-            "whatsapp_available": bool(tienda["whatsapp_available"]),
+            "whatsapp": str(tienda["whatsapp"]) if pd.notna(tienda.get("whatsapp")) else "",
+            "whatsapp_available": bool(tienda.get("whatsapp_available", False)),
             "google_maps_url": str(tienda["google_maps_url"]) if pd.notna(tienda["google_maps_url"]) else "",
         },
     )

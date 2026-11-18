@@ -365,6 +365,26 @@ def _turno_trajo_tiendas(mensajes: list) -> bool:
     return any(_normalizar(n) in final for n in nombres)
 
 
+# Talla, color, precio y stock (prueba de uso, 14 y 17-nov-2026): T1 y T6 pidieron
+# talla, color o presupuesto y recibieron tiendas sin que quedara claro que el
+# catálogo no tiene esos datos (T1: «no me mandaba las tallas, colores; solo
+# posibles lugares»). Si el mensaje los pide y la respuesta trae tiendas, se agrega
+# una nota fija por código. No cambia qué tiendas se recomiendan.
+_RE_PIDE_DATO_TIENDA = re.compile(
+    r"\b(tallas?|colou?r(es)?|precios?|cuesta|cuestan|cuanto|soles|presupuesto|stock|"
+    r"disponibles?|disponibilidad|barat[oa]s?|xs|xl|xxl)\b|s/\s*\d"
+)
+NOTA_DATOS_TIENDA = (
+    "Ojo: no tengo información de tallas, colores, precios ni stock de las tiendas. "
+    "Confírmalos por WhatsApp (si la tienda lo tiene) o en su stand."
+)
+
+
+def _con_nota_datos_tienda(mensaje: str, texto: str, trajo_tiendas: bool) -> str:
+    if trajo_tiendas and _RE_PIDE_DATO_TIENDA.search(_normalizar(mensaje)) and NOTA_DATOS_TIENDA not in texto:
+        return f"{texto}\n\n{NOTA_DATOS_TIENDA}"
+    return texto
+
 def responder(mensaje: str, session_id: str) -> tuple[str, int]:
     """Version de responder_detallado() que devuelve solo (texto, interaccion_id).
     La usa el notebook de evaluacion (evaluacion/evaluacion_agente_vs_E5.ipynb)."""
@@ -405,9 +425,10 @@ def responder_detallado(mensaje: str, session_id: str) -> tuple[str, int, bool]:
 
     salida = agente.invoke({"messages": [{"role": "user", "content": mensaje}]}, config=config)
     respuesta = salida["messages"][-1].content
-    texto = _quitar_cierre(limpiar_salida(respuesta))
+    trajo_tiendas = _turno_trajo_tiendas(salida["messages"])
+    texto = _con_nota_datos_tienda(mensaje, _quitar_cierre(limpiar_salida(respuesta)), trajo_tiendas)
     interaccion_id = guardar_interaccion(session_id, mensaje, texto)
-    return texto, interaccion_id, _turno_trajo_tiendas(salida["messages"])
+    return texto, interaccion_id, trajo_tiendas
 
 
 if __name__ == "__main__":

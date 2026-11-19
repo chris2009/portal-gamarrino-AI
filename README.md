@@ -12,7 +12,7 @@ Asesor: Vicente Machaca
 
 **Opción A — en línea, sin instalar nada:** <https://chris1803-portal-gamarrino-ai.hf.space> (la contraseña la entrega el equipo). Es la misma versión de este repositorio, con el catálogo completo.
 
-**Video de respaldo de la demo (7:44):** <https://drive.google.com/file/d/1vg_NyQPHXaGu4NeESLrIkrWKXbyKIr7E/view>. Muestra el flujo completo con casos reales, por si el prototipo en línea no responde.
+**Video de respaldo de la demo (4:46):** <https://drive.google.com/file/d/1fHZnB_nD6ZMj6-y1pBh6S3FVQDGbpoXl/view>. Muestra el flujo completo con casos reales, por si el prototipo en línea no responde.
 
 **Opción B — en tu computadora** (Python 3.12, unos 15 minutos la primera vez por la descarga de dependencias; necesitas una clave de OpenAI propia):
 
